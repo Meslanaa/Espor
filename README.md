@@ -11,22 +11,21 @@ feature work begins.
 
 ## Current status
 
-**MesOS 0.1 Developer Preview** — implementation complete, emulator verification
-(Phase 5) pending.
+**MesOS 0.2** — MesOS apps and a MesOS-only home screen.
 
 | Area | State |
 | --- | --- |
-| Version single source of truth (`mesos.properties`) | Done |
-| MesOS Home: clock/date, pinned apps, dock, swipe-up app drawer with search | Done |
-| MesOS Settings: categories, Display appearance (persisted), System, About MesOS | Done |
-| MesOS Update: GitHub release check, SHA-256 + signature verification, Android installer | Done |
-| Signed GitHub releases (published when a version bump is merged into `main`) | Done |
-| Emulator verification | Pending ([docs/TESTING.md](docs/TESTING.md)) |
+| MesOS Home: clock/date, dock, app drawer with search; MesOS mode (only MesOS apps, Google Play, user apps) | Done |
+| MesOS apps: Camera, Photos, Files, Downloads, Calculator, Notes | Done |
+| MesOS Settings: Display (light/dark), Apps (show Android apps), System, About MesOS | Done |
+| MesOS Update: signed GitHub releases, SHA-256 + signature checks, Android installer | Done (verified 0.1 → 0.1.1) |
+| English and Turkish | Done |
+| Status bar, lock screen, boot animation, Android Settings | Android's (needs the MesOS ROM) |
 
-At this stage MesOS is a **system shell running on stock Android** (installed as an
-app and set as the home screen), not yet a ROM. Google Play and all Android apps
-keep working. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the path to a
-real ROM.
+MesOS 0.x is a **system shell running on stock Android** (installed as an app and
+set as the home screen), not yet a ROM. Google Play and all Android apps keep
+working. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the path to a real
+ROM and [docs/plans/MESOS_0.2.md](docs/plans/MESOS_0.2.md) for the 0.2 scope.
 
 ## Install and test
 
@@ -54,22 +53,24 @@ Full steps: [docs/BUILDING.md](docs/BUILDING.md).
 
 ```
 mesos.properties   MesOS release identity (version, channel, update URL)
-core/              MesOSRelease, MesOSLog, MesOSPreferences, MesOSTheme
+core/              MesOSRelease, MesOSApps, preferences, theme, shared UI
 launcher/          MesOS Home and app drawer
 settings/          MesOS Settings, About MesOS, MesOS Update screen
 updater/           Update engine (manifest, verification, installer)
+apps/              MesOS Camera, Photos, Files (+ Downloads), Calculator, Notes
 shell/             MesOS Shell APK (org.mesos.shell) bundling the modules
 release/           Release notes and release packaging script
-scripts/           Developer tools (signing key creation)
+scripts/           Signing key creation, MesOS-only emulator mode
 docs/              Architecture, building, testing, updates, roadmap
 ```
 
 ## Known limitations
 
 - Runs on top of the stock Android image; the boot animation, status bar, quick
-  settings and lock screen are still Android's.
+  settings, lock screen and permission dialogs are still Android's.
+- Phone, Messages and Contacts are still Android's apps (MesOS versions planned for 0.3).
 - Updates replace MesOS components only, not Android itself.
-- English UI only; placeholder logo and wordmark.
+- Placeholder logo and wordmark.
 
 ## Documentation
 
