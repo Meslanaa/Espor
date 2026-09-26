@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="calculator_app_name">Hesap Makinesi</string>
+    <string name="calculator_backspace">Sil</string>
+    <string name="calculator_clear">Temizle</string>
+    <string name="calculator_parentheses">Parantez</string>
+    <string name="calculator_error_syntax">Geçersiz ifade</string>
+    <string name="calculator_error_divide_by_zero">Sıfıra bölünemez</string>
+    <string name="calculator_error_overflow">Sayı çok büyük</string>
+</resources>

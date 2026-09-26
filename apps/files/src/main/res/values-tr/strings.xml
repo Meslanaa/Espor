@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="files_app_name">Dosyalar</string>
+    <string name="files_downloads">İndirilenler</string>
+    <string name="files_camera">Kamera (DCIM)</string>
+    <string name="files_pictures">Resimler</string>
+    <string name="files_documents">Belgeler</string>
+    <string name="files_music">Müzik</string>
+    <string name="files_movies">Filmler</string>
+    <string name="files_internal_storage">Dahili depolama</string>
+    <string name="files_storage_used">%2$s alanın %1$s kadarı kullanılıyor</string>
+    <string name="files_access_rationale">MesOS Dosyalar, depolama alanını gezmek ve yönetmek için tüm dosyalara erişim izni istiyor.</string>
+    <string name="files_access_action">Tüm dosyalara erişime izin ver</string>
+    <string name="files_empty_folder">Bu klasör boş.</string>
+    <string name="files_cannot_read">Bu klasör açılamıyor.</string>
+    <string name="files_new_folder">Yeni klasör</string>
+    <string name="files_more">Diğer seçenekler</string>
+    <string name="files_show_hidden">Gizli dosyaları göster</string>
+    <string name="files_open_with">Birlikte aç</string>
+    <string name="files_rename">Yeniden adlandır</string>
+    <string name="files_copy">Kopyala</string>
+    <string name="files_move">Taşı</string>
+    <string name="files_details">Ayrıntılar</string>
+    <string name="files_paste_here">Buraya yapıştır</string>
+    <string name="files_copying">\"%1$s\" bu klasöre kopyalanacak</string>
+    <string name="files_moving">\"%1$s\" bu klasöre taşınacak</string>
+    <string name="files_delete_title">\"%1$s\" silinsin mi?</string>
+    <string name="files_delete_message">Dosya kalıcı olarak silinecek.</string>
+    <string name="files_delete_folder_message">Klasör ve içindeki her şey kalıcı olarak silinecek.</string>
+    <string name="files_details_location">Konum: %1$s</string>
+    <string name="files_details_size">Boyut: %1$s</string>
+    <string name="files_details_type">Tür: %1$s</string>
+    <string name="files_details_items">Öge sayısı: %1$d</string>
+    <string name="files_details_modified">Değiştirilme: %1$s</string>
+    <string name="files_error_name_invalid">Geçerli bir ad gir (\"/\" olmadan).</string>
+    <string name="files_error_exists">Bu adda bir öge zaten var.</string>
+    <string name="files_error_into_itself">Bir klasör kendi içine kopyalanamaz veya taşınamaz.</string>
+    <string name="files_error_failed">İşlem başarısız oldu.</string>
+    <plurals name="files_item_count">
+        <item quantity="one">%1$d öge</item>
+        <item quantity="other">%1$d öge</item>
+    </plurals>
+</resources>

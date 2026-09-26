@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="files_app_name">Files</string>
+    <string name="files_downloads">Downloads</string>
+    <string name="files_camera">Camera (DCIM)</string>
+    <string name="files_pictures">Pictures</string>
+    <string name="files_documents">Documents</string>
+    <string name="files_music">Music</string>
+    <string name="files_movies">Movies</string>
+    <string name="files_internal_storage">Internal storage</string>
+    <string name="files_storage_used">%1$s used of %2$s</string>
+    <string name="files_access_rationale">MesOS Files needs access to all files to browse and manage your storage.</string>
+    <string name="files_access_action">Allow access to all files</string>
+    <string name="files_empty_folder">This folder is empty.</string>
+    <string name="files_cannot_read">This folder can\'t be opened.</string>
+    <string name="files_new_folder">New folder</string>
+    <string name="files_more">More options</string>
+    <string name="files_show_hidden">Show hidden files</string>
+    <string name="files_open_with">Open with</string>
+    <string name="files_rename">Rename</string>
+    <string name="files_copy">Copy</string>
+    <string name="files_move">Move</string>
+    <string name="files_details">Details</string>
+    <string name="files_paste_here">Paste here</string>
+    <string name="files_copying">Copy \"%1$s\" to this folder</string>
+    <string name="files_moving">Move \"%1$s\" to this folder</string>
+    <string name="files_delete_title">Delete \"%1$s\"?</string>
+    <string name="files_delete_message">The file will be removed permanently.</string>
+    <string name="files_delete_folder_message">The folder and everything in it will be removed permanently.</string>
+    <string name="files_details_location">Location: %1$s</string>
+    <string name="files_details_size">Size: %1$s</string>
+    <string name="files_details_type">Type: %1$s</string>
+    <string name="files_details_items">Items: %1$d</string>
+    <string name="files_details_modified">Modified: %1$s</string>
+    <string name="files_error_name_invalid">Enter a valid name (no \"/\").</string>
+    <string name="files_error_exists">An item with this name already exists.</string>
+    <string name="files_error_into_itself">A folder can\'t be copied or moved into itself.</string>
+    <string name="files_error_failed">The operation failed.</string>
+    <plurals name="files_item_count">
+        <item quantity="one">%1$d item</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
+</resources>

@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -34,6 +35,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -61,6 +63,7 @@ import org.mesos.updater.UpdateState
 private enum class Page(val parent: Page?) {
     MAIN(null),
     DISPLAY(MAIN),
+    APPS(MAIN),
     SYSTEM(MAIN),
     ABOUT(MAIN),
     UPDATE(SYSTEM),
@@ -75,6 +78,7 @@ internal fun SettingsApp(openExternal: (Intent) -> Unit) {
     val title = when (page) {
         Page.MAIN -> R.string.settings_title
         Page.DISPLAY -> R.string.settings_display
+        Page.APPS -> R.string.settings_apps
         Page.SYSTEM -> R.string.settings_system
         Page.ABOUT -> R.string.settings_about
         Page.UPDATE -> R.string.settings_update
@@ -97,6 +101,7 @@ internal fun SettingsApp(openExternal: (Intent) -> Unit) {
                 when (page) {
                     Page.MAIN -> MainPage(open = { page = it }, openExternal = openExternal)
                     Page.DISPLAY -> DisplayPage(openExternal)
+                    Page.APPS -> AppsPage(openExternal)
                     Page.SYSTEM -> SystemPage(openUpdate = { page = Page.UPDATE }, openExternal = openExternal)
                     Page.ABOUT -> AboutPage()
                     Page.UPDATE -> UpdatePage()
@@ -136,8 +141,8 @@ private fun MainPage(open: (Page) -> Unit, openExternal: (Intent) -> Unit) {
     SettingsRow(stringResource(R.string.settings_sound), android) {
         openExternal(Intent(Settings.ACTION_SOUND_SETTINGS))
     }
-    SettingsRow(stringResource(R.string.settings_apps), android) {
-        openExternal(Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS))
+    SettingsRow(stringResource(R.string.settings_apps), stringResource(R.string.settings_apps_summary)) {
+        open(Page.APPS)
     }
     SettingsRow(stringResource(R.string.settings_storage), android) {
         openExternal(Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS))
@@ -211,6 +216,40 @@ private fun DisplayPage(openExternal: (Intent) -> Unit) {
     HorizontalDivider(Modifier.padding(vertical = 8.dp))
     SettingsRow(stringResource(R.string.settings_android_display), stringResource(R.string.settings_opens_android)) {
         openExternal(Intent(Settings.ACTION_DISPLAY_SETTINGS))
+    }
+}
+
+@Composable
+private fun AppsPage(openExternal: (Intent) -> Unit) {
+    val context = LocalContext.current
+    val preferences = remember(context) { MesOSPreferences.get(context) }
+    val showAndroidApps by preferences.showAndroidApps.collectAsState()
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .toggleable(
+                value = showAndroidApps,
+                onValueChange = preferences::setShowAndroidApps,
+                role = Role.Switch,
+            )
+            .padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text(stringResource(R.string.settings_show_android_apps), style = MaterialTheme.typography.titleMedium)
+            Text(
+                stringResource(R.string.settings_show_android_apps_summary),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        Spacer(Modifier.width(12.dp))
+        Switch(checked = showAndroidApps, onCheckedChange = null)
+    }
+    HorizontalDivider(Modifier.padding(vertical = 8.dp))
+    SettingsRow(stringResource(R.string.settings_manage_android_apps), stringResource(R.string.settings_opens_android)) {
+        openExternal(Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS))
     }
 }
 

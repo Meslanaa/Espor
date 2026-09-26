@@ -65,4 +65,9 @@ dependencies {
     implementation(project(":launcher"))
     implementation(project(":settings"))
     implementation(project(":updater"))
+    implementation(project(":apps:camera"))
+    implementation(project(":apps:photos"))
+    implementation(project(":apps:files"))
+    implementation(project(":apps:calculator"))
+    implementation(project(":apps:notes"))
 }

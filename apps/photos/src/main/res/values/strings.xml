@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="photos_app_name">Photos</string>
+    <string name="photos_tab_photos">Photos</string>
+    <string name="photos_tab_albums">Albums</string>
+    <string name="photos_access_rationale">MesOS Photos needs access to your photos and videos to show them.</string>
+    <string name="photos_limited_access">You shared only some photos with MesOS.</string>
+    <string name="photos_allow_all">Allow all</string>
+    <string name="photos_empty">No photos or videos yet.</string>
+    <string name="photos_other">Other</string>
+    <string name="photos_details">Details</string>
+    <string name="photos_delete_failed">This item could not be deleted.</string>
+</resources>

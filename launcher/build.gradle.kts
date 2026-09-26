@@ -32,4 +32,6 @@ kotlin {
 
 dependencies {
     implementation(project(":core"))
+
+    testImplementation(libs.junit)
 }

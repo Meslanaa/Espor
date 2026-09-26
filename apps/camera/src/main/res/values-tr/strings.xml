@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera_app_name">Kamera</string>
+    <string name="camera_access_rationale">MesOS Kamera, fotoğraf ve video çekebilmek için kameraya erişmek istiyor.</string>
+    <string name="camera_mode_photo">Fotoğraf</string>
+    <string name="camera_mode_video">Video</string>
+    <string name="camera_take_photo">Fotoğraf çek</string>
+    <string name="camera_start_recording">Kaydı başlat</string>
+    <string name="camera_stop_recording">Kaydı durdur</string>
+    <string name="camera_switch">Kamerayı değiştir</string>
+    <string name="camera_last_capture">Son fotoğraf veya video</string>
+    <string name="camera_flash_off">Kapalı</string>
+    <string name="camera_flash_auto">Otomatik</string>
+    <string name="camera_flash_on">Açık</string>
+    <string name="camera_capture_failed">Kaydedilemedi. Tekrar dene.</string>
+</resources>

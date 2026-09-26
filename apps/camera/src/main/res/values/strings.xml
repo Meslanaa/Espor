@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera_app_name">Camera</string>
+    <string name="camera_access_rationale">MesOS Camera needs access to the camera to take photos and videos.</string>
+    <string name="camera_mode_photo">Photo</string>
+    <string name="camera_mode_video">Video</string>
+    <string name="camera_take_photo">Take photo</string>
+    <string name="camera_start_recording">Start recording</string>
+    <string name="camera_stop_recording">Stop recording</string>
+    <string name="camera_switch">Switch camera</string>
+    <string name="camera_last_capture">Last photo or video</string>
+    <string name="camera_flash_off">Off</string>
+    <string name="camera_flash_auto">Auto</string>
+    <string name="camera_flash_on">On</string>
+    <string name="camera_capture_failed">Could not save. Try again.</string>
+</resources>

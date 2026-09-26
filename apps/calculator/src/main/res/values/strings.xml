@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="calculator_app_name">Calculator</string>
+    <string name="calculator_backspace">Delete</string>
+    <string name="calculator_clear">Clear</string>
+    <string name="calculator_parentheses">Parentheses</string>
+    <string name="calculator_error_syntax">Invalid expression</string>
+    <string name="calculator_error_divide_by_zero">Can\'t divide by zero</string>
+    <string name="calculator_error_overflow">Number too large</string>
+</resources>

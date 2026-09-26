@@ -28,6 +28,21 @@ class MesOSPreferences private constructor(context: Context) {
     private val _themeMode = MutableStateFlow(ThemeMode.fromId(prefs.getString(KEY_THEME_MODE, null)))
     val themeMode: StateFlow<ThemeMode> = _themeMode.asStateFlow()
 
+    private val _showAndroidApps = MutableStateFlow(prefs.getBoolean(KEY_SHOW_ANDROID_APPS, false))
+
+    /**
+     * false (default, "MesOS mode"): MesOS Home lists only MesOS apps, Google Play and
+     * apps the user installed. true: preinstalled Android apps are listed too.
+     */
+    val showAndroidApps: StateFlow<Boolean> = _showAndroidApps.asStateFlow()
+
+    fun setShowAndroidApps(show: Boolean) {
+        if (show == _showAndroidApps.value) return
+        prefs.edit().putBoolean(KEY_SHOW_ANDROID_APPS, show).apply()
+        _showAndroidApps.value = show
+        MesOSLog.i(MesOSLog.SYSTEM, "Show Android apps set to $show")
+    }
+
     fun setThemeMode(mode: ThemeMode) {
         if (mode == _themeMode.value) return
         prefs.edit().putString(KEY_THEME_MODE, mode.id).apply()
@@ -38,6 +53,7 @@ class MesOSPreferences private constructor(context: Context) {
     companion object {
         private const val FILE_NAME = "mesos_preferences"
         private const val KEY_THEME_MODE = "theme_mode"
+        private const val KEY_SHOW_ANDROID_APPS = "show_android_apps"
 
         @Volatile
         private var instance: MesOSPreferences? = null

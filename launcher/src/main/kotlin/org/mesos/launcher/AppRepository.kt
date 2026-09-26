@@ -2,6 +2,7 @@ package org.mesos.launcher
 
 import android.content.ComponentName
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.content.pm.LauncherActivityInfo
 import android.content.pm.LauncherApps
 import android.graphics.Bitmap
@@ -19,8 +20,10 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.launch
 import org.mesos.core.log.MesOSLog
+import org.mesos.core.prefs.MesOSPreferences
 import java.text.Collator
 import java.util.Locale
 
@@ -32,6 +35,8 @@ data class AppEntry(
     val component: ComponentName,
     val user: UserHandle,
     val icon: ImageBitmap,
+    /** Preinstalled with the system image (including updated system apps). */
+    val isSystemApp: Boolean,
 )
 
 /** Everything the home screen shows. */
@@ -46,14 +51,19 @@ data class LauncherModel(
  *
  * Apps are loaded once off the main thread and reloaded only when Android reports a
  * package change, so apps installed later appear automatically without polling.
+ * Changing "Show Android apps" only re-filters the loaded list.
  */
 class AppRepository private constructor(context: Context) {
 
     private val appContext = context.applicationContext
+    private val preferences = MesOSPreferences.get(appContext)
     private val launcherApps = appContext.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private var loadJob: Job? = null
     private var started = false
+
+    @Volatile
+    private var loadedApps: List<AppEntry> = emptyList()
 
     private val _model = MutableStateFlow(LauncherModel())
     val model: StateFlow<LauncherModel> = _model.asStateFlow()
@@ -74,6 +84,10 @@ class AppRepository private constructor(context: Context) {
         started = true
         launcherApps.registerCallback(packageCallback, Handler(Looper.getMainLooper()))
         reload("start")
+        scope.launch {
+            // Skip the current value: reload() above already uses it.
+            preferences.showAndroidApps.drop(1).collect { publish() }
+        }
     }
 
     fun launch(entry: AppEntry): Boolean =
@@ -90,10 +104,21 @@ class AppRepository private constructor(context: Context) {
         MesOSLog.d(MesOSLog.LAUNCHER, "Reloading apps ($reason)")
         loadJob?.cancel()
         loadJob = scope.launch(Dispatchers.IO) {
-            val apps = loadApps()
-            val (pinned, dock) = Pins.resolve(appContext, apps)
-            _model.value = LauncherModel(allApps = apps, pinned = pinned, dock = dock)
-            MesOSLog.i(MesOSLog.LAUNCHER, "Loaded ${apps.size} apps")
+            loadedApps = loadApps()
+            MesOSLog.i(MesOSLog.LAUNCHER, "Loaded ${loadedApps.size} apps")
+            publish()
+        }
+    }
+
+    /** Applies the visibility rules to the loaded apps and publishes the home model. */
+    private fun publish() {
+        scope.launch(Dispatchers.IO) {
+            val showAndroidApps = preferences.showAndroidApps.value
+            val visible = loadedApps.filter {
+                AppVisibility.isVisible(it.packageName, it.isSystemApp, appContext.packageName, showAndroidApps)
+            }
+            val (pinned, dock) = Pins.resolve(appContext, visible, showAndroidApps)
+            _model.value = LauncherModel(allApps = visible, pinned = pinned, dock = dock)
         }
     }
 
@@ -114,6 +139,8 @@ class AppRepository private constructor(context: Context) {
             component = componentName,
             user = user,
             icon = getBadgedIcon(0).toImageBitmap(iconSizePx),
+            isSystemApp = applicationInfo.flags and
+                (ApplicationInfo.FLAG_SYSTEM or ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0,
         )
 
     companion object {

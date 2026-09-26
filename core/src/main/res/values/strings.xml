@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mesos_back">Back</string>
+    <string name="mesos_permission_allow">Allow access</string>
+    <string name="mesos_permission_open_settings">Open app settings</string>
+    <string name="mesos_ok">OK</string>
+    <string name="mesos_cancel">Cancel</string>
+    <string name="mesos_delete">Delete</string>
+    <string name="mesos_share">Share</string>
+    <string name="mesos_open_failed">No app can open this</string>
+</resources>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_app_label">MesOS Ayarlar</string>
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_back">Geri</string>
+    <string name="settings_opens_android">Android ayarlarını açar</string>
+    <string name="settings_not_available">Bu cihazda kullanılamıyor</string>
+
+    <string name="settings_set_home_title">MesOS\'u ana ekranın yap</string>
+    <string name="settings_set_home_summary">MesOS Home yüklü ama varsayılan ana ekran uygulaması başka bir uygulama.</string>
+    <string name="settings_set_home_action">Ana ekran yap</string>
+
+    <string name="settings_network">Ağ ve İnternet</string>
+    <string name="settings_display">Ekran</string>
+    <string name="settings_display_summary">MesOS görünümü, parlaklık, ekran zaman aşımı</string>
+    <string name="settings_sound">Ses</string>
+    <string name="settings_apps">Uygulamalar</string>
+    <string name="settings_apps_summary">MesOS uygulamaları, Android uygulamaları</string>
+    <string name="settings_show_android_apps">Android uygulamalarını göster</string>
+    <string name="settings_show_android_apps_summary">Kapalı: MesOS Home yalnızca MesOS uygulamalarını, Google Play\'i ve senin yüklediğin uygulamaları gösterir. Açık: önceden yüklü Android uygulamaları da görünür.</string>
+    <string name="settings_manage_android_apps">Tüm uygulamaları yönet</string>
+    <string name="settings_storage">Depolama</string>
+    <string name="settings_system">Sistem</string>
+    <string name="settings_system_summary">MesOS Güncelleme, Android sistem ayarları</string>
+    <string name="settings_about">MesOS Hakkında</string>
+
+    <string name="settings_theme_header">MesOS görünümü</string>
+    <string name="settings_theme_system">Sistem varsayılanı</string>
+    <string name="settings_theme_light">Açık</string>
+    <string name="settings_theme_dark">Koyu</string>
+    <string name="settings_android_display">Android ekran ayarları</string>
+
+    <string name="settings_update">MesOS Güncelleme</string>
+    <string name="settings_android_system">Android sistem ayarları</string>
+
+    <string name="about_mesos_version">MesOS sürümü</string>
+    <string name="about_mesos_build">MesOS derlemesi</string>
+    <string name="about_mesos_build_value">%1$s · %2$s kanalı</string>
+    <string name="about_android_base">Android tabanı</string>
+    <string name="about_android_base_value">Android %1$s (API %2$d)</string>
+    <string name="about_android_build">Android derlemesi</string>
+    <string name="about_security_patch">Güvenlik yaması</string>
+    <string name="about_device">Cihaz</string>
+    <string name="about_update_status">Güncelleme durumu</string>
+    <string name="about_unknown">Bilinmiyor</string>
+    <string name="about_scope_note">MesOS 0.x, Android\'in üzerinde bir sistem kabuğu olarak çalışır. MesOS güncellemeleri yalnızca MesOS bileşenlerini değiştirir; Android sürümü ve güvenlik yaması cihaz imajından gelir.</string>
+
+    <string name="update_current_version">Yüklü sürüm</string>
+    <string name="update_status_never">Henüz denetlenmedi</string>
+    <string name="update_status_last_checked">Son denetim: %1$s</string>
+    <string name="update_status_up_to_date">Güncel · %1$s tarihinde denetlendi</string>
+    <string name="update_status_available">MesOS %1$s kullanılabilir</string>
+    <string name="update_status_updated_from">%1$s sürümünden güncellendi</string>
+    <string name="update_check">Güncellemeleri denetle</string>
+    <string name="update_checking">Güncellemeler denetleniyor…</string>
+    <string name="update_up_to_date">MesOS güncel.</string>
+    <string name="update_available_title">MesOS %1$s</string>
+    <string name="update_available_size">İndirme boyutu: %1$s</string>
+    <string name="update_release_notes">Sürüm notları</string>
+    <string name="update_download_install">İndir ve yükle</string>
+    <string name="update_downloading">İndiriliyor… %%%1$d</string>
+    <string name="update_verifying">Güncelleme doğrulanıyor (SHA-256 ve imza)…</string>
+    <string name="update_permission_needed">MesOS\'un kendi güncellemelerini yükleyebilmesi için Android iznin gerekiyor.</string>
+    <string name="update_permission_action">MesOS güncellemelerine izin ver</string>
+    <string name="update_awaiting_confirmation">Yüklemeyi Android penceresinde onayla. Güncellemeden sonra MesOS yeniden başlar.</string>
+    <string name="update_installed">Güncelleme yüklendi. MesOS yeniden başlıyor…</string>
+    <string name="update_just_updated">MesOS %1$s sürümünden %2$s sürümüne güncellendi.</string>
+    <string name="update_whats_new">%1$s sürümündeki yenilikler</string>
+    <string name="update_failed">Güncelleme başarısız</string>
+    <string name="update_try_again">Tekrar dene</string>
+    <string name="update_source">Güncelleme kaynağı: %1$s</string>
+    <string name="update_scope_note">Bu işlem MesOS bileşenlerini (Home, Ayarlar, MesOS uygulamaları, Güncelleyici) günceller. Android\'in kendisi değişmez.</string>
+
+    <string name="update_error_network">Güncelleme sunucusuna ulaşılamadı.</string>
+    <string name="update_error_no_release">Henüz yayınlanmış bir MesOS sürümü yok.</string>
+    <string name="update_error_invalid_manifest">Güncelleme bilgisi geçersiz.</string>
+    <string name="update_error_unsupported_manifest">Bu güncelleme daha yeni bir MesOS güncelleyicisi gerektiriyor.</string>
+    <string name="update_error_wrong_package">Bu MesOS derlemesi bu kanaldan güncelleme almaz (geliştirme derlemesi).</string>
+    <string name="update_error_wrong_channel">Yayınlanan güncelleme başka bir sürüm kanalına ait.</string>
+    <string name="update_error_insecure_url">Güncelleme güvensiz (HTTPS olmayan) bir adres kullandığı için reddedildi.</string>
+    <string name="update_error_not_supported_from_installed">Bu sürüm doğrudan güncellenemeyecek kadar eski. En son MesOS\'u elle yükle.</string>
+    <string name="update_error_too_large">İndirme bildirilenden büyük olduğu için durduruldu.</string>
+    <string name="update_error_checksum">İndirilen dosya bozuk (SHA-256 uyuşmuyor) ve silindi.</string>
+    <string name="update_error_package_mismatch">İndirilen paket güncelleme bilgisiyle eşleşmiyor.</string>
+    <string name="update_error_signature">Güncelleme MesOS anahtarıyla imzalanmamış ve reddedildi.</string>
+    <string name="update_error_install_failed">Android güncellemeyi yükleyemedi.</string>
+    <string name="update_error_install_cancelled">Yükleme iptal edildi.</string>
+    <string name="update_error_storage">Güncellemeyi indirmek için yeterli depolama alanı yok.</string>
+</resources>

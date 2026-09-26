@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notes_app_name">Notes</string>
+    <string name="notes_search">Search notes</string>
+    <string name="notes_empty">No notes yet. Tap + to write one.</string>
+    <string name="notes_no_results">No notes match your search.</string>
+    <string name="notes_new">New note</string>
+    <string name="notes_edit">Note</string>
+    <string name="notes_untitled">Untitled</string>
+    <string name="notes_title_hint">Title</string>
+    <string name="notes_body_hint">Write something…</string>
+    <string name="notes_delete_title">Delete this note?</string>
+    <string name="notes_delete_message">The note will be removed permanently.</string>
+</resources>

@@ -42,11 +42,17 @@ self-contained Android apps is also how they will later be dropped into an AOSP 
 | `:launcher` | Android library | `HomeActivity` (HOME), `AppRepository` (`LauncherApps` + package callbacks), role-based pinned apps and dock, app drawer |
 | `:settings` | Android library | `SettingsActivity`: MesOS pages, hand-offs to Android settings, About MesOS, MesOS Update screen |
 | `:updater` | Android library, no UI | `UpdateController`: manifest fetch, `UpdatePolicy`, SHA-256, `ApkVerifier`, `PackageInstaller` session |
+| `:apps:camera` | Android library | MesOS Camera (CameraX): photo/video, `ACTION_IMAGE_CAPTURE` |
+| `:apps:photos` | Android library | MesOS Photos: MediaStore gallery, albums, viewer, `ACTION_VIEW` for images/videos |
+| `:apps:files` | Android library | MesOS Files and Downloads: file manager with all-files access, `FileProvider` |
+| `:apps:calculator` | Android library | MesOS Calculator: `BigDecimal` expression engine |
+| `:apps:notes` | Android library | MesOS Notes: SQLite notes |
 | `:shell` | Android application `org.mesos.shell` | Bundles the modules into the deployable MesOS userland APK; signing and app identity |
 
-Dependencies: `shell → launcher, settings, updater, core`; `settings → updater, core`;
-`launcher → core`; `updater → core`. The launcher opens Settings through
-`MesOSIntents.ACTION_SETTINGS`, not a compile-time dependency.
+Dependencies: `shell → everything`; `settings → updater, core`; every other module →
+`core` only. Modules reach each other through `MesOSApps` (activity class names) and
+`MesOSIntents`, never through compile-time dependencies. Every app activity has its
+own `taskAffinity`, so each app is a separate task (and separate card in Recents).
 
 ### Why one APK in 0.x
 
@@ -61,7 +67,8 @@ adding application modules; the feature modules do not change.
 
 | Data | Store | Survives reboot / update |
 | --- | --- | --- |
-| MesOS appearance (System / Light / Dark) | `MesOSPreferences` (SharedPreferences) | Yes |
+| MesOS appearance (System / Light / Dark), "Show Android apps" | `MesOSPreferences` (SharedPreferences) | Yes |
+| Notes | `NotesDatabase` (private SQLite) | Yes |
 | Last update check, last seen version, pending release notes | `UpdatePreferences` (SharedPreferences) | Yes |
 | Default home app | Android `RoleManager` (owned by Android) | Yes |
 
