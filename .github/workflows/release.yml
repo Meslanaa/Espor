@@ -1,10 +1,15 @@
 name: release
 
 # Publishes a signed MesOS Shell APK and its update manifest as a GitHub release.
-# Triggered by pushing a tag that matches mesos.properties, e.g. `mesos-v0.1`.
+#
+# Runs when mesos.properties changes on main (i.e. a merged version bump) and on
+# manual dispatch. The tag `mesos-v<version name>` is created by this workflow; if a
+# release for the current version already exists, nothing is published.
 on:
   push:
-    tags: ["mesos-v*"]
+    branches: [main]
+    paths: [mesos.properties]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -20,14 +25,36 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Determine release version
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          name="$(sed -n 's/^mesos\.version\.name=//p' mesos.properties | tr -d '[:space:]')"
+          if [ -z "$name" ]; then
+            echo "::error::mesos.version.name is missing from mesos.properties"
+            exit 1
+          fi
+          tag="mesos-v$name"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if gh release view "$tag" > /dev/null 2>&1; then
+            echo "::notice::Release $tag already exists; nothing to publish."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-java@v5
+        if: steps.version.outputs.publish == 'true'
         with:
           distribution: temurin
           java-version: 21
 
       - uses: gradle/actions/setup-gradle@v5
+        if: steps.version.outputs.publish == 'true'
 
       - name: Restore signing key
+        if: steps.version.outputs.publish == 'true'
         env:
           KEYSTORE_BASE64: ${{ secrets.MESOS_KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.MESOS_KEYSTORE_PASSWORD }}
@@ -39,6 +66,7 @@ jobs:
           printf '%s' "$KEYSTORE_BASE64" | tr -d '\r\n ' | base64 --decode > "$RUNNER_TEMP/mesos-release.jks"
 
       - name: Build signed release APK
+        if: steps.version.outputs.publish == 'true'
         env:
           MESOS_BUILD_NUMBER: ${{ github.run_number }}
           MESOS_KEYSTORE_FILE: ${{ runner.temp }}/mesos-release.jks
@@ -46,25 +74,29 @@ jobs:
         run: ./gradlew --no-daemon --stacktrace :shell:assembleRelease
 
       - name: Verify APK signature
+        if: steps.version.outputs.publish == 'true'
         run: |
           apksigner="$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)/apksigner"
           "$apksigner" verify --print-certs shell/build/outputs/apk/release/shell-release.apk
 
       - name: Package release assets
+        if: steps.version.outputs.publish == 'true'
         run: >
           python3 release/make_release.py
           --apk shell/build/outputs/apk/release/shell-release.apk
-          --tag "$GITHUB_REF_NAME"
+          --tag "${{ steps.version.outputs.tag }}"
           --repo "$GITHUB_REPOSITORY"
           --out dist
           --meta "$RUNNER_TEMP/release-meta"
 
       - name: Publish GitHub release
+        if: steps.version.outputs.publish == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
         run: |
-          gh release create "$GITHUB_REF_NAME" dist/* \
-            --verify-tag \
+          gh release create "$TAG" dist/* \
+            --target "$GITHUB_SHA" \
             --latest \
             --title "$(cat "$RUNNER_TEMP/release-meta/title.txt")" \
             --notes-file "$RUNNER_TEMP/release-meta/body.md"

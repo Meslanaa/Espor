@@ -20,7 +20,7 @@ feature work begins.
 | MesOS Home: clock/date, pinned apps, dock, swipe-up app drawer with search | Done |
 | MesOS Settings: categories, Display appearance (persisted), System, About MesOS | Done |
 | MesOS Update: GitHub release check, SHA-256 + signature verification, Android installer | Done |
-| Signed GitHub releases (`mesos-v*` tags) | Done — needs the signing secrets once |
+| Signed GitHub releases (published when a version bump is merged into `main`) | Done |
 | Emulator verification | Pending ([docs/TESTING.md](docs/TESTING.md)) |
 
 At this stage MesOS is a **system shell running on stock Android** (installed as an

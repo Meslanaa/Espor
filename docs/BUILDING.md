@@ -87,7 +87,7 @@ The build number comes from the `MESOS_BUILD_NUMBER` environment variable and is
 - `.github/workflows/build.yml` — on pull requests and pushes to `main`: builds the
   debug APK and an unsigned release APK, runs all unit tests, uploads the debug APK
   as the `mesos-shell-debug` artifact.
-- `.github/workflows/release.yml` — on `mesos-v*` tags: builds the release APK signed
+- `.github/workflows/release.yml` — when a version bump reaches `main` (or by hand): builds the release APK signed
   with the MesOS developer key and publishes a GitHub release with the update
   manifest. See [UPDATES.md](UPDATES.md#publishing-a-release).
 

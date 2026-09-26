@@ -20,14 +20,15 @@ the MesOS Update and About MesOS screens.
 
 ```
 mesos.properties + release/notes/<version>.md
-        │  git tag mesos-v<version> && git push origin mesos-v<version>
+        │  pull request merged into main (version bump = release approval)
         ▼
-.github/workflows/release.yml
+.github/workflows/release.yml   (also runnable by hand: Actions → release → Run workflow)
+        │  skip if release mesos-v<version> already exists
         │  build :shell:assembleRelease signed with the MesOS key (from secrets)
         │  apksigner verify
         │  release/make_release.py → mesos-shell-<version>.apk + mesos-update.json
         ▼
-GitHub release "MesOS <version> …" (marked latest)
+GitHub release "MesOS <version> …", tag mesos-v<version> created by the workflow, marked latest
         ▼
 Device: MesOS Settings → System → MesOS Update
         GET https://github.com/Meslanaa/Espor/releases/latest/download/mesos-update.json
@@ -107,10 +108,12 @@ The key is created on the developer's PC and stored only in GitHub Actions secre
 1. Edit `mesos.properties`: raise `mesos.version.code` by one and set
    `mesos.version.name`.
 2. Add `release/notes/<version name>.md`.
-3. Commit, then tag and push: `git tag mesos-v<version name>` and
-   `git push origin mesos-v<version name>`.
-4. The release workflow refuses to publish if the tag does not match
-   `mesos.properties`, notes are missing, secrets are missing, or the release exists.
+3. Open a pull request and merge it into `main`. The release workflow runs because
+   `mesos.properties` changed, creates the tag `mesos-v<version name>` and publishes
+   the release.
+4. The workflow refuses to publish if notes or signing secrets are missing, and skips
+   publishing if the release already exists. To retry a failed release, use
+   Actions → release → Run workflow on `main`.
 
 ## Full OTA (MesOS 0.5 and later)
 
