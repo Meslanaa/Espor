@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="photos_app_name">Fotoğraflar</string>
+    <string name="photos_tab_photos">Fotoğraflar</string>
+    <string name="photos_tab_albums">Albümler</string>
+    <string name="photos_access_rationale">MesOS Fotoğraflar, fotoğraflarını ve videolarını gösterebilmek için bunlara erişmek istiyor.</string>
+    <string name="photos_limited_access">MesOS ile yalnızca bazı fotoğrafları paylaştın.</string>
+    <string name="photos_allow_all">Tümüne izin ver</string>
+    <string name="photos_empty">Henüz fotoğraf veya video yok.</string>
+    <string name="photos_other">Diğer</string>
+    <string name="photos_details">Ayrıntılar</string>
+    <string name="photos_delete_failed">Bu öge silinemedi.</string>
+</resources>
