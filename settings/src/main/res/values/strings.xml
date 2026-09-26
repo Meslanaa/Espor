@@ -15,6 +15,10 @@
     <string name="settings_display_summary">MesOS appearance, brightness, screen timeout</string>
     <string name="settings_sound">Sound</string>
     <string name="settings_apps">Apps</string>
+    <string name="settings_apps_summary">MesOS apps, Android apps</string>
+    <string name="settings_show_android_apps">Show Android apps</string>
+    <string name="settings_show_android_apps_summary">Off: MesOS Home lists MesOS apps, Google Play and apps you installed. On: preinstalled Android apps are listed too.</string>
+    <string name="settings_manage_android_apps">Manage all apps</string>
     <string name="settings_storage">Storage</string>
     <string name="settings_system">System</string>
     <string name="settings_system_summary">MesOS Update, Android system settings</string>
@@ -65,7 +69,7 @@
     <string name="update_failed">Update failed</string>
     <string name="update_try_again">Try again</string>
     <string name="update_source">Update source: %1$s</string>
-    <string name="update_scope_note">This updates MesOS components (Home, Settings, Updater). Android itself is not changed.</string>
+    <string name="update_scope_note">This updates MesOS components (Home, Settings, MesOS apps, Updater). Android itself is not changed.</string>
 
     <string name="update_error_network">Could not reach the update server.</string>
     <string name="update_error_no_release">No MesOS release has been published yet.</string>

@@ -30,5 +30,11 @@ include(":launcher")
 include(":settings")
 // MesOS component updater engine (no UI).
 include(":updater")
+// MesOS apps.
+include(":apps:camera")
+include(":apps:photos")
+include(":apps:files")
+include(":apps:calculator")
+include(":apps:notes")
 // MesOS Shell: the deployable MesOS userland APK that bundles the modules above.
 include(":shell")

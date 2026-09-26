@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notes_app_name">Notlar</string>
+    <string name="notes_search">Notlarda ara</string>
+    <string name="notes_empty">Henüz not yok. Yazmak için + simgesine dokun.</string>
+    <string name="notes_no_results">Aramanla eşleşen not yok.</string>
+    <string name="notes_new">Yeni not</string>
+    <string name="notes_edit">Not</string>
+    <string name="notes_untitled">Başlıksız</string>
+    <string name="notes_title_hint">Başlık</string>
+    <string name="notes_body_hint">Bir şeyler yaz…</string>
+    <string name="notes_delete_title">Bu not silinsin mi?</string>
+    <string name="notes_delete_message">Not kalıcı olarak silinecek.</string>
+</resources>
