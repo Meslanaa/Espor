@@ -1,0 +1,11 @@
+# MesOS smoke test screens: <screenshot name> <activity class> [am start arguments]
+# "@setup-done" marks the setup wizard as finished; "@home" tests MesOS Home gestures.
+settings org.mesos.settings.SettingsActivity
+@setup-done
+@home
+camera org.mesos.camera.CameraActivity
+photos org.mesos.photos.PhotosActivity
+files org.mesos.files.FilesActivity
+downloads org.mesos.files.DownloadsActivity
+calculator org.mesos.calculator.CalculatorActivity
+notes org.mesos.notes.NotesActivity
