@@ -88,6 +88,8 @@ private enum class EarlyEnd { LIFTED, HORIZONTAL, VERTICAL }
  *
  * - vertical swipe → [onSheetDrag] with the finger's movement, then [onSheetEnd]
  *   with its velocity (drawer up, control center down);
+ * - sideways swipe → the pager, except when it arrives as just down and up (busy
+ *   UI thread): then [onQuickPageSwipe] with the horizontal distance;
  * - long press on an item → [onLongPressItem]; moving afterwards → [onDragStart],
  *   [onDragMove] and finally [onDrop] (or [onDragCancel]);
  * - long press on empty space → [onLongPressEmpty].
@@ -98,6 +100,7 @@ internal fun Modifier.homeLongPressDrag(
     hitTest: (Offset) -> Long?,
     onSheetDrag: (dy: Float) -> Unit,
     onSheetEnd: (velocityY: Float) -> Unit,
+    onQuickPageSwipe: (dx: Float) -> Unit,
     onLongPressItem: (id: Long) -> Unit,
     onLongPressEmpty: (Offset) -> Unit,
     onDragStart: (id: Long, pointer: Offset) -> Boolean,
@@ -134,7 +137,15 @@ internal fun Modifier.homeLongPressDrag(
             EarlyEnd.LIFTED
         }
         when (early) {
-            EarlyEnd.LIFTED, EarlyEnd.HORIZONTAL -> return@awaitEachGesture
+            EarlyEnd.LIFTED -> return@awaitEachGesture
+            EarlyEnd.HORIZONTAL -> {
+                // The pager never saw a move in this case, so it cannot turn the page itself.
+                upAlready?.let { up ->
+                    up.consume()
+                    onQuickPageSwipe(up.position.x - down.position.x)
+                }
+                return@awaitEachGesture
+            }
             EarlyEnd.VERTICAL -> {
                 if (!sheetsEnabled(down.position)) return@awaitEachGesture
                 // Own the swipe from here on: the pager and the icons do not see it.

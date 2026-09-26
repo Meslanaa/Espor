@@ -311,6 +311,13 @@ internal fun HomeScreen(
                         hitTest = { position -> registry.hit(position, screen) },
                         onSheetDrag = { dy -> sheetDrag.drag(dy) },
                         onSheetEnd = { velocity -> sheetDrag.end(velocity) },
+                        onQuickPageSwipe = { dx ->
+                            val target = (pager.currentPage + if (dx < 0) 1 else -1).coerceIn(0, pager.pageCount - 1)
+                            if (target != pager.currentPage && !drag.isDragging) {
+                                MesOSLog.d(MesOSLog.LAUNCHER, "Page swipe without moves: page $target")
+                                scope.launch { pager.animateScrollToPage(target) }
+                            }
+                        },
                         onLongPressItem = { id ->
                             haptics.longPress()
                             val item = itemById(id)

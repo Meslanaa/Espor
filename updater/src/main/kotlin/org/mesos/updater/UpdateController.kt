@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageInstaller
 import android.net.Uri
 import android.provider.Settings
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -143,6 +144,8 @@ object UpdateController {
                 // comes from handing the APK to the installer.
                 MesOSLog.w(MesOSLog.UPDATER, "Update failed", e)
                 _state.value = UpdateState.Failed(FailureReason.INSTALL_FAILED, e.message)
+            } catch (e: CancellationException) {
+                throw e
             } catch (e: RuntimeException) {
                 MesOSLog.w(MesOSLog.UPDATER, "Update failed", e)
                 _state.value = UpdateState.Failed(FailureReason.INSTALL_FAILED, e.message)

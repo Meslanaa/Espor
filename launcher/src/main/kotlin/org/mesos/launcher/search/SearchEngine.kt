@@ -13,6 +13,7 @@ import android.provider.MediaStore
 import android.provider.Settings
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -214,6 +215,8 @@ class SearchEngine(context: Context) {
     private suspend fun searchNotes(query: String): List<Note> =
         try {
             NotesFeed.search(appContext, query, MAX_NOTES)
+        } catch (e: CancellationException) {
+            throw e // A newer query replaced this one.
         } catch (e: RuntimeException) {
             MesOSLog.w(MesOSLog.LAUNCHER, "Note search failed", e)
             emptyList()
