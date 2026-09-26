@@ -41,11 +41,13 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -92,7 +94,10 @@ class SetupActivity : ComponentActivity() {
         MesOSLog.i(MesOSLog.SETTINGS, "MesOS setup opened")
         setContent {
             MesOSUserTheme(forceDark = true) {
-                SetupFlow(onFinish = ::complete)
+                // No Surface here (the wallpaper is the background), so set the text colour.
+                CompositionLocalProvider(LocalContentColor provides Color.White) {
+                    SetupFlow(onFinish = ::complete)
+                }
             }
         }
     }

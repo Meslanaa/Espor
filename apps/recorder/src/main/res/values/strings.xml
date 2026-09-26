@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recorder_app_name">Recorder</string>
+    <string name="recorder_file_prefix">Recording</string>
+    <string name="recorder_channel">Voice recording</string>
+    <string name="recorder_ready">Tap to record</string>
+    <string name="recorder_recording">Recording…</string>
+    <string name="recorder_paused">Paused</string>
+    <string name="recorder_start">Start recording</string>
+    <string name="recorder_stop">Stop</string>
+    <string name="recorder_pause">Pause</string>
+    <string name="recorder_resume">Resume</string>
+    <string name="recorder_play">Play</string>
+    <string name="recorder_discard">Discard</string>
+    <string name="recorder_error">Recording could not start. Another app may be using the microphone.</string>
+    <string name="recorder_mic_rationale">MesOS Recorder needs the microphone to record. You can allow it in Settings → Privacy &amp; permissions.</string>
+    <string name="recorder_list_title">Recordings</string>
+    <string name="recorder_empty">No recordings yet</string>
+    <string name="recorder_empty_text">Your recordings are saved to Recordings/MesOS, where Files and other apps can find them.</string>
+    <string name="recorder_action_failed">That did not work</string>
+    <string name="recorder_delete_title">Delete “%1$s”?</string>
+    <string name="recorder_delete_text">The recording is removed from this device.</string>
+    <string name="recorder_screen_start">Record the screen</string>
+    <string name="recorder_screen_stop">Stop screen recording</string>
+    <string name="recorder_screen_summary">Android asks for your permission each time. Videos go to Movies/MesOS.</string>
+
+    <string name="screen_file_prefix">Screen recording</string>
+    <string name="screen_channel">Screen recording</string>
+    <string name="screen_recording">Recording the screen</string>
+    <string name="screen_recording_text">Tap to stop</string>
+    <string name="screen_saved">Screen recording saved</string>
+    <string name="screen_saved_text">Tap to watch it in Photos</string>
+</resources>

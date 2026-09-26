@@ -42,5 +42,8 @@ include(":apps:clock")
 include(":apps:music")
 include(":apps:scanner")
 include(":apps:care")
+include(":apps:recorder")
+include(":apps:contacts")
+include(":apps:tips")
 // MesOS Shell: the deployable MesOS userland APK that bundles the modules above.
 include(":shell")

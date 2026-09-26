@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="contacts_app_name">Kişiler</string>
+    <string name="contacts_rationale">MesOS Kişiler, bu cihazda ve hesaplarında kayıtlı kişileri gösterir ve düzenler.</string>
+    <string name="contacts_search">%1$d kişi içinde ara</string>
+    <string name="contacts_favorites">Favoriler</string>
+    <string name="contacts_empty">Henüz kişi yok</string>
+    <string name="contacts_empty_text">Birini eklemek için + düğmesine dokun. Google hesabındaki kişiler de burada görünür.</string>
+    <string name="contacts_no_results">Eşleşen kişi yok</string>
+    <string name="contacts_missing">Bu kişi artık yok</string>
+    <string name="contacts_add">Kişi ekle</string>
+    <string name="contacts_new">Yeni kişi</string>
+    <string name="contacts_edit">Kişiyi düzenle</string>
+    <string name="contacts_favorite">Favori</string>
+    <string name="contacts_call">Ara</string>
+    <string name="contacts_message">Mesaj</string>
+    <string name="contacts_email">E-posta</string>
+    <string name="contacts_delete">Kişiyi sil</string>
+    <string name="contacts_delete_title">%1$s silinsin mi?</string>
+    <string name="contacts_delete_text">Kişi bu cihazdan ve eşitlendiği hesaplardan kaldırılır.</string>
+    <string name="contacts_failed">Bu işlem yapılamadı</string>
+    <string name="contacts_kind_mobile">Cep</string>
+    <string name="contacts_kind_home">Ev</string>
+    <string name="contacts_kind_work">İş</string>
+    <string name="contacts_kind_other">Diğer</string>
+    <string name="contacts_given_name">Ad</string>
+    <string name="contacts_family_name">Soyad</string>
+    <string name="contacts_company">Şirket</string>
+    <string name="contacts_phones">Telefon numaraları</string>
+    <string name="contacts_phone">Telefon</string>
+    <string name="contacts_add_phone">Telefon numarası ekle</string>
+    <string name="contacts_emails">E-posta adresleri</string>
+    <string name="contacts_add_email">E-posta adresi ekle</string>
+    <string name="contacts_saved_where">Yeni kişiler bu cihaza kaydedilir. Bir hesaptaki kişiler o hesapta kalır.</string>
+</resources>

@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -51,6 +52,9 @@ internal enum class Page(val id: String, val title: Int) {
     }
 }
 
+/** A page requested through a new intent; [serial] makes repeated requests distinct. */
+internal data class PageRequest(val page: Page?, val serial: Int)
+
 /** What pages can do: open another page, go back, or hand off to Android. */
 internal class SettingsNav(
     val open: (Page) -> Unit,
@@ -66,10 +70,19 @@ internal class SettingsNav(
  * or another MesOS app), back leaves Settings from that page.
  */
 @Composable
-internal fun SettingsApp(initialPage: Page?, openExternal: (List<Intent>) -> Unit, finish: () -> Unit) {
+internal fun SettingsApp(
+    initialPage: Page?,
+    request: PageRequest,
+    openExternal: (List<Intent>) -> Unit,
+    finish: () -> Unit,
+) {
     // Page ids joined with "/", so the stack survives rotation and process death.
     var stackIds by rememberSaveable { mutableStateOf((initialPage ?: Page.MAIN).id) }
     val stack = stackIds.split('/').mapNotNull { Page.fromId(it) }.ifEmpty { listOf(Page.MAIN) }
+    LaunchedEffect(request) {
+        val page = request.page ?: return@LaunchedEffect
+        if (stackIds.substringAfterLast('/') != page.id) stackIds = "$stackIds/${page.id}"
+    }
 
     val nav = SettingsNav(
         open = { page -> stackIds = "$stackIds/${page.id}" },

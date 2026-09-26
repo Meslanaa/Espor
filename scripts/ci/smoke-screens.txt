@@ -20,3 +20,8 @@ calendar org.mesos.calendar.CalendarActivity
 clock org.mesos.clock.ClockActivity
 clock-timer org.mesos.clock.ClockActivity --es org.mesos.clock.extra.TAB TIMER
 music org.mesos.music.MusicActivity
+scanner org.mesos.scanner.ScannerActivity
+care org.mesos.care.CareActivity
+recorder org.mesos.recorder.RecorderActivity
+contacts org.mesos.contacts.ContactsActivity
+tips org.mesos.tips.TipsActivity

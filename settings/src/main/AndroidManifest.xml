@@ -7,6 +7,8 @@
             android:exported="true"
             android:icon="@mipmap/ic_settings"
             android:label="@string/settings_app_label"
+            android:launchMode="singleTask"
+            android:taskAffinity="org.mesos.settings"
             android:theme="@style/Theme.MesOS">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

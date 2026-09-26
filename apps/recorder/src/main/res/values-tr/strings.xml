@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recorder_app_name">Ses Kaydedici</string>
+    <string name="recorder_file_prefix">Kayıt</string>
+    <string name="recorder_channel">Ses kaydı</string>
+    <string name="recorder_ready">Kaydetmek için dokun</string>
+    <string name="recorder_recording">Kaydediliyor…</string>
+    <string name="recorder_paused">Duraklatıldı</string>
+    <string name="recorder_start">Kaydı başlat</string>
+    <string name="recorder_stop">Durdur</string>
+    <string name="recorder_pause">Duraklat</string>
+    <string name="recorder_resume">Devam et</string>
+    <string name="recorder_play">Oynat</string>
+    <string name="recorder_discard">Sil</string>
+    <string name="recorder_error">Kayıt başlatılamadı. Mikrofonu başka bir uygulama kullanıyor olabilir.</string>
+    <string name="recorder_mic_rationale">MesOS Ses Kaydedici kayıt için mikrofona ihtiyaç duyar. Ayarlar → Gizlilik ve izinler\'den izin verebilirsin.</string>
+    <string name="recorder_list_title">Kayıtlar</string>
+    <string name="recorder_empty">Henüz kayıt yok</string>
+    <string name="recorder_empty_text">Kayıtların Recordings/MesOS klasörüne kaydedilir; Dosyalar ve diğer uygulamalar onları bulabilir.</string>
+    <string name="recorder_action_failed">Bu işlem yapılamadı</string>
+    <string name="recorder_delete_title">“%1$s” silinsin mi?</string>
+    <string name="recorder_delete_text">Kayıt bu cihazdan kaldırılır.</string>
+    <string name="recorder_screen_start">Ekranı kaydet</string>
+    <string name="recorder_screen_stop">Ekran kaydını durdur</string>
+    <string name="recorder_screen_summary">Android her seferinde iznini ister. Videolar Movies/MesOS klasörüne kaydedilir.</string>
+
+    <string name="screen_file_prefix">Ekran kaydı</string>
+    <string name="screen_channel">Ekran kaydı</string>
+    <string name="screen_recording">Ekran kaydediliyor</string>
+    <string name="screen_recording_text">Durdurmak için dokun</string>
+    <string name="screen_saved">Ekran kaydı kaydedildi</string>
+    <string name="screen_saved_text">Fotoğraflar\'da izlemek için dokun</string>
+</resources>

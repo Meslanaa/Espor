@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
+    <application>
+        <activity
+            android:name=".ContactsActivity"
+            android:exported="true"
+            android:icon="@mipmap/ic_contacts"
+            android:label="@string/contacts_app_name"
+            android:launchMode="singleTask"
+            android:taskAffinity="org.mesos.contacts"
+            android:theme="@style/Theme.MesOS"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- "Add to contacts" from other apps (e.g. MesOS Scanner). -->
+            <intent-filter>
+                <action android:name="android.intent.action.INSERT" />
+                <action android:name="android.intent.action.INSERT_OR_EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/raw_contact" />
+                <data android:mimeType="vnd.android.cursor.dir/contact" />
+                <data android:mimeType="vnd.android.cursor.item/contact" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/contact" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -245,7 +245,8 @@ object NotificationCenter {
     private fun publishMedia() {
         val c = controller
         val metadata = c?.metadata
-        if (c == null || metadata == null) {
+        // Sessions without anything to show (e.g. an idle assistant session) get no card.
+        if (c == null || metadata == null || metadata.getString(MediaMetadata.METADATA_KEY_TITLE).isNullOrBlank()) {
             _media.value = null
             return
         }

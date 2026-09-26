@@ -76,4 +76,7 @@ dependencies {
     implementation(project(":apps:music"))
     implementation(project(":apps:scanner"))
     implementation(project(":apps:care"))
+    implementation(project(":apps:recorder"))
+    implementation(project(":apps:contacts"))
+    implementation(project(":apps:tips"))
 }

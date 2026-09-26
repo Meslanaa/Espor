@@ -7,6 +7,9 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import org.mesos.core.MesOSIntents
 import org.mesos.core.log.MesOSLog
 import org.mesos.core.ui.theme.MesOSUserTheme
@@ -14,6 +17,8 @@ import org.mesos.updater.UpdateController
 
 /** MesOS Settings: MesOS pages plus clean hand-offs to Android's own settings screens. */
 class SettingsActivity : ComponentActivity() {
+
+    private var request by mutableStateOf(PageRequest(null, 0))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +29,17 @@ class SettingsActivity : ComponentActivity() {
 
         setContent {
             MesOSUserTheme {
-                SettingsApp(initialPage = page, openExternal = ::openExternal, finish = ::finish)
+                SettingsApp(initialPage = page, request = request, openExternal = ::openExternal, finish = ::finish)
             }
         }
+    }
+
+    /** A page asked for while Settings is already open (Settings is single-task). */
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        val page = Page.fromId(intent.getStringExtra(MesOSIntents.EXTRA_SETTINGS_PAGE)) ?: return
+        request = PageRequest(page, request.serial + 1)
     }
 
     /** Opens the first of [intents] that works, or tells the user this device has none. */
