@@ -104,9 +104,12 @@ private fun ClockWidget(nowMillis: Long, modifier: Modifier) {
     val locale = Locale.getDefault()
     val is24Hour = DateFormat.is24HourFormat(context)
     val zone = TimeZone.getDefault().id
+    // The AM/PM marker is shown small next to the digits, so it is taken out of the pattern.
     val timeFormat = remember(locale, is24Hour, zone) {
-        SimpleDateFormat(DateFormat.getBestDateTimePattern(locale, if (is24Hour) "Hm" else "hm"), locale)
+        val pattern = DateFormat.getBestDateTimePattern(locale, if (is24Hour) "Hm" else "hm")
+        SimpleDateFormat(pattern.replace("a", "").replace("\u202F", " ").trim(), locale)
     }
+    val markerFormat = remember(locale, is24Hour, zone) { if (is24Hour) null else SimpleDateFormat("a", locale) }
     val dateFormat = remember(locale, zone) {
         SimpleDateFormat(DateFormat.getBestDateTimePattern(locale, "EEEEMMMMd"), locale)
     }
@@ -124,18 +127,27 @@ private fun ClockWidget(nowMillis: Long, modifier: Modifier) {
     ) {
         val clockSize = (maxHeight.value * 0.52f).coerceIn(48f, 96f).sp
         Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            Text(
-                text = timeFormat.format(Date(nowMillis)),
-                style = TextStyle(
-                    fontFamily = Sora,
-                    fontWeight = FontWeight.Light,
-                    fontSize = clockSize,
-                    letterSpacing = (-2).sp,
-                    color = Color.White,
-                    shadow = ShadowText,
-                ),
-                maxLines = 1,
-            )
+            Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
+                    text = timeFormat.format(Date(nowMillis)),
+                    style = TextStyle(
+                        fontFamily = Sora,
+                        fontWeight = FontWeight.Light,
+                        fontSize = clockSize,
+                        letterSpacing = (-2).sp,
+                        color = Color.White,
+                        shadow = ShadowText,
+                    ),
+                    maxLines = 1,
+                )
+                markerFormat?.let { marker ->
+                    Text(
+                        text = marker.format(Date(nowMillis)),
+                        style = TextStyle(fontFamily = Sora, fontWeight = FontWeight.Normal, fontSize = (clockSize.value * 0.3f).sp, color = Color.White, shadow = ShadowText),
+                        modifier = Modifier.padding(bottom = (clockSize.value * 0.22f).dp),
+                    )
+                }
+            }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(
                     text = dateFormat.format(Date(nowMillis)),

@@ -37,7 +37,7 @@ sealed interface PageError {
 
 /** One browser tab. Its WebView is created when the tab is first shown. */
 @Stable
-internal class BrowserTab(val id: Long, startUrl: String) {
+class BrowserTab(val id: Long, startUrl: String) {
     /** Observable, so the page is shown again after its renderer crashed and was reloaded. */
     var webView by mutableStateOf<WebView?>(null)
     var url by mutableStateOf(startUrl)
