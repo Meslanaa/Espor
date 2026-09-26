@@ -1,0 +1,36 @@
+# Gradle / build output
+.gradle/
+.kotlin/
+build/
+
+# Local machine configuration (SDK path etc.)
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Signing material and secrets — never commit
+*.jks
+*.keystore
+*.p12
+*.pk8
+*.pem
+keystore.properties
+signing.properties
+
+# Emulator and system images
+*.img
+*.qcow2
+*.avd/
+
+# Profiling / logs
+*.hprof
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

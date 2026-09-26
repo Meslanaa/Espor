@@ -1,0 +1,41 @@
+name: build
+
+on:
+  push:
+    branches: [main, "claude/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v5
+
+      - name: Build MesOS Shell and run unit tests
+        env:
+          MESOS_BUILD_NUMBER: ci-${{ github.run_number }}
+        run: ./gradlew --no-daemon --stacktrace :shell:assembleDebug testDebugUnitTest
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v5
+        with:
+          name: mesos-shell-debug
+          path: shell/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 14
