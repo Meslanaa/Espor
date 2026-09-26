@@ -74,4 +74,6 @@ dependencies {
     implementation(project(":apps:calendar"))
     implementation(project(":apps:clock"))
     implementation(project(":apps:music"))
+    implementation(project(":apps:scanner"))
+    implementation(project(":apps:care"))
 }

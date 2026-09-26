@@ -163,7 +163,7 @@ private fun ClockWidget(nowMillis: Long, modifier: Modifier) {
 internal fun WidgetCard(
     title: String,
     modifier: Modifier = Modifier,
-    titleColor: Color = MesOSTheme.colors.accentBright,
+    titleColor: Color = Color.White.copy(alpha = 0.78f),
     onClick: (() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
@@ -349,13 +349,5 @@ private fun BatteryWidget(modifier: Modifier) {
                 )
             }
         }
-    }
-}
-
-@Composable
-internal fun WidgetPlaceholder(title: String, message: String, modifier: Modifier, onClick: () -> Unit) {
-    WidgetCard(title = title, modifier = modifier, onClick = onClick) {
-        Text(message, style = MaterialTheme.typography.bodyMedium, color = Color.White.copy(alpha = 0.8f))
-        Spacer(Modifier.height(4.dp))
     }
 }

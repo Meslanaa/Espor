@@ -82,7 +82,8 @@ class AuroraRenderer(val width: Int, val height: Int) {
             val shimmer = 0.82f + 0.18f * wave(u * 9f + s * 0.11f + ribbon.phase)
             val strength = ribbon.intensity * shimmer * (0.55f + 0.45f * wave(u * 0.9f - s * 0.04f + ribbon.phase * 2.3f))
             if (thickness <= 0f) continue
-            val top = (center - thickness * 3.2f).toInt().coerceAtLeast(0)
+            // Far enough up that the fade reaches zero; a cut-off shows as a hard edge.
+            val top = (center - thickness * 6.2f).toInt().coerceAtLeast(0)
             val bottom = (center + thickness * 1.4f).toInt().coerceAtMost(height - 1)
             for (y in top..bottom) {
                 val d = (y - center) / thickness

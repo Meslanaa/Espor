@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="care_app_name">Device Care</string>
+    <string name="care_android">Android</string>
+    <string name="care_not_available">Not available on this device</string>
+
+    <string name="care_status_good">Your device is in good shape</string>
+    <string name="care_status_fair">A few things need a look</string>
+    <string name="care_status_attention">Your device needs attention</string>
+    <string name="care_score_note">Based on battery, temperature, storage and memory. Updated every few seconds.</string>
+    <string name="care_advice_battery_health">Android reports a problem with the battery\'s health.</string>
+    <string name="care_advice_temperature">The device is warm. Let it rest, and unplug it for a while.</string>
+    <string name="care_advice_storage">Storage is almost full. Delete large files or apps you no longer use.</string>
+    <string name="care_advice_memory">Memory is low. Closing apps you are not using helps Android.</string>
+    <string name="care_advice_charge">The battery is low. Remember to charge.</string>
+
+    <string name="care_battery">Battery</string>
+    <string name="care_on_battery">On battery</string>
+    <string name="care_charging">Charging</string>
+    <string name="care_charging_usb">Charging over USB</string>
+    <string name="care_charging_wireless">Charging wirelessly</string>
+    <string name="care_temperature">Temperature</string>
+    <string name="care_health">Health</string>
+    <string name="care_voltage">Voltage</string>
+    <string name="care_current">Current</string>
+    <string name="care_technology">Technology</string>
+    <string name="care_until_full">Until full</string>
+    <string name="care_health_good">Good</string>
+    <string name="care_health_overheat">Overheating</string>
+    <string name="care_health_dead">Dead</string>
+    <string name="care_health_over_voltage">Over voltage</string>
+    <string name="care_health_cold">Too cold</string>
+    <string name="care_health_failure">Failure</string>
+    <string name="care_health_unknown">Not reported</string>
+    <string name="care_battery_saver">Battery saver</string>
+    <string name="care_battery_usage">Battery usage by app</string>
+
+    <string name="care_storage">Storage</string>
+    <string name="care_free_of">%1$s free of %2$s</string>
+    <string name="care_used_percent">%1$d%% used</string>
+    <string name="care_open_files">Find large files</string>
+    <string name="care_open_files_summary">Browse and clean up in MesOS Files</string>
+    <string name="care_storage_settings">Storage settings</string>
+    <string name="care_cache">MesOS cache</string>
+    <string name="care_cache_summary">Temporary files MesOS can safely remove</string>
+    <string name="care_cache_cleared">%1$s freed</string>
+
+    <string name="care_memory">Memory</string>
+    <string name="care_available_of">%1$s available of %2$s</string>
+    <string name="care_memory_note">Android manages memory on its own. MesOS does not close apps in the background or promise a speed boost.</string>
+
+    <string name="care_device">Device</string>
+    <string name="care_model">Model</string>
+    <string name="care_android_version">Android version</string>
+    <string name="care_processor">Processor</string>
+    <string name="care_processor_value">%1$d cores · %2$s</string>
+    <string name="care_uptime">Time since restart</string>
+    <string name="care_days_hours">%1$d d %2$d h</string>
+    <string name="care_hours_minutes">%1$d h %2$d min</string>
+    <string name="care_minutes">%1$d min</string>
+</resources>

@@ -96,7 +96,7 @@ while read -r name cls args <&3; do
     shot drawer
     adb shell input keyevent KEYCODE_BACK
     sleep 2
-    adb shell input tap 540 1920
+    adb shell input tap 540 1985
     sleep 3
     shot search
     adb shell input text "12x4"

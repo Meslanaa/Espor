@@ -56,12 +56,16 @@ internal fun WeatherWidget(modifier: Modifier) {
     val page = weather
     val forecast = page?.forecast
     if (page == null || forecast == null) {
-        WidgetPlaceholder(
-            title = stringResource(R.string.widget_weather),
-            message = stringResource(R.string.widget_weather_setup),
-            modifier = modifier,
-            onClick = { open() },
-        )
+        WidgetCard(title = stringResource(R.string.widget_weather), modifier = modifier, onClick = { open() }) {
+            // Partly cloudy day, as a hint of what the widget shows once it has a forecast.
+            WeatherIcon(2, isDay = true, modifier = Modifier.size(44.dp))
+            Spacer(Modifier.weight(1f))
+            Text(
+                stringResource(R.string.widget_weather_setup),
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.White.copy(alpha = 0.85f),
+            )
+        }
         return
     }
     val today = forecast.days.first()
@@ -107,17 +111,24 @@ internal fun AgendaWidget(nowMillis: Long, modifier: Modifier) {
     var upcoming by remember { mutableStateOf<List<Occurrence>>(emptyList()) }
     LaunchedEffect(changes, nowMillis / 60_000L) { upcoming = CalendarFeed.upcoming(context, nowMillis, 3) }
     val accent = MesOSTheme.colors.accentBright
+    val is24 = DateFormat.is24HourFormat(context)
+    val locale = Locale.getDefault()
+    val weekday = remember(locale) { SimpleDateFormat("EEEE", locale) }
     WidgetCard(
-        title = stringResource(R.string.widget_agenda),
+        title = weekday.format(Date(nowMillis)).uppercase(locale),
         modifier = modifier,
-        titleColor = accent,
+        titleColor = CalendarRed,
         onClick = { context.startActivitySafely(CalendarFeed.openIntent(context)) },
     ) {
+        Text(
+            SimpleDateFormat("d", locale).format(Date(nowMillis)),
+            style = TextStyle(fontFamily = Sora, fontWeight = FontWeight.Light, fontSize = 34.sp, color = Color.White),
+            maxLines = 1,
+        )
         if (upcoming.isEmpty()) {
+            Spacer(Modifier.weight(1f))
             Text(stringResource(R.string.widget_agenda_empty), style = MaterialTheme.typography.bodyMedium, color = Color.White.copy(alpha = 0.8f))
         }
-        val is24 = DateFormat.is24HourFormat(context)
-        val locale = Locale.getDefault()
         val time = remember(is24, locale) { SimpleDateFormat(DateFormat.getBestDateTimePattern(locale, if (is24) "Hm" else "hm"), locale) }
         val dayTime = remember(is24, locale) { SimpleDateFormat(DateFormat.getBestDateTimePattern(locale, if (is24) "EEEHm" else "EEEhm"), locale) }
         upcoming.take(2).forEach { occurrence ->
@@ -157,3 +168,6 @@ internal fun AgendaWidget(nowMillis: Long, modifier: Modifier) {
         }
     }
 }
+
+/** The red of the MesOS Calendar icon, for the weekday on the agenda widget. */
+private val CalendarRed = Color(0xFFFF6B81)

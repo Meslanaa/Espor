@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scanner_app_name">Scanner</string>
+    <string name="scanner_camera_rationale">MesOS Scanner uses the camera to read QR codes and barcodes. Nothing is recorded or sent anywhere.</string>
+    <string name="scanner_hint">Point the camera at a QR code or barcode</string>
+    <string name="scanner_close">Close</string>
+    <string name="scanner_torch">Flashlight</string>
+    <string name="scanner_from_image">Scan a picture</string>
+    <string name="scanner_history">Recent scans</string>
+    <string name="scanner_history_empty">Codes you scan appear here. They stay on this device.</string>
+    <string name="scanner_clear_history">Clear</string>
+    <string name="scanner_no_code_in_image">No code found in this picture</string>
+    <string name="scanner_scan_again">Scan again</string>
+    <string name="scanner_insecure_link">This link is not encrypted (http). Open it only if you trust where the code came from.</string>
+
+    <string name="scanner_kind_link">Web link</string>
+    <string name="scanner_kind_wifi">Wi‑Fi network</string>
+    <string name="scanner_kind_phone">Phone number</string>
+    <string name="scanner_kind_email">Email</string>
+    <string name="scanner_kind_sms">Text message</string>
+    <string name="scanner_kind_location">Location</string>
+    <string name="scanner_kind_contact">Contact</string>
+    <string name="scanner_kind_product">Product code</string>
+    <string name="scanner_kind_text">Text</string>
+
+    <string name="scanner_open_link">Open in Browser</string>
+    <string name="scanner_wifi_connect">Join network</string>
+    <string name="scanner_wifi_name">Network</string>
+    <string name="scanner_wifi_security">Security</string>
+    <string name="scanner_wifi_password">Password</string>
+    <string name="scanner_wifi_open">None (open network)</string>
+    <string name="scanner_wifi_password_copied">Password copied. Choose the network and paste it.</string>
+    <string name="scanner_call">Call</string>
+    <string name="scanner_send_email">Write email</string>
+    <string name="scanner_send_message">Send message</string>
+    <string name="scanner_open_map">Show on map</string>
+    <string name="scanner_add_contact">Add to contacts</string>
+    <string name="scanner_search_web">Search the web</string>
+</resources>
