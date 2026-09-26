@@ -1,11 +1,13 @@
 [versions]
-# AGP 9.1 requires Gradle >= 9.3.1 and opens in Android Studio Panda 2 (2025.3.2) or newer.
-agp = "9.1.1"
-# Kotlin version used by AGP's built-in Kotlin support and the Compose compiler plugin.
-kotlin = "2.3.21"
-composeBom = "2026.03.01"
-activityCompose = "1.13.0"
+# AGP 8.13 is the newest AGP that Android Studio Otter (2025.2.1) can open.
+# It requires Gradle >= 8.13 and supports compileSdk up to 36.1.
+agp = "8.13.2"
+kotlin = "2.2.21"
+composeBom = "2025.12.01"
+activityCompose = "1.12.0"
+coroutines = "1.10.2"
 junit = "4.13.2"
+orgJson = "20251224"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -15,9 +17,13 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+# Real org.json for JVM unit tests (android.jar only ships stubs).
+org-json = { group = "org.json", name = "json", version.ref = "orgJson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

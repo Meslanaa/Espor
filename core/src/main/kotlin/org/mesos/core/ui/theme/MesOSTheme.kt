@@ -1,5 +1,10 @@
 package org.mesos.core.ui.theme
 
+import android.graphics.Color as AndroidColor
+import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
+import androidx.activity.compose.LocalActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -7,8 +12,15 @@ import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import org.mesos.core.prefs.MesOSPreferences
+import org.mesos.core.prefs.ThemeMode
 
 /*
  * MesOS design tokens (0.1).
@@ -81,3 +93,35 @@ fun MesOSTheme(
         content = content,
     )
 }
+
+/**
+ * [MesOSTheme] driven by the appearance the user picked in MesOS Settings → Display.
+ * Also keeps the status/navigation bar icons readable for the chosen appearance.
+ */
+@Composable
+fun MesOSUserTheme(content: @Composable () -> Unit) {
+    val context = LocalContext.current
+    val mode by remember(context) { MesOSPreferences.get(context) }.themeMode.collectAsState()
+    val darkTheme = when (mode) {
+        ThemeMode.SYSTEM -> isSystemInDarkTheme()
+        ThemeMode.LIGHT -> false
+        ThemeMode.DARK -> true
+    }
+
+    val activity = LocalActivity.current as? ComponentActivity
+    LaunchedEffect(activity, darkTheme) {
+        activity?.enableEdgeToEdge(
+            statusBarStyle = systemBarStyle(darkTheme),
+            navigationBarStyle = systemBarStyle(darkTheme),
+        )
+    }
+
+    MesOSTheme(darkTheme = darkTheme, content = content)
+}
+
+private fun systemBarStyle(darkTheme: Boolean): SystemBarStyle =
+    if (darkTheme) {
+        SystemBarStyle.dark(AndroidColor.TRANSPARENT)
+    } else {
+        SystemBarStyle.light(AndroidColor.TRANSPARENT, AndroidColor.TRANSPARENT)
+    }

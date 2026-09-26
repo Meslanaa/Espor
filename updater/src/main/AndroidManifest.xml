@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Lets MesOS hand a verified update to Android's installer. Android still asks the
+         user to allow it and to confirm every installation. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application>
+        <receiver
+            android:name=".InstallResultReceiver"
+            android:exported="false" />
+    </application>
+
+</manifest>

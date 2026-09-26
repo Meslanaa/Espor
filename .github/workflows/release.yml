@@ -1,0 +1,74 @@
+name: release
+
+# Publishes a signed MesOS Shell APK and its update manifest as a GitHub release.
+# Triggered by pushing a tag that matches mesos.properties, e.g. `mesos-v0.1`.
+on:
+  push:
+    tags: ["mesos-v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v5
+
+      - name: Restore signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.MESOS_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.MESOS_KEYSTORE_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ] || [ -z "$KEYSTORE_PASSWORD" ]; then
+            echo "::error::Secrets MESOS_KEYSTORE_BASE64 and MESOS_KEYSTORE_PASSWORD are not set. See docs/UPDATES.md (Signing key setup)."
+            exit 1
+          fi
+          printf '%s' "$KEYSTORE_BASE64" | tr -d '\r\n ' | base64 --decode > "$RUNNER_TEMP/mesos-release.jks"
+
+      - name: Build signed release APK
+        env:
+          MESOS_BUILD_NUMBER: ${{ github.run_number }}
+          MESOS_KEYSTORE_FILE: ${{ runner.temp }}/mesos-release.jks
+          MESOS_KEYSTORE_PASSWORD: ${{ secrets.MESOS_KEYSTORE_PASSWORD }}
+        run: ./gradlew --no-daemon --stacktrace :shell:assembleRelease
+
+      - name: Verify APK signature
+        run: |
+          apksigner="$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)/apksigner"
+          "$apksigner" verify --print-certs shell/build/outputs/apk/release/shell-release.apk
+
+      - name: Package release assets
+        run: >
+          python3 release/make_release.py
+          --apk shell/build/outputs/apk/release/shell-release.apk
+          --tag "$GITHUB_REF_NAME"
+          --repo "$GITHUB_REPOSITORY"
+          --out dist
+          --meta "$RUNNER_TEMP/release-meta"
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            --verify-tag \
+            --latest \
+            --title "$(cat "$RUNNER_TEMP/release-meta/title.txt")" \
+            --notes-file "$RUNNER_TEMP/release-meta/body.md"
+
+      - name: Remove signing key
+        if: always()
+        run: rm -f "$RUNNER_TEMP/mesos-release.jks"

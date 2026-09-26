@@ -4,6 +4,7 @@ plugins {
     // Declared here (not applied) so every module shares one plugin classloader.
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 }
 
@@ -22,8 +23,14 @@ check(mesosChannel in setOf("developer", "beta", "stable")) {
     "mesos.channel must be one of developer, beta, stable (was '$mesosChannel')"
 }
 
+val mesosManifestUrl = mesosProperty("mesos.update.manifestUrl")
+check(mesosManifestUrl.startsWith("https://")) {
+    "mesos.update.manifestUrl must use https:// (was '$mesosManifestUrl')"
+}
+
 extra["mesosVersionName"] = mesosProperty("mesos.version.name")
 extra["mesosVersionCode"] = mesosProperty("mesos.version.code").toInt()
 extra["mesosVersionLabel"] = mesosProperty("mesos.version.label")
 extra["mesosChannel"] = mesosChannel
+extra["mesosManifestUrl"] = mesosManifestUrl
 extra["mesosBuildNumber"] = providers.environmentVariable("MESOS_BUILD_NUMBER").getOrElse("local")

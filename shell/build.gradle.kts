@@ -1,10 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
 }
 
 val mesosVersionName: String by rootProject.extra
 val mesosVersionCode: Int by rootProject.extra
+
+// Release signing comes only from the environment (the release workflow decodes it
+// from GitHub Actions secrets). Nothing secret is stored in the repository.
+val releaseKeystore: String? = providers.environmentVariable("MESOS_KEYSTORE_FILE").orNull
+val releaseKeystorePassword: String? = providers.environmentVariable("MESOS_KEYSTORE_PASSWORD").orNull
 
 android {
     namespace = "org.mesos.shell"
@@ -18,16 +22,36 @@ android {
         // so Android's own downgrade protection also guards MesOS updates.
         versionCode = mesosVersionCode
         versionName = mesosVersionName
+        resValue("string", "app_name", "MesOS")
+    }
+
+    signingConfigs {
+        if (releaseKeystore != null && releaseKeystorePassword != null) {
+            create("mesosRelease") {
+                storeFile = file(releaseKeystore)
+                storePassword = releaseKeystorePassword
+                keyAlias = "mesos"
+                keyPassword = releaseKeystorePassword
+            }
+        }
     }
 
     buildTypes {
+        debug {
+            // Local development builds install next to the published MesOS instead of
+            // clashing with it (different package, different signing key).
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            resValue("string", "app_name", "MesOS Dev")
+        }
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.findByName("mesosRelease")
         }
     }
 
     buildFeatures {
-        compose = true
+        resValues = true
     }
 
     compileOptions {
@@ -38,7 +62,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(project(":launcher"))
+    implementation(project(":settings"))
+    implementation(project(":updater"))
 }

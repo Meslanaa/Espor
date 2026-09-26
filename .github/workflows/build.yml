@@ -2,7 +2,7 @@ name: build
 
 on:
   push:
-    branches: [main, "claude/**"]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -27,10 +27,12 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v5
 
+      # The release variant is built unsigned here so release-only problems show up
+      # before a tag is pushed; signing happens only in release.yml.
       - name: Build MesOS Shell and run unit tests
         env:
           MESOS_BUILD_NUMBER: ci-${{ github.run_number }}
-        run: ./gradlew --no-daemon --stacktrace :shell:assembleDebug testDebugUnitTest
+        run: ./gradlew --no-daemon --stacktrace :shell:assembleDebug :shell:assembleRelease testDebugUnitTest
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v5

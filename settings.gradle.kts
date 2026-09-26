@@ -22,7 +22,13 @@ dependencyResolutionManagement {
 
 rootProject.name = "MesOS"
 
-// MesOS shared foundation: version identity, logging, design system.
+// MesOS shared foundation: version identity, logging, preferences, design system.
 include(":core")
-// MesOS Shell: the deployable MesOS userland APK (home, settings, updater).
+// MesOS Home: home screen, dock and app drawer.
+include(":launcher")
+// MesOS Settings: settings categories, About MesOS, MesOS Update screen.
+include(":settings")
+// MesOS component updater engine (no UI).
+include(":updater")
+// MesOS Shell: the deployable MesOS userland APK that bundles the modules above.
 include(":shell")

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name" translatable="false">MesOS</string>
-    <string name="bootstrap_build_info">Build %1$s · %2$s channel</string>
-</resources>
