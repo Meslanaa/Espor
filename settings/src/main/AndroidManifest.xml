@@ -17,6 +17,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <!-- First-start setup, opened by MesOS Home and from Settings → System. -->
+        <activity
+            android:name=".SetupActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="@string/setup_label"
+            android:launchMode="singleTask"
+            android:taskAffinity="org.mesos.setup"
+            android:theme="@style/Theme.MesOS.Dark" />
     </application>
 
 </manifest>

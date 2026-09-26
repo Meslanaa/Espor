@@ -1,6 +1,12 @@
 # MesOS smoke test screens: <screenshot name> <activity class> [am start arguments]
-# "@setup-done" marks the setup wizard as finished; "@home" tests MesOS Home gestures.
+# "@setup" walks through the setup wizard, "@setup-done" marks it as finished
+# (resetting other preferences), "@home" tests MesOS Home gestures.
+@setup
 settings org.mesos.settings.SettingsActivity
+settings-appearance org.mesos.settings.SettingsActivity --es org.mesos.intent.extra.SETTINGS_PAGE appearance
+settings-notifications org.mesos.settings.SettingsActivity --es org.mesos.intent.extra.SETTINGS_PAGE notifications
+settings-privacy org.mesos.settings.SettingsActivity --es org.mesos.intent.extra.SETTINGS_PAGE privacy
+settings-update org.mesos.settings.SettingsActivity --es org.mesos.intent.extra.SETTINGS_PAGE update
 @setup-done
 @home
 camera org.mesos.camera.CameraActivity

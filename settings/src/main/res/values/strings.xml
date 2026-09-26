@@ -2,8 +2,6 @@
 <resources>
     <string name="settings_app_label">Settings</string>
     <string name="settings_title">Settings</string>
-    <string name="settings_back">Back</string>
-    <string name="settings_opens_android">Opens Android settings</string>
     <string name="settings_not_available">Not available on this device</string>
 
     <string name="settings_set_home_title">Make MesOS your home screen</string>
@@ -11,8 +9,6 @@
     <string name="settings_set_home_action">Set as home</string>
 
     <string name="settings_network">Network &amp; Internet</string>
-    <string name="settings_display">Display</string>
-    <string name="settings_display_summary">MesOS appearance, brightness, screen timeout</string>
     <string name="settings_sound">Sound</string>
     <string name="settings_apps">Apps</string>
     <string name="settings_apps_summary">MesOS apps, Android apps</string>
@@ -24,11 +20,6 @@
     <string name="settings_system_summary">MesOS Update, Android system settings</string>
     <string name="settings_about">About MesOS</string>
 
-    <string name="settings_theme_header">MesOS appearance</string>
-    <string name="settings_theme_system">System default</string>
-    <string name="settings_theme_light">Light</string>
-    <string name="settings_theme_dark">Dark</string>
-    <string name="settings_android_display">Android display settings</string>
 
     <string name="settings_update">MesOS Update</string>
     <string name="settings_android_system">Android system settings</string>
@@ -45,7 +36,6 @@
     <string name="about_unknown">Not available</string>
     <string name="about_scope_note">MesOS 0.x runs as a system shell on top of Android. MesOS updates change MesOS components only; the Android version and security patch come from the device image.</string>
 
-    <string name="update_current_version">Installed version</string>
     <string name="update_status_never">Not checked yet</string>
     <string name="update_status_last_checked">Last checked %1$s</string>
     <string name="update_status_up_to_date">Up to date · checked %1$s</string>
@@ -86,4 +76,187 @@
     <string name="update_error_install_failed">Android could not install the update.</string>
     <string name="update_error_install_cancelled">Installation was cancelled.</string>
     <string name="update_error_storage">Not enough storage to download the update.</string>
+
+    <string name="settings_android_tag">Android</string>
+    <string name="settings_on">On</string>
+    <string name="settings_off">Off</string>
+    <string name="settings_search_hint">Search settings</string>
+    <string name="settings_search_empty_title">No results</string>
+    <string name="settings_search_empty">Nothing in Settings matches “%1$s”.</string>
+
+    <string name="settings_network_summary">Wi‑Fi, mobile data, airplane mode</string>
+    <string name="settings_network_keywords">wifi internet mobile data airplane hotspot vpn sim network</string>
+    <string name="settings_devices">Connected devices</string>
+    <string name="settings_devices_summary">Bluetooth, pairing</string>
+    <string name="settings_devices_keywords">bluetooth pair headphones speaker car cast nfc</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_appearance_summary">Theme, accent colour, wallpaper, icons</string>
+    <string name="settings_appearance_keywords">dark mode light theme color colour accent wallpaper background icons style</string>
+    <string name="settings_home">Home screen</string>
+    <string name="settings_home_summary">Default home app, notification dots</string>
+    <string name="settings_home_keywords">launcher home screen dock pages widgets badges dots</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_summary">Notification access, Do Not Disturb</string>
+    <string name="settings_notifications_keywords">notifications alerts do not disturb dnd silent control center</string>
+    <string name="settings_sound_summary">Volume, vibration, ringtone</string>
+    <string name="settings_sound_keywords">sound volume vibration ringtone mute alarm media</string>
+    <string name="settings_apps_keywords">apps applications default uninstall android google play</string>
+    <string name="settings_care">Battery &amp; device care</string>
+    <string name="settings_care_summary">Battery, memory and storage status</string>
+    <string name="settings_care_keywords">battery power charge memory ram storage performance care</string>
+    <string name="settings_storage_summary">Free space, large files</string>
+    <string name="settings_storage_keywords">storage space disk files memory clean</string>
+    <string name="settings_privacy">Privacy &amp; permissions</string>
+    <string name="settings_privacy_summary">App permissions, special access</string>
+    <string name="settings_privacy_keywords">privacy permissions camera microphone location security access</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_summary">MesOS language, keyboard</string>
+    <string name="settings_language_keywords">language turkish english locale keyboard input</string>
+    <string name="settings_update_keywords">update upgrade version download new release</string>
+    <string name="settings_system_keywords">system date time accessibility setup reset</string>
+    <string name="settings_about_keywords">about phone version build android device model security patch</string>
+    <string name="settings_licenses">Open-source licences</string>
+
+    <string name="appearance_theme">Theme</string>
+    <string name="appearance_theme_keywords">dark mode light mode night</string>
+    <string name="appearance_theme_system">Automatic</string>
+    <string name="appearance_theme_light">Light</string>
+    <string name="appearance_theme_dark">Dark</string>
+    <string name="appearance_accent">Accent colour</string>
+    <string name="appearance_wallpaper">Wallpaper</string>
+    <string name="appearance_wallpaper_live">Live</string>
+    <string name="appearance_live_wallpaper">Aurora on the lock screen</string>
+    <string name="appearance_live_wallpaper_summary">Use Aurora as Android\'s wallpaper so it also appears on the lock screen</string>
+    <string name="appearance_live_wallpaper_on">Aurora is Android\'s wallpaper. Tap to choose another one.</string>
+    <string name="appearance_icon_shape">Icon shape</string>
+    <string name="appearance_shape_squircle">Squircle</string>
+    <string name="appearance_shape_circle">Circle</string>
+    <string name="appearance_shape_rounded">Rounded</string>
+    <string name="appearance_themed_icons">Themed icons</string>
+    <string name="appearance_themed_icons_summary">Draw app icons in your accent colour when the app supports it</string>
+    <string name="appearance_themed_icons_unsupported">Needs Android 13 or newer</string>
+    <string name="appearance_android_display">Brightness &amp; display</string>
+    <string name="appearance_android_display_summary">Brightness, screen timeout, font size</string>
+    <string name="appearance_android_display_keywords">brightness screen timeout font size display resolution</string>
+
+    <string name="wallpaper_aurora">Aurora</string>
+    <string name="wallpaper_aurora_still">Aurora still</string>
+    <string name="wallpaper_dawn">Dawn</string>
+    <string name="wallpaper_ocean">Ocean</string>
+    <string name="wallpaper_graphite">Graphite</string>
+    <string name="wallpaper_system">Android</string>
+
+    <string name="home_default">Default home app</string>
+    <string name="home_default_on">MesOS Home opens when you press Home</string>
+    <string name="home_default_off">Another app is the home screen. Tap to choose MesOS.</string>
+    <string name="home_default_mesos">MesOS</string>
+    <string name="home_badges">Notification dots</string>
+    <string name="home_badges_summary">Show a dot on apps with new notifications</string>
+    <string name="home_badges_needs_access">Needs notification access (Notifications page)</string>
+    <string name="home_style">Wallpaper &amp; style</string>
+    <string name="home_gestures">Gestures</string>
+    <string name="home_gesture_control">Swipe down on Home for the control center and notifications</string>
+    <string name="home_gesture_drawer">Swipe up for all apps and search</string>
+    <string name="home_gesture_edit">Long-press empty space to edit pages, move icons and make folders</string>
+    <string name="home_gesture_widgets">Add widgets from the edit mode</string>
+
+    <string name="notifications_access">Notification access</string>
+    <string name="notifications_access_summary">Lets the control center show your notifications and media</string>
+    <string name="notifications_post">MesOS notifications</string>
+    <string name="notifications_post_summary">Alarms, reminders, downloads and update notices</string>
+    <string name="notifications_dnd">Do Not Disturb control</string>
+    <string name="notifications_dnd_summary">Lets the control center switch Do Not Disturb</string>
+    <string name="notifications_android">Notifications of all apps</string>
+    <string name="notifications_android_summary">Which apps may notify you, and how</string>
+    <string name="notifications_note">Each access is granted in Android\'s own screen and can be taken back there at any time.</string>
+
+    <string name="privacy_app_permissions">App permissions</string>
+    <string name="privacy_special_access">Special access</string>
+    <string name="privacy_allowed">Allowed</string>
+    <string name="privacy_not_allowed">Not allowed</string>
+    <string name="privacy_write_settings">Change system settings</string>
+    <string name="privacy_write_settings_summary">Brightness and auto-rotate in the control center</string>
+    <string name="privacy_all_files">All files access</string>
+    <string name="privacy_all_files_summary">MesOS Files can browse and manage every folder</string>
+    <string name="privacy_install">Install MesOS updates</string>
+    <string name="privacy_install_summary">MesOS Update can hand verified updates to Android\'s installer</string>
+    <string name="privacy_alarms">Alarms &amp; reminders</string>
+    <string name="privacy_alarms_summary">Clock and Calendar ring on time</string>
+    <string name="privacy_full_screen">Full-screen alerts</string>
+    <string name="privacy_full_screen_summary">Alarms can fill the screen while the phone is locked</string>
+    <string name="privacy_android">Android privacy settings</string>
+    <string name="privacy_location_settings">Location</string>
+    <string name="privacy_security">Security &amp; screen lock</string>
+    <string name="privacy_note">MesOS asks for a permission only when a feature needs it. Android always shows which app is using the camera, microphone or location.</string>
+
+    <string name="permission_notifications">Notifications</string>
+    <string name="permission_notifications_summary">Alarms, reminders and update notices</string>
+    <string name="permission_location">Location</string>
+    <string name="permission_location_summary">Weather where you are</string>
+    <string name="permission_photos">Photos &amp; videos</string>
+    <string name="permission_photos_summary">MesOS Photos and Files</string>
+    <string name="permission_music">Music &amp; audio</string>
+    <string name="permission_music_summary">MesOS Music and recordings</string>
+    <string name="permission_storage">Photos, media &amp; files</string>
+    <string name="permission_storage_summary">Photos, Music and Files</string>
+    <string name="permission_camera">Camera</string>
+    <string name="permission_camera_summary">MesOS Camera and QR scanner</string>
+    <string name="permission_microphone">Microphone</string>
+    <string name="permission_microphone_summary">Videos, voice recorder, calls</string>
+    <string name="permission_contacts">Contacts</string>
+    <string name="permission_contacts_summary">Contacts, Phone, Messages and search</string>
+    <string name="permission_phone">Phone</string>
+    <string name="permission_phone_summary">Calls and call history</string>
+    <string name="permission_sms">SMS</string>
+    <string name="permission_sms_summary">MesOS Messages</string>
+
+    <string name="language_mesos">MesOS language</string>
+    <string name="language_system">Same as Android</string>
+    <string name="language_system_summary">Follow the language chosen in Android</string>
+    <string name="language_follows_android">On this Android version MesOS uses the language chosen in Android\'s settings.</string>
+    <string name="language_android">Android languages</string>
+    <string name="language_android_summary">System language and region</string>
+    <string name="language_keyboard">Keyboard</string>
+    <string name="language_keyboard_summary">On-screen keyboard and input</string>
+    <string name="language_note">MesOS is available in Turkish and English. Apps from Google Play use Android\'s language.</string>
+
+    <string name="apps_default_apps">Default apps</string>
+    <string name="apps_default_apps_summary">Browser, phone, messages, home</string>
+    <string name="apps_manage_summary">Storage, permissions and uninstalling</string>
+    <string name="apps_mesos_info">MesOS in Android</string>
+    <string name="apps_mesos_info_summary">MesOS package, storage and permissions</string>
+
+    <string name="system_date_time">Date &amp; time</string>
+    <string name="system_accessibility">Accessibility</string>
+    <string name="system_run_setup">Run MesOS setup again</string>
+    <string name="system_run_setup_summary">Language, style, permissions and home screen</string>
+
+    <string name="update_auto_check">Check automatically</string>
+    <string name="update_auto_check_summary">Once a day. MesOS tells you about a new version and installs only when you confirm.</string>
+
+    <string name="licenses_summary">Fonts, libraries and data MesOS uses</string>
+    <string name="licenses_note">MesOS is built with open-source software. Thank you to everyone who makes it.</string>
+
+    <string name="setup_label">MesOS setup</string>
+    <string name="setup_skip">Skip setup</string>
+    <string name="setup_start">Get started</string>
+    <string name="setup_continue">Continue</string>
+    <string name="setup_finish">Start using MesOS</string>
+    <string name="setup_allow">Allow</string>
+    <string name="setup_granted">Allowed</string>
+    <string name="setup_welcome_title">Welcome to MesOS</string>
+    <string name="setup_welcome_message">A few steps and MesOS is ready for you.</string>
+    <string name="setup_style_title">Make it yours</string>
+    <string name="setup_style_message">Pick a wallpaper, an accent colour and a theme. You can change them any time in Settings.</string>
+    <string name="setup_theme_title">Theme for MesOS apps</string>
+    <string name="setup_permissions_title">Permissions</string>
+    <string name="setup_permissions_message">Allow what you want to use now. Everything else is asked when you first need it.</string>
+    <string name="setup_permission_listener">Notifications and media in the control center</string>
+    <string name="setup_permissions_note">You can change every permission later in Settings → Privacy &amp; permissions.</string>
+    <string name="setup_home_title">Home screen</string>
+    <string name="setup_home_message">Make MesOS your home screen and choose where Aurora appears.</string>
+    <string name="setup_home_default">Press Home to come back to MesOS</string>
+    <string name="setup_done_title">All set</string>
+    <string name="setup_done_message">A few gestures to get around MesOS:</string>
+    <string name="setup_done_settings">Everything you chose here is in Settings</string>
 </resources>

@@ -62,6 +62,21 @@ adb logcat -b all -c
 # fd 3: adb reads stdin and would otherwise swallow the list.
 while read -r name cls args <&3; do
   case "$name" in ''|'#'*) continue ;; esac
+  if [ "$name" = "@setup" ]; then
+    # Home opens the setup wizard until it is finished; walk through every step.
+    echo "== setup"
+    home
+    sleep 8
+    shot setup-welcome
+    for step in style permissions home finish; do
+      adb shell input tap 540 2220
+      sleep 3
+      shot "setup-$step"
+    done
+    adb shell input tap 540 2220
+    sleep 3
+    continue
+  fi
   if [ "$name" = "@setup-done" ]; then
     set_pref_bool mesos_preferences setup_done true
     continue
@@ -69,7 +84,7 @@ while read -r name cls args <&3; do
   if [ "$name" = "@home" ]; then
     echo "== home"
     home
-    sleep 5
+    sleep 8
     shot home
     adb shell input swipe 540 700 540 1900 300
     sleep 3

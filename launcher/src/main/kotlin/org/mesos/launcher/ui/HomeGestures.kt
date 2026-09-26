@@ -10,10 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.unit.IntSize
-import org.mesos.core.log.MesOSLog
 import org.mesos.launcher.layout.HomeItem
 import kotlin.math.abs
 
@@ -112,33 +112,38 @@ internal fun Modifier.homeLongPressDrag(
         val velocity = VelocityTracker()
         velocity.addPosition(down.uptimeMillis, down.position)
         var last = down.position
+        // A swipe can arrive as just down and up when the UI thread was busy.
+        var upAlready: PointerInputChange? = null
 
         // Until the long-press timeout: a lift is a tap, a move is a swipe.
         val early = withTimeoutOrNull(viewConfiguration.longPressTimeoutMillis) {
             while (true) {
                 val event = awaitPointerEvent(PointerEventPass.Initial)
                 val change = event.changes.firstOrNull { it.id == down.id } ?: return@withTimeoutOrNull EarlyEnd.LIFTED
-                if (!change.pressed || change.isConsumed || event.changes.size > 1) return@withTimeoutOrNull EarlyEnd.LIFTED
+                if (change.isConsumed || event.changes.size > 1) return@withTimeoutOrNull EarlyEnd.LIFTED
                 velocity.addPosition(change.uptimeMillis, change.position)
                 last = change.position
                 val moved = change.position - down.position
                 if (moved.getDistance() > slop) {
+                    if (!change.pressed) upAlready = change
                     return@withTimeoutOrNull if (abs(moved.y) > abs(moved.x)) EarlyEnd.VERTICAL else EarlyEnd.HORIZONTAL
                 }
+                if (!change.pressed) return@withTimeoutOrNull EarlyEnd.LIFTED
             }
             @Suppress("UNREACHABLE_CODE")
             EarlyEnd.LIFTED
         }
-        MesOSLog.d(MesOSLog.LAUNCHER, "Home gesture at ${down.position}: ${early ?: "long press"}")
         when (early) {
             EarlyEnd.LIFTED, EarlyEnd.HORIZONTAL -> return@awaitEachGesture
             EarlyEnd.VERTICAL -> {
-                if (!sheetsEnabled(down.position)) {
-                    MesOSLog.d(MesOSLog.LAUNCHER, "Sheets disabled here")
-                    return@awaitEachGesture
-                }
+                if (!sheetsEnabled(down.position)) return@awaitEachGesture
                 // Own the swipe from here on: the pager and the icons do not see it.
                 onSheetDrag(last.y - down.position.y)
+                upAlready?.let { up ->
+                    up.consume()
+                    onSheetEnd(velocity.calculateVelocity().y)
+                    return@awaitEachGesture
+                }
                 while (true) {
                     val event = awaitPointerEvent(PointerEventPass.Initial)
                     val change = event.changes.firstOrNull { it.id == down.id }
@@ -148,9 +153,7 @@ internal fun Modifier.homeLongPressDrag(
                     }
                     change.consume()
                     if (!change.pressed) {
-                        val v = velocity.calculateVelocity().y
-                        MesOSLog.d(MesOSLog.LAUNCHER, "Sheet swipe ended, velocity $v")
-                        onSheetEnd(v)
+                        onSheetEnd(velocity.calculateVelocity().y)
                         return@awaitEachGesture
                     }
                     velocity.addPosition(change.uptimeMillis, change.position)

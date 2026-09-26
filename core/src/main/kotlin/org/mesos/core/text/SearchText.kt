@@ -20,13 +20,13 @@ object SearchText {
             .replace('ı', 'i')
             .trim()
 
+    /** Whether [candidate] matches [query] at all. */
+    fun matches(query: String, candidate: String): Boolean = score(query, candidate) > 0
+
     /**
      * Score of [candidate] for [query] (both raw): 0 when it does not match, higher is
      * better. Whole-text prefix > word prefix > anywhere.
      */
-    /** Whether [candidate] matches [query] at all. */
-    fun matches(query: String, candidate: String): Boolean = score(query, candidate) > 0
-
     fun score(query: String, candidate: String): Int {
         val q = normalize(query)
         if (q.isEmpty()) return 0
