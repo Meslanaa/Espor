@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Preview of the MesOS Aurora live wallpaper in Android's wallpaper picker. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="195dp"
+    android:height="422dp"
+    android:viewportWidth="390"
+    android:viewportHeight="844">
+    <path android:pathData="M0,0 H390 V844 H0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="0" android:startY="0" android:endX="0" android:endY="844">
+                <item android:offset="0" android:color="#FF050914" />
+                <item android:offset="0.55" android:color="#FF0A1834" />
+                <item android:offset="1" android:color="#FF0C2A3C" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M-40,250 C60,170 150,300 240,210 C300,150 360,170 430,200 L430,400 C340,360 250,460 150,390 C80,345 20,370 -40,420 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="0" android:startY="170" android:endX="0" android:endY="460">
+                <item android:offset="0" android:color="#006D7CFF" />
+                <item android:offset="0.5" android:color="#B36D7CFF" />
+                <item android:offset="1" android:color="#006D7CFF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M-40,360 C70,300 140,420 250,350 C320,305 370,330 430,350 L430,500 C330,470 250,560 140,500 C70,465 20,480 -40,520 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="0" android:startY="300" android:endX="0" android:endY="560">
+                <item android:offset="0" android:color="#002DD4BF" />
+                <item android:offset="0.5" android:color="#992DD4BF" />
+                <item android:offset="1" android:color="#0034D399" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:fillColor="#FF081326" android:pathData="M0,642 L52,598 L96,626 L160,548 L222,610 L280,570 L338,616 L390,584 L390,844 L0,844 Z" />
+    <path android:fillColor="#FF040A16" android:pathData="M0,700 L70,660 L130,690 L200,640 L262,684 L330,650 L390,676 L390,844 L0,844 Z" />
+</vector>

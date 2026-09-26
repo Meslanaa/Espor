@@ -32,6 +32,10 @@ kotlin {
 
 dependencies {
     implementation(project(":core"))
+    // Search and widgets read MesOS app data through their public feeds.
+    implementation(project(":apps:calculator"))
+    implementation(project(":apps:notes"))
 
     testImplementation(libs.junit)
+    testImplementation(libs.org.json)
 }

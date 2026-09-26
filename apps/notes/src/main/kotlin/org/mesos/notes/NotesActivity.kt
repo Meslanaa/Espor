@@ -59,8 +59,14 @@ class NotesActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val requested = intent.getLongExtra(NotesFeed.EXTRA_NOTE_ID, -1L)
+        val initial = when {
+            intent.getBooleanExtra(NotesFeed.EXTRA_NEW_NOTE, false) -> NEW_NOTE
+            requested > 0 -> requested
+            else -> null
+        }
         setContent {
-            MesOSUserTheme { NotesApp() }
+            MesOSUserTheme { NotesApp(initial) }
         }
     }
 }
@@ -69,8 +75,8 @@ class NotesActivity : ComponentActivity() {
 private const val NEW_NOTE = 0L
 
 @Composable
-private fun NotesApp() {
-    var editing by rememberSaveable { mutableStateOf<Long?>(null) }
+private fun NotesApp(initial: Long?) {
+    var editing by rememberSaveable { mutableStateOf(initial) }
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Box(Modifier.safeDrawingPadding()) {
             when (val id = editing) {
