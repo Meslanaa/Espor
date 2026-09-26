@@ -38,11 +38,12 @@ internal object DefaultLayout {
         items += Placement(HomeItem.Widget(nextId++, WidgetKinds.CLOCK), page = 0, x = 0, y = 0, w = 4, h = 2)
         items += Placement(HomeItem.Widget(nextId++, WidgetKinds.WEATHER), page = 0, x = 0, y = 2, w = 2, h = 2)
         items += Placement(HomeItem.Widget(nextId++, WidgetKinds.AGENDA), page = 0, x = 2, y = 2, w = 2, h = 2)
-        firstPage.forEachIndexed { index, id ->
-            find(id)?.let { items += Placement(HomeItem.App(nextId++, it.key), 0, index % 4, 4 + index / 4) }
+        // Missing apps (e.g. no Play Store on the image) leave no gaps.
+        firstPage.mapNotNull(::find).forEachIndexed { index, app ->
+            items += Placement(HomeItem.App(nextId++, app.key), 0, index % 4, 4 + index / 4)
         }
-        secondPage.forEachIndexed { index, id ->
-            find(id)?.let { items += Placement(HomeItem.App(nextId++, it.key), 1, index % 4, index / 4) }
+        secondPage.mapNotNull(::find).forEachIndexed { index, app ->
+            items += Placement(HomeItem.App(nextId++, app.key), 1, index % 4, index / 4)
         }
         val dock = dockApps.mapNotNull { id -> find(id)?.let { HomeItem.App(nextId++, it.key) } }
 

@@ -86,12 +86,13 @@ while read -r name cls args <&3; do
     home
     sleep 8
     shot home
-    adb shell input swipe 540 700 540 1900 300
+    # Slow swipes: the CI emulator is busy and may merge a fast swipe into down/up.
+    adb shell input swipe 540 700 540 1900 500
     sleep 3
     shot control-center
     adb shell input keyevent KEYCODE_BACK
-    sleep 2
-    adb shell input swipe 540 1900 540 500 300
+    sleep 3
+    adb shell input swipe 540 1700 540 500 500
     sleep 3
     shot drawer
     adb shell input keyevent KEYCODE_BACK
@@ -106,7 +107,8 @@ while read -r name cls args <&3; do
     sleep 1
     adb shell input keyevent KEYCODE_BACK
     sleep 2
-    adb shell input swipe 1000 1200 80 1200 300
+    # Away from the screen edges, which belong to Android's back gesture.
+    adb shell input swipe 880 1500 200 1500 400
     sleep 3
     shot home-page-2
     adb shell input swipe 540 1200 540 1210 1500

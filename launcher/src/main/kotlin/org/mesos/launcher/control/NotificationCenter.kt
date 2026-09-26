@@ -87,6 +87,7 @@ object NotificationCenter {
     private var service: MesOSNotificationService? = null
     private var sessionManager: MediaSessionManager? = null
     private var controller: MediaController? = null
+    private const val RETRY_DELAY_MS = 1_000L
     private val mainHandler = Handler(Looper.getMainLooper())
 
     private val sessionsListener = MediaSessionManager.OnActiveSessionsChangedListener { controllers ->
@@ -149,13 +150,18 @@ object NotificationCenter {
         MesOSLog.i(MesOSLog.LAUNCHER, "Notification listener disconnected")
     }
 
-    internal fun refresh() {
+    internal fun refresh(retry: Boolean = true) {
         val listener = service ?: return
         val active = try {
             listener.activeNotifications.orEmpty()
         } catch (e: RuntimeException) {
-            // SecurityException right after access was revoked.
-            MesOSLog.w(MesOSLog.LAUNCHER, "Could not read notifications", e)
+            // SecurityException right after access was revoked, or when Android calls
+            // onListenerConnected before it has registered the new connection: try once more.
+            if (retry) {
+                mainHandler.postDelayed({ if (service === listener) refresh(retry = false) }, RETRY_DELAY_MS)
+            } else {
+                MesOSLog.w(MesOSLog.LAUNCHER, "Could not read notifications", e)
+            }
             return
         }
         val items = active.filter(::isShown).map(::toItem).sortedByDescending { it.postTime }
