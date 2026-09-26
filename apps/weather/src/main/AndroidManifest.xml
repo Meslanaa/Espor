@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Forecasts from Open-Meteo over HTTPS. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Optional: the weather where the device is. Approximate location is enough. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application>
+        <activity
+            android:name=".WeatherActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
+            android:exported="true"
+            android:icon="@mipmap/ic_weather"
+            android:label="@string/weather_app_name"
+            android:taskAffinity="org.mesos.weather"
+            android:theme="@style/Theme.MesOS.Dark"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

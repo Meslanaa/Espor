@@ -11,8 +11,10 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.unit.IntSize
 import org.mesos.launcher.layout.HomeItem
+import kotlin.math.abs
 
 /** Where things are on screen (root coordinates), for hit testing and drops. */
 internal class HitRegistry {
@@ -76,17 +78,25 @@ internal class DragState {
     }
 }
 
+/** How a touch on Home ended before the long-press timeout. */
+private enum class EarlyEnd { LIFTED, HORIZONTAL, VERTICAL }
+
 /**
- * Long press and drag for MesOS Home, observed before the icons see the touch
- * (initial pass), so taps still reach the icons and swipes still reach the pager:
+ * All gestures of MesOS Home, observed before the icons see the touch (initial
+ * pass), so taps still reach the icons and sideways swipes still reach the pager:
  *
+ * - vertical swipe → [onSheetDrag] with the finger's movement, then [onSheetEnd]
+ *   with its velocity (drawer up, control center down);
  * - long press on an item → [onLongPressItem]; moving afterwards → [onDragStart],
  *   [onDragMove] and finally [onDrop] (or [onDragCancel]);
  * - long press on empty space → [onLongPressEmpty].
  */
 internal fun Modifier.homeLongPressDrag(
     enabled: () -> Boolean,
+    sheetsEnabled: (Offset) -> Boolean,
     hitTest: (Offset) -> Long?,
+    onSheetDrag: (dy: Float) -> Unit,
+    onSheetEnd: (velocityY: Float) -> Unit,
     onLongPressItem: (id: Long) -> Unit,
     onLongPressEmpty: (Offset) -> Unit,
     onDragStart: (id: Long, pointer: Offset) -> Boolean,
@@ -98,20 +108,51 @@ internal fun Modifier.homeLongPressDrag(
         val down = awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Initial)
         if (!enabled()) return@awaitEachGesture
         val slop = viewConfiguration.touchSlop
+        val velocity = VelocityTracker()
+        velocity.addPosition(down.uptimeMillis, down.position)
+        var last = down.position
 
-        // Wait for the long-press timeout without the finger moving or lifting.
-        val interrupted = withTimeoutOrNull(viewConfiguration.longPressTimeoutMillis) {
+        // Until the long-press timeout: a lift is a tap, a move is a swipe.
+        val early = withTimeoutOrNull(viewConfiguration.longPressTimeoutMillis) {
             while (true) {
                 val event = awaitPointerEvent(PointerEventPass.Initial)
-                val change = event.changes.firstOrNull { it.id == down.id } ?: return@withTimeoutOrNull true
-                if (!change.pressed || change.isConsumed) return@withTimeoutOrNull true
-                if ((change.position - down.position).getDistance() > slop) return@withTimeoutOrNull true
-                if (event.changes.size > 1) return@withTimeoutOrNull true
+                val change = event.changes.firstOrNull { it.id == down.id } ?: return@withTimeoutOrNull EarlyEnd.LIFTED
+                if (!change.pressed || change.isConsumed || event.changes.size > 1) return@withTimeoutOrNull EarlyEnd.LIFTED
+                velocity.addPosition(change.uptimeMillis, change.position)
+                last = change.position
+                val moved = change.position - down.position
+                if (moved.getDistance() > slop) {
+                    return@withTimeoutOrNull if (abs(moved.y) > abs(moved.x)) EarlyEnd.VERTICAL else EarlyEnd.HORIZONTAL
+                }
             }
             @Suppress("UNREACHABLE_CODE")
-            true
+            EarlyEnd.LIFTED
         }
-        if (interrupted != null) return@awaitEachGesture
+        when (early) {
+            EarlyEnd.LIFTED, EarlyEnd.HORIZONTAL -> return@awaitEachGesture
+            EarlyEnd.VERTICAL -> {
+                if (!sheetsEnabled(down.position)) return@awaitEachGesture
+                // Own the swipe from here on: the pager and the icons do not see it.
+                onSheetDrag(last.y - down.position.y)
+                while (true) {
+                    val event = awaitPointerEvent(PointerEventPass.Initial)
+                    val change = event.changes.firstOrNull { it.id == down.id }
+                    if (change == null) {
+                        onSheetEnd(0f)
+                        return@awaitEachGesture
+                    }
+                    change.consume()
+                    if (!change.pressed) {
+                        onSheetEnd(velocity.calculateVelocity().y)
+                        return@awaitEachGesture
+                    }
+                    velocity.addPosition(change.uptimeMillis, change.position)
+                    onSheetDrag(change.position.y - last.y)
+                    last = change.position
+                }
+            }
+            null -> Unit // Long press.
+        }
 
         val id = hitTest(down.position)
         if (id == null) {

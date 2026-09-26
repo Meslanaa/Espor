@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="calendar_app_name">Calendar</string>
+    <string name="calendar_today">Today</string>
+    <string name="calendar_previous_month">Previous month</string>
+    <string name="calendar_next_month">Next month</string>
+    <string name="calendar_no_events">No events on this day</string>
+    <string name="calendar_new_event">New event</string>
+    <string name="calendar_edit_event">Edit event</string>
+    <string name="calendar_untitled">Untitled event</string>
+    <string name="calendar_all_day">All day</string>
+    <string name="calendar_title">Title</string>
+    <string name="calendar_starts">Starts</string>
+    <string name="calendar_ends">Ends</string>
+    <string name="calendar_repeat">Repeat</string>
+    <string name="calendar_repeat_none">Never</string>
+    <string name="calendar_repeat_daily">Every day</string>
+    <string name="calendar_repeat_weekly">Every week</string>
+    <string name="calendar_repeat_monthly">Every month</string>
+    <string name="calendar_repeat_yearly">Every year</string>
+    <string name="calendar_reminder">Reminder</string>
+    <string name="calendar_reminder_none">None</string>
+    <string name="calendar_reminder_at_start">At start</string>
+    <string name="calendar_reminder_minutes">%1$d min before</string>
+    <string name="calendar_reminder_day">1 day before</string>
+    <string name="calendar_color">Colour</string>
+    <string name="calendar_location">Location</string>
+    <string name="calendar_notes">Notes</string>
+    <string name="calendar_save">Save</string>
+    <string name="calendar_cancel">Cancel</string>
+    <string name="calendar_ok">OK</string>
+    <string name="calendar_delete">Delete event</string>
+    <string name="calendar_delete_title">Delete this event?</string>
+    <string name="calendar_channel">Event reminders</string>
+</resources>

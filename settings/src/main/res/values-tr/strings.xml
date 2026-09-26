@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings_app_label">MesOS Ayarlar</string>
+    <string name="settings_app_label">Ayarlar</string>
     <string name="settings_title">Ayarlar</string>
     <string name="settings_back">Geri</string>
     <string name="settings_opens_android">Android ayarlarını açar</string>

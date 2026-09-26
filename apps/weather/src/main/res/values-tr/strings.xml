@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="weather_app_name">Hava Durumu</string>
+    <string name="weather_places">Konumlar</string>
+    <string name="weather_refresh">Yenile</string>
+    <string name="weather_close">Kapat</string>
+    <string name="weather_remove">Kaldır</string>
+    <string name="weather_error">Tahmin yüklenemedi. İnternet bağlantısını kontrol et.</string>
+    <string name="weather_retry">Tekrar dene</string>
+    <string name="weather_high_low">Y %1$s · D %2$s</string>
+    <string name="weather_hourly">Sonraki saatler</string>
+    <string name="weather_daily">10 günlük tahmin</string>
+    <string name="weather_now">Şimdi</string>
+    <string name="weather_today">Bugün</string>
+    <string name="weather_feels_like">Hissedilen</string>
+    <string name="weather_humidity">Nem</string>
+    <string name="weather_wind">Rüzgar</string>
+    <string name="weather_uv">UV indeksi</string>
+    <string name="weather_sunrise">Gün doğumu</string>
+    <string name="weather_sunset">Gün batımı</string>
+    <string name="weather_percent">%%%1$d</string>
+    <string name="weather_source">Open-Meteo · %1$s güncellendi</string>
+    <string name="weather_search_hint">Şehir ara</string>
+    <string name="weather_no_results">Yer bulunamadı</string>
+    <string name="weather_use_location">Konumumu kullan</string>
+    <string name="weather_use_location_summary">Bulunduğun yerin hava durumu (yaklaşık konum yeterli)</string>
+    <string name="weather_fahrenheit">Fahrenheit (°F)</string>
+    <string name="weather_empty">Bir şehir ara ya da konumunu kullan.</string>
+    <string name="weather_my_location">Konumum</string>
+    <string name="weather_clear">Açık</string>
+    <string name="weather_mainly_clear">Çoğunlukla açık</string>
+    <string name="weather_partly_cloudy">Parçalı bulutlu</string>
+    <string name="weather_overcast">Bulutlu</string>
+    <string name="weather_fog">Sis</string>
+    <string name="weather_drizzle">Çisenti</string>
+    <string name="weather_rain">Yağmur</string>
+    <string name="weather_freezing_rain">Donan yağmur</string>
+    <string name="weather_snow">Kar</string>
+    <string name="weather_showers">Sağanak</string>
+    <string name="weather_snow_showers">Kar sağanağı</string>
+    <string name="weather_thunderstorm">Gök gürültülü fırtına</string>
+</resources>

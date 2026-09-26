@@ -9,3 +9,5 @@ files org.mesos.files.FilesActivity
 downloads org.mesos.files.DownloadsActivity
 calculator org.mesos.calculator.CalculatorActivity
 notes org.mesos.notes.NotesActivity
+weather org.mesos.weather.WeatherActivity
+calendar org.mesos.calendar.CalendarActivity

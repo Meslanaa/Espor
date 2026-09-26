@@ -33,6 +33,7 @@
     <string name="widget_weather_setup">Tap to see the forecast</string>
     <string name="widget_agenda">Today</string>
     <string name="widget_agenda_empty">No events</string>
+    <string name="widget_agenda_all_day">All day</string>
     <string name="widget_notes">Notes</string>
     <string name="widget_notes_empty">No notes yet</string>
     <string name="widget_notes_new">New note</string>

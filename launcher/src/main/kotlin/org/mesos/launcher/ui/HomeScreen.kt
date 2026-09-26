@@ -13,9 +13,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.gestures.DraggableState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -281,6 +278,7 @@ internal fun HomeScreen(
             if (!ui.editMode) homeModel.update { it.compactPages() }
         }
 
+        val sheetDrag = remember(heightPx) { SheetDrag(scope, ui, heightPx) { sheet, open -> settle(sheet, open) } }
         val homeInteractive by rememberUpdatedState(
             layout != null && overlay == 0f && ui.menu == null && ui.openFolderId == null && !ui.widgetPicker,
         )
@@ -303,7 +301,15 @@ internal fun HomeScreen(
                     .graphicsLayer { alpha = 1f - 0.8f * overlay }
                     .homeLongPressDrag(
                         enabled = { homeInteractive },
+                        sheetsEnabled = { position ->
+                            // Android widgets may scroll vertically themselves.
+                            val id = registry.hit(position, screen)
+                            val item = id?.let(::itemById)
+                            !ui.editMode && !(item is HomeItem.Widget && item.kind == WidgetKinds.ANDROID)
+                        },
                         hitTest = { position -> registry.hit(position, screen) },
+                        onSheetDrag = { dy -> sheetDrag.drag(dy) },
+                        onSheetEnd = { velocity -> sheetDrag.end(velocity) },
                         onLongPressItem = { id ->
                             haptics.longPress()
                             val item = itemById(id)
@@ -354,12 +360,6 @@ internal fun HomeScreen(
                             drag.end()
                             hoverId = null
                         },
-                    )
-                    .draggable(
-                        orientation = Orientation.Vertical,
-                        enabled = homeInteractive && !ui.editMode,
-                        state = rememberSheetDragState(scope, ui, heightPx),
-                        onDragStopped = { velocity -> sheetDragStopped(ui, velocity, ::settle) },
                     )
                     .statusBarsPadding()
                     .navigationBarsPadding(),
@@ -578,31 +578,45 @@ private fun appLabel(context: android.content.Context, model: LauncherModel, pkg
         pkg
     }
 
-/** Drag on Home: up opens the drawer, down the control center, following the finger. */
-@Composable
-private fun rememberSheetDragState(scope: CoroutineScope, ui: HomeUiState, heightPx: Float) =
-    remember(heightPx) {
-        var target: Sheet? = null
-        DraggableState { delta ->
-            if (target == null || (ui.drawer.value == 0f && ui.control.value == 0f)) {
-                target = if (delta < 0) Sheet.DRAWER else Sheet.CONTROL
+/** Swipes on Home: up opens the drawer, down the control center, following the finger. */
+private class SheetDrag(
+    private val scope: CoroutineScope,
+    private val ui: HomeUiState,
+    private val heightPx: Float,
+    private val settle: (Sheet, Boolean) -> Unit,
+) {
+    private var target: Sheet? = null
+    private var drawer = 0f
+    private var control = 0f
+
+    fun drag(dy: Float) {
+        if (target == null) {
+            target = if (dy < 0) Sheet.DRAWER else Sheet.CONTROL
+            drawer = ui.drawer.value
+            control = ui.control.value
+        }
+        when (target) {
+            Sheet.DRAWER -> {
+                drawer = (drawer - dy / (heightPx * 0.6f)).coerceIn(0f, 1f)
+                val value = drawer
+                scope.launch { ui.drawer.snapTo(value) }
             }
-            scope.launch {
-                when (target) {
-                    Sheet.DRAWER -> ui.drawer.snapTo((ui.drawer.value - delta / (heightPx * 0.6f)).coerceIn(0f, 1f))
-                    Sheet.CONTROL -> ui.control.snapTo((ui.control.value + delta / (heightPx * 0.5f)).coerceIn(0f, 1f))
-                    null -> Unit
-                }
+            Sheet.CONTROL -> {
+                control = (control + dy / (heightPx * 0.5f)).coerceIn(0f, 1f)
+                val value = control
+                scope.launch { ui.control.snapTo(value) }
             }
+            null -> Unit
         }
     }
 
-private fun sheetDragStopped(ui: HomeUiState, velocity: Float, settle: (Sheet, Boolean) -> Unit) {
-    val drawer = ui.drawer.value
-    val control = ui.control.value
-    when {
-        drawer > 0f -> settle(Sheet.DRAWER, velocity < -FLING_VELOCITY || (drawer > 0.3f && velocity < FLING_VELOCITY))
-        control > 0f -> settle(Sheet.CONTROL, velocity > FLING_VELOCITY || (control > 0.3f && velocity > -FLING_VELOCITY))
+    fun end(velocity: Float) {
+        when (target) {
+            Sheet.DRAWER -> settle(Sheet.DRAWER, velocity < -FLING_VELOCITY || (drawer > 0.3f && velocity < FLING_VELOCITY))
+            Sheet.CONTROL -> settle(Sheet.CONTROL, velocity > FLING_VELOCITY || (control > 0.3f && velocity > -FLING_VELOCITY))
+            null -> Unit
+        }
+        target = null
     }
 }
 

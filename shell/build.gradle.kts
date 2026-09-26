@@ -70,4 +70,6 @@ dependencies {
     implementation(project(":apps:files"))
     implementation(project(":apps:calculator"))
     implementation(project(":apps:notes"))
+    implementation(project(":apps:weather"))
+    implementation(project(":apps:calendar"))
 }

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "org.mesos.launcher"
+    namespace = "org.mesos.weather"
     compileSdk = 36
 
     defaultConfig {
@@ -32,11 +32,6 @@ kotlin {
 
 dependencies {
     implementation(project(":core"))
-    // Search and widgets read MesOS app data through their public feeds.
-    implementation(project(":apps:calculator"))
-    implementation(project(":apps:notes"))
-    implementation(project(":apps:weather"))
-    implementation(project(":apps:calendar"))
 
     testImplementation(libs.junit)
     testImplementation(libs.org.json)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings_app_label">MesOS Settings</string>
+    <string name="settings_app_label">Settings</string>
     <string name="settings_title">Settings</string>
     <string name="settings_back">Back</string>
     <string name="settings_opens_android">Opens Android settings</string>
