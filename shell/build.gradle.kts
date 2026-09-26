@@ -79,4 +79,6 @@ dependencies {
     implementation(project(":apps:recorder"))
     implementation(project(":apps:contacts"))
     implementation(project(":apps:tips"))
+    implementation(project(":apps:browser"))
+    implementation(project(":apps:phone"))
 }

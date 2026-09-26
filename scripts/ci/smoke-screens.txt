@@ -25,3 +25,6 @@ care org.mesos.care.CareActivity
 recorder org.mesos.recorder.RecorderActivity
 contacts org.mesos.contacts.ContactsActivity
 tips org.mesos.tips.TipsActivity
+browser org.mesos.browser.BrowserActivity
+phone org.mesos.phone.PhoneActivity
+phone-dial org.mesos.phone.PhoneActivity -a android.intent.action.DIAL -d tel:05551234567

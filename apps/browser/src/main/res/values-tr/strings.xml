@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="browser_app_name">Tarayıcı</string>
+    <string name="browser_address_hint">Ara veya web adresi yaz</string>
+    <string name="browser_search">Ara</string>
+    <string name="browser_search_with">“%1$s” için %2$s ile ara</string>
+    <string name="browser_secure">Güvenli bağlantı</string>
+    <string name="browser_not_secure">Güvenli değil</string>
+    <string name="browser_reload">Yenile</string>
+    <string name="browser_stop">Yüklemeyi durdur</string>
+    <string name="browser_forward">İleri</string>
+    <string name="browser_bookmark">Yer imi</string>
+    <string name="browser_new_tab">Yeni sekme</string>
+    <string name="browser_tabs">%1$d sekme</string>
+    <string name="browser_close_tab">Sekmeyi kapat</string>
+    <string name="browser_start_page">Başlangıç sayfası</string>
+    <string name="browser_bookmarks">Yer imleri</string>
+    <string name="browser_bookmarks_empty">Bir sayfayı kaydetmek için yıldıza dokun</string>
+    <string name="browser_history">Geçmiş</string>
+    <string name="browser_history_empty">Ziyaret ettiğin sayfalar burada görünür</string>
+    <string name="browser_clear">Temizle</string>
+    <string name="browser_downloads">İndirilenler</string>
+    <string name="browser_desktop_site">Masaüstü sitesi</string>
+    <string name="browser_settings">Tarayıcı ayarları</string>
+    <string name="browser_search_engine">Arama motoru</string>
+    <string name="browser_privacy">Gizlilik</string>
+    <string name="browser_clear_history">Geçmişi temizle</string>
+    <string name="browser_clear_site_data">Çerezleri ve site verilerini temizle</string>
+    <string name="browser_clear_site_data_summary">Web sitelerindeki oturumların kapanır</string>
+    <string name="browser_cleared">Temizlendi</string>
+    <string name="browser_privacy_note">MesOS Tarayıcı üçüncü taraf çerezlerini engeller, Google Güvenli Tarama kullanır, geçersiz sertifikalı sayfaları asla açmaz ve geçmişi yalnızca bu cihazda tutar.</string>
+    <string name="browser_no_app">Bu bağlantıyı açabilecek bir uygulama yok</string>
+    <string name="browser_downloading">%1$s indiriliyor</string>
+    <string name="browser_download_failed">İndirme başlatılamadı</string>
+    <string name="browser_download_unsupported">Bu tür indirme henüz desteklenmiyor</string>
+    <string name="browser_error_ssl_title">Bu bağlantı gizli değil</string>
+    <string name="browser_error_ssl_text">Sitenin güvenlik sertifikası geçerli değil. Gönderdiklerini başkaları okuyabileceği veya değiştirebileceği için MesOS Tarayıcı bu sayfaları açmaz.</string>
+    <string name="browser_error_network_title">Sayfa açılamadı</string>
+    <string name="browser_error_network_text">Adresi ve internet bağlantını kontrol et.</string>
+    <string name="browser_error_crash_title">Bu sayfa durdu</string>
+    <string name="browser_error_crash_text">Sayfa çok fazla bellek kullandı veya bir sorunla karşılaştı. Tekrar denemek için yenile.</string>
+</resources>

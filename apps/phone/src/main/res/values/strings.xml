@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="phone_app_name">Phone</string>
+    <string name="phone_tab_keypad">Keypad</string>
+    <string name="phone_tab_recents">Recents</string>
+    <string name="phone_tab_contacts">Contacts</string>
+    <string name="phone_call">Call</string>
+    <string name="phone_delete_digit">Delete</string>
+    <string name="phone_add_contact">Add to contacts</string>
+    <string name="phone_make_default">Use MesOS for calls</string>
+    <string name="phone_make_default_text">Make MesOS your phone app to get the MesOS call screen for incoming and outgoing calls.</string>
+    <string name="phone_make_default_action">Set as phone app</string>
+    <string name="phone_not_available">Not available on this device</string>
+    <string name="phone_call_log_rationale">MesOS Phone shows your recent calls from Android\'s call log.</string>
+    <string name="phone_contacts_rationale">MesOS Phone shows your contacts so you can call them.</string>
+    <string name="phone_recents_empty">No recent calls</string>
+    <string name="phone_contacts_empty">No contacts with a phone number</string>
+    <string name="phone_search_contacts">Search name or number</string>
+    <string name="phone_favorites">Favourites</string>
+    <string name="phone_open_contacts">Open Contacts</string>
+    <string name="phone_clear">Clear</string>
+    <string name="phone_clear_title">Clear the whole call log?</string>
+    <string name="phone_unknown">Unknown number</string>
+    <string name="phone_message">Message</string>
+    <string name="phone_kind_incoming">Incoming</string>
+    <string name="phone_kind_outgoing">Outgoing</string>
+    <string name="phone_kind_missed">Missed</string>
+    <string name="phone_kind_rejected">Declined</string>
+    <string name="phone_kind_blocked">Blocked</string>
+    <string name="phone_kind_voicemail">Voicemail</string>
+
+    <string name="phone_incoming">Incoming call</string>
+    <string name="phone_ongoing">Ongoing call</string>
+    <string name="phone_calling">Calling…</string>
+    <string name="phone_on_hold">On hold</string>
+    <string name="phone_call_ended">Call ended</string>
+    <string name="phone_answer">Answer</string>
+    <string name="phone_decline">Decline</string>
+    <string name="phone_hang_up">Hang up</string>
+    <string name="phone_mute">Mute</string>
+    <string name="phone_keypad">Keypad</string>
+    <string name="phone_hide_keypad">Hide keypad</string>
+    <string name="phone_speaker">Speaker</string>
+    <string name="phone_hold">Hold</string>
+    <string name="phone_channel_incoming">Incoming calls</string>
+    <string name="phone_channel_ongoing">Ongoing calls</string>
+</resources>
