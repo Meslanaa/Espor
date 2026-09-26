@@ -11,3 +11,6 @@ calculator org.mesos.calculator.CalculatorActivity
 notes org.mesos.notes.NotesActivity
 weather org.mesos.weather.WeatherActivity
 calendar org.mesos.calendar.CalendarActivity
+clock org.mesos.clock.ClockActivity
+clock-timer org.mesos.clock.ClockActivity --es org.mesos.clock.extra.TAB TIMER
+music org.mesos.music.MusicActivity

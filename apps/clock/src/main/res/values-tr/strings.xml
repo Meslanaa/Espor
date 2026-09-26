@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="clock_app_name">Saat</string>
+    <string name="clock_tab_alarms">Alarmlar</string>
+    <string name="clock_tab_world">Dünya saati</string>
+    <string name="clock_tab_stopwatch">Kronometre</string>
+    <string name="clock_tab_timer">Zamanlayıcı</string>
+    <string name="clock_alarm">Alarm</string>
+    <string name="clock_add_alarm">Yeni alarm</string>
+    <string name="clock_edit_alarm">Alarmı düzenle</string>
+    <string name="clock_no_alarms">Alarm yok</string>
+    <string name="clock_no_alarms_hint">Kurmak için + simgesine dokun.</string>
+    <string name="clock_rings_in">%1$d sa %2$d dk sonra çalacak</string>
+    <string name="clock_alarm_set_at">Alarm %1$s için kuruldu</string>
+    <string name="clock_once">Bir kez</string>
+    <string name="clock_every_day">Her gün</string>
+    <string name="clock_weekdays">Hafta içi</string>
+    <string name="clock_weekend">Hafta sonu</string>
+    <string name="clock_label">Etiket</string>
+    <string name="clock_vibrate">Titreşim</string>
+    <string name="clock_save">Kaydet</string>
+    <string name="clock_cancel">İptal</string>
+    <string name="clock_delete">Alarmı sil</string>
+    <string name="clock_remove">Kaldır</string>
+    <string name="clock_snooze">Ertele</string>
+    <string name="clock_dismiss">Kapat</string>
+    <string name="clock_no_cities">Şehir yok</string>
+    <string name="clock_no_cities_hint">Saatlerini bir bakışta görmek için şehir ekle.</string>
+    <string name="clock_add_city">Şehir ekle</string>
+    <string name="clock_search_city">Şehir veya bölge ara</string>
+    <string name="clock_same_time">Buradaki saatle aynı</string>
+    <string name="clock_hours_ahead">%1$s sa ileride</string>
+    <string name="clock_hours_behind">%1$s sa geride</string>
+    <string name="clock_start">Başlat</string>
+    <string name="clock_pause">Duraklat</string>
+    <string name="clock_resume">Devam</string>
+    <string name="clock_reset">Sıfırla</string>
+    <string name="clock_lap">Tur</string>
+    <string name="clock_lap_number">Tur %1$d</string>
+    <string name="clock_timer">Zamanlayıcı</string>
+    <string name="clock_timer_done">Süre doldu</string>
+    <string name="clock_delete_digit">Rakamı sil</string>
+    <string name="clock_channel_alarms">Alarmlar ve zamanlayıcılar</string>
+    <string name="clock_channel_timer">Çalışan zamanlayıcı</string>
+</resources>

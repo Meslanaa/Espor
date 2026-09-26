@@ -1,4 +1,4 @@
-package org.mesos.launcher.search
+package org.mesos.core.text
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull

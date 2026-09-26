@@ -38,5 +38,7 @@ include(":apps:calculator")
 include(":apps:notes")
 include(":apps:weather")
 include(":apps:calendar")
+include(":apps:clock")
+include(":apps:music")
 // MesOS Shell: the deployable MesOS userland APK that bundles the modules above.
 include(":shell")

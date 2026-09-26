@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="music_app_name">Music</string>
+    <string name="music_permission">MesOS Music plays the songs stored on this device. Allow access to music and audio.</string>
+    <string name="music_empty">No music yet</string>
+    <string name="music_empty_hint">Copy songs into the Music folder (for example with MesOS Files) and they appear here.</string>
+    <string name="music_unknown_artist">Unknown artist</string>
+    <string name="music_search">Search songs, albums, artists</string>
+    <string name="music_tab_songs">Songs</string>
+    <string name="music_tab_albums">Albums</string>
+    <string name="music_tab_artists">Artists</string>
+    <string name="music_song_count">%1$d songs</string>
+    <string name="music_play_all">Play</string>
+    <string name="music_shuffle">Shuffle</string>
+    <string name="music_repeat">Repeat</string>
+    <string name="music_play">Play</string>
+    <string name="music_pause">Pause</string>
+    <string name="music_next">Next</string>
+    <string name="music_previous">Previous</string>
+    <string name="music_back">Back</string>
+    <string name="music_close_player">Close player</string>
+</resources>

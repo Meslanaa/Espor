@@ -62,7 +62,7 @@ import org.mesos.launcher.AppEntry
 import org.mesos.launcher.R
 import org.mesos.launcher.search.SearchEngine
 import org.mesos.launcher.search.SearchResults
-import org.mesos.launcher.search.SearchText
+import org.mesos.core.text.SearchText
 import org.mesos.notes.NotesFeed
 
 private val onGlass = Color.White

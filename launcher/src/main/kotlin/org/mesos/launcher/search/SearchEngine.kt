@@ -20,6 +20,7 @@ import kotlinx.coroutines.withContext
 import org.mesos.calculator.CalcResult
 import org.mesos.calculator.CalculatorEngine
 import org.mesos.core.MesOSApps
+import org.mesos.core.text.SearchText
 import org.mesos.core.MesOSIntents
 import org.mesos.core.log.MesOSLog
 import org.mesos.core.ui.MesOSGlyphs

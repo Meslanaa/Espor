@@ -72,4 +72,6 @@ dependencies {
     implementation(project(":apps:notes"))
     implementation(project(":apps:weather"))
     implementation(project(":apps:calendar"))
+    implementation(project(":apps:clock"))
+    implementation(project(":apps:music"))
 }
