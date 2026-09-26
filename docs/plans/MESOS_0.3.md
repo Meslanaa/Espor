@@ -1,6 +1,6 @@
 # MesOS 0.3 "Aurora" — everything MesOS can be on stock Android
 
-Status: in progress. Delivered as one update through MesOS Settings → MesOS
+Status: done (released as MesOS 0.3). Delivered as one update through MesOS Settings → MesOS
 Update (0.2 → 0.3); no reinstall.
 
 ## Goal
@@ -87,7 +87,7 @@ Android's shade instead of replacing it.
 | Scanner | QR and barcode scanner (CameraX + ZXing), also from an image |
 | Contacts | Android contacts: list, search, favourites, details, create/edit/delete |
 | Phone | Dial pad, favourites, call log, in-call screen (`InCallService`) when MesOS is the default phone app |
-| Messages | SMS conversations, send/receive, notifications with reply when MesOS is the default SMS app (MMS not supported yet) |
+| Messages | SMS conversations, send/receive, notifications with reply when MesOS is the default SMS app; shows stored MMS text and pictures (downloading new MMS is not supported yet) |
 | Browser | WebView tabs, bookmarks, history, downloads, default browser role |
 | Device Care | Battery, storage, large files, memory, security patch level |
 | Tips | Short guide to MesOS features |

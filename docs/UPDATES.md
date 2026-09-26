@@ -83,8 +83,17 @@ compiled into the updater.
 
 Failures leave the installed version untouched: Android installs APKs atomically.
 
-Not in 0.1: signed manifests (detached signature with a MesOS update key), channel
-switching, resumable downloads, background checks.
+## Background check (0.3)
+
+When "Check automatically" is on (MesOS Settings → MesOS Update, on by default), a
+`JobScheduler` job runs about once a day while a network is available and survives
+reboots. It only fetches and checks the manifest with the rules above; when a newer
+release is offered it posts one notification per version. Downloading and
+installing still start only from the MesOS Update screen, with Android's
+confirmation.
+
+Not implemented yet: signed manifests (detached signature with a MesOS update key),
+channel switching, resumable downloads.
 
 ## Signing key setup (once)
 

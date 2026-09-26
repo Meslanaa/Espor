@@ -9,7 +9,7 @@ Android framework (AOSP)
         ↓
 MesOS system layer      product config, ro.mesos.* properties, framework overlays
         ↓
-MesOS SystemUI          status bar, quick settings, lock screen (from 0.3)
+MesOS SystemUI          status bar, quick settings, lock screen (needs a system image)
         ↓
 MesOS Launcher          home, app drawer
         ↓
@@ -23,9 +23,9 @@ MesOS design system
 Android applications keep working unmodified unless a MesOS feature deliberately
 changes behaviour.
 
-## Where 0.1 sits
+## Where 0.x sits
 
-MesOS 0.1 is a **prototype userland on stock Android**: the MesOS components are
+MesOS 0.x (0.3 "Aurora" now) is a **userland on stock Android**: the MesOS components are
 built with Gradle into one APK, installed on the emulator's existing system image
 and chosen by the user as the home app. This validates code, UX and the update flow
 cheaply. Nothing in the Android system image is modified yet.
@@ -38,21 +38,38 @@ self-contained Android apps is also how they will later be dropped into an AOSP 
 
 | Module | Type | Responsibility |
 | --- | --- | --- |
-| `:core` | Android library | Release identity (`MesOSRelease`, `ReleaseChannel`), log tags (`MesOSLog`), persistent preferences (`MesOSPreferences`), home-role helper (`HomeRole`), cross-module intents (`MesOSIntents`), design tokens (`MesOSTheme`, `MesOSUserTheme`, `MesOSWordmark`) |
-| `:launcher` | Android library | `HomeActivity` (HOME), `AppRepository` (`LauncherApps` + package callbacks), role-based pinned apps and dock, app drawer |
-| `:settings` | Android library | `SettingsActivity`: MesOS pages, hand-offs to Android settings, About MesOS, MesOS Update screen |
-| `:updater` | Android library, no UI | `UpdateController`: manifest fetch, `UpdatePolicy`, SHA-256, `ApkVerifier`, `PackageInstaller` session |
+| `:core` | Android library | Release identity (`MesOSRelease`, `ReleaseChannel`), log tags (`MesOSLog`), preferences (`MesOSPreferences`), roles (`HomeRole`), cross-module intents (`MesOSIntents`, `MesOSApps`), search text helpers, Aurora design system (`MesOSTheme`, fonts, palette, glyphs, shared components, wallpaper renderer and live wallpaper) |
+| `:launcher` | Android library | `HomeActivity` (HOME): pages, dock, folders, drag and drop, MesOS and Android widgets (`AppWidgetHost`), drawer, universal search, control and notification center (`NotificationListenerService`) |
+| `:settings` | Android library | `SettingsActivity` (MesOS pages with search, hand-offs to Android settings, About MesOS, MesOS Update) and `SetupActivity` (setup wizard) |
+| `:updater` | Android library | `UpdateController`: manifest fetch, `UpdatePolicy`, SHA-256, `ApkVerifier`, `PackageInstaller` session; daily background check (`JobScheduler`) with a notification |
 | `:apps:camera` | Android library | MesOS Camera (CameraX): photo/video, `ACTION_IMAGE_CAPTURE` |
-| `:apps:photos` | Android library | MesOS Photos: MediaStore gallery, albums, viewer, `ACTION_VIEW` for images/videos |
+| `:apps:photos` | Android library | MesOS Photos: MediaStore gallery, albums, viewer, editor (crop, rotate, filters; saves a copy), `ACTION_VIEW` for images/videos |
 | `:apps:files` | Android library | MesOS Files and Downloads: file manager with all-files access, `FileProvider` |
-| `:apps:calculator` | Android library | MesOS Calculator: `BigDecimal` expression engine |
+| `:apps:calculator` | Android library | MesOS Calculator: `BigDecimal` expression engine (also used by search) |
 | `:apps:notes` | Android library | MesOS Notes: SQLite notes |
+| `:apps:clock` | Android library | Alarms (`AlarmManager` exact alarms, full-screen ring), timer, stopwatch, world clock |
+| `:apps:calendar` | Android library | MesOS event store, month and agenda views, reminders |
+| `:apps:weather` | Android library | Open-Meteo forecast over HTTPS (no key), saved cities |
+| `:apps:music` | Android library | MediaStore library, Media3 playback service |
+| `:apps:recorder` | Android library | Voice recorder and screen recorder (`MediaProjection`, consent every time) |
+| `:apps:scanner` | Android library | QR/barcode scanner (CameraX + ZXing); content shown before any action |
+| `:apps:contacts` | Android library | Android contacts through `ContactsContract` |
+| `:apps:phone` | Android library | Dial pad, call log, `InCallService` call screen (DIALER role) |
+| `:apps:messages` | Android library | SMS conversations, sending, receiving and quick reply (SMS role) |
+| `:apps:browser` | Android library | WebView browser: tabs, bookmarks, history, downloads (BROWSER role) |
+| `:apps:care`, `:apps:tips` | Android library | Device Care (battery, storage, memory, security) and Tips |
 | `:shell` | Android application `org.mesos.shell` | Bundles the modules into the deployable MesOS userland APK; signing and app identity |
 
-Dependencies: `shell → everything`; `settings → updater, core`; every other module →
-`core` only. Modules reach each other through `MesOSApps` (activity class names) and
-`MesOSIntents`, never through compile-time dependencies. Every app activity has its
-own `taskAffinity`, so each app is a separate task (and separate card in Recents).
+Dependencies: `shell → everything`; every module → `core`; `settings, launcher →
+updater`; `launcher → calculator, notes, weather, calendar` (search and widgets);
+`phone, messages → contacts` (names and photos). Otherwise modules reach each other
+through `MesOSApps` (activity class names) and `MesOSIntents`, never through
+compile-time dependencies. Every app activity has its own `taskAffinity`, so each
+app is a separate task (and separate card in Recents).
+
+Pure logic (home layout, alarm times, recurrence, weather parsing, colour and crop
+maths, URL policy, QR payloads, dial pad, MMS headers, update policy) lives in plain
+Kotlin files without Android imports and is covered by JVM unit tests.
 
 ### Why one APK in 0.x
 
@@ -67,10 +84,12 @@ adding application modules; the feature modules do not change.
 
 | Data | Store | Survives reboot / update |
 | --- | --- | --- |
-| MesOS appearance (System / Light / Dark), "Show Android apps" | `MesOSPreferences` (SharedPreferences) | Yes |
-| Notes | `NotesDatabase` (private SQLite) | Yes |
+| Appearance, accent, wallpaper, icon shape, "Show Android apps", setup done | `MesOSPreferences` (SharedPreferences) | Yes |
+| Home layout (pages, dock, folders, widgets) | Versioned JSON file in app storage, written atomically | Yes |
+| Notes, calendar events, alarms, browser bookmarks and history | Private SQLite / SharedPreferences per app | Yes |
+| Contacts, call log, SMS | Android's providers (owned by Android) | Yes |
 | Last update check, last seen version, pending release notes | `UpdatePreferences` (SharedPreferences) | Yes |
-| Default home app | Android `RoleManager` (owned by Android) | Yes |
+| Default home, phone, SMS and browser apps | Android `RoleManager` (owned by Android) | Yes |
 
 ## Release identity flow
 
@@ -95,10 +114,12 @@ logs.
 
 ## Design system
 
-`MesOSTheme` fixes the 0.1 palette (MesOS indigo accent), rounded shapes and
-light/dark switching, built on Compose Material 3 components. MesOS does not use
-wallpaper-derived dynamic color, to keep its own identity. Typography, motion and
-wallpapers are 0.2 work.
+Aurora (0.3) lives in `:core`: bundled Sora and Manrope fonts (SIL OFL), six accent
+colours with light and dark schemes, squircle shapes, glass surfaces, a stroke glyph
+set, shared components (large-title list screens, grouped rows, cards, empty
+states, search field) and the animated Aurora wallpaper (also available as an
+Android live wallpaper). MesOS does not use wallpaper-derived dynamic colour, to
+keep its own identity.
 
 ## Performance rules
 

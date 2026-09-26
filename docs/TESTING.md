@@ -25,36 +25,47 @@ is installed once from a GitHub release and then updated from MesOS Settings.
 Every later version is installed from MesOS itself (MesOS Settings → System →
 MesOS Update). Do not reinstall by hand unless something is broken.
 
-## 2. MesOS 0.2 checklist
+## 2. MesOS 0.3 checklist
 
 | # | Check | Expected |
 | --- | --- | --- |
-| 1 | MesOS Settings → System → MesOS Update → Check → Download and install | 0.2 installs; "MesOS was updated from 0.1.1 to 0.2" with release notes |
-| 2 | Press Home | Clock, date; home grid Files, Downloads, Calculator, Notes; dock Camera, Photos, Play Store, Settings |
-| 3 | Swipe up | Drawer lists only MesOS apps, Play Store and apps you installed |
-| 4 | Settings → Apps → Show Android apps: on, then off | Android apps appear in the drawer (and Phone, Messages, Browser on Home), then disappear |
-| 5 | Camera: allow access, take a photo | Short white flash; thumbnail appears; tapping it opens the photo in MesOS Photos |
-| 6 | Camera: Video, allow microphone, record 5 s, stop | Timer runs while recording; thumbnail shows the video |
-| 7 | Camera: flash button, switch camera | Flash cycles Off → Auto → On; front camera preview |
-| 8 | Photos: allow access | Grid shows the new photo and video, newest first; Albums tab shows "MesOS" |
-| 9 | Photos: open, pinch/double-tap zoom, swipe, play the video | Zoom and pan work; swiping changes items when not zoomed; video plays |
-| 10 | Photos: Share, Details, Delete (confirm in Android's dialog) | Share sheet opens; details show size/date; item disappears after delete |
-| 11 | Files: "Allow access to all files" → enable for MesOS → back | Storage overview and folder shortcuts appear |
-| 12 | Files: open DCIM → MesOS; tap a photo | Opens in MesOS Photos |
-| 13 | Files: new folder, rename, copy/move a file into it, delete it | Each action works; a folder can't be moved into itself |
-| 14 | Downloads (home screen) | Opens directly in the Download folder; Back leaves the app |
-| 15 | Calculator: `12.5 × 4 − 10 =`, `1 ÷ 0 =`, `( )`, `%` | 40; "Can't divide by zero"; parentheses and percent work |
-| 16 | Notes: +, write, back; search; open, edit, delete | Note is saved, found by search, updated, deleted |
-| 17 | Settings → Display → Dark; reboot the emulator | After reboot: MesOS Home, dark theme, notes still there |
-| 18 | Recents (□) | Camera, Photos, Files, Settings… are separate cards |
+| 1 | MesOS Settings → MesOS Update → Check → Download and install | 0.3 installs; "MesOS was updated from 0.2 to 0.3" with release notes |
+| 2 | Press Home | The MesOS setup wizard opens: Welcome, Style, Permissions, Home, Done |
+| 3 | Setup → Style: pick dark/light, an accent colour and a wallpaper | The wizard and later MesOS Home use them |
+| 4 | Setup → Permissions: allow notifications, notification access | Each row turns to "Allowed"; everything can be skipped |
+| 5 | Finish setup | MesOS Home: animated Aurora wallpaper, clock and weather/agenda widgets, dock |
+| 6 | Swipe left/right; swipe up | Second page with more apps; app drawer with search and recent apps |
+| 7 | Long press Home → edit; drag an app onto another, into the dock, to another page | Folder is created; dock and pages change; layout is kept after reboot |
+| 8 | Edit mode → Widgets → add Music, Notes, Battery or an Android widget | Widget appears and can be removed |
+| 9 | Tap the search pill; type `12*4`, an app name, a contact, a note | Calculator result 48; apps, contacts, notes, settings and web search listed |
+| 10 | Swipe down on Home | Control center: toggles, brightness, volume, media, notifications (reply, dismiss) |
+| 11 | Control center → Screen record; stop from the notification | Android asks for permission every time; the video appears in Recorder and Photos |
+| 12 | Settings: search "wallpaper"; Appearance → icon shape; Language → Türkçe | Search finds the page; icons change shape; MesOS switches to Turkish |
+| 13 | Phone → set as default phone app; dial a number with the dial pad | Call screen opens (emulator: use Extended controls → Phone to call in) |
+| 14 | Messages → set as default SMS app; Extended controls → Phone → send SMS | Notification with Reply; the conversation shows the message; reply works |
+| 15 | Contacts: create, edit, favourite, delete | Changes show in Contacts, Phone and search |
+| 16 | Browser → set as default; open a site, new tab, bookmark, history, download a file | Tabs, bookmarks and history work; the download appears in Downloads |
+| 17 | Clock: alarm in 1 minute; timer; stopwatch; world clock | Alarm rings full screen with snooze; timer notifies |
+| 18 | Calendar: new event with a reminder; Weather: allow location or add a city | Reminder notification; forecast shows hourly and 10 days |
+| 19 | Music: play a song; lock the screen | Plays in the background; controls in the notification and control center |
+| 20 | Recorder: record 5 s, play, rename, delete; Scanner: scan a QR code | Recording plays; scanned content is shown before anything opens |
+| 21 | Photos: open a photo → Edit → crop 1:1, rotate, Noir filter, brightness → Save copy | A new photo appears next to the original; the original is unchanged |
+| 22 | Device Care; Tips | Battery, storage, memory and security score; tips open the right apps |
+| 23 | Reboot the emulator | MesOS Home, theme, wallpaper, layout, notes, alarms and events kept |
+| 24 | Recents (□) | Every MesOS app is a separate card |
 
-Device language Turkish → all MesOS text is Turkish.
+Device language Turkish, or Settings → Language → Türkçe → all MesOS text is Turkish.
+
+The emulator test covers the same screens automatically on every push (see
+`scripts/ci/smoke-test.sh`): it installs the debug build, finishes setup, opens
+every MesOS app and fails on any crash.
 
 ## 3. Optional: MesOS-only emulator
 
 `scripts/mesos-emulator-mode.ps1` switches off the Google/Android apps MesOS
-replaces (Photos, Files by Google, Camera, Calculator, Keep) so that other apps
-also open photos, files and the camera with MesOS. Undo with `-Restore`.
+replaces (Photos, Files by Google, Camera, Calculator, Keep, Clock, Contacts) so
+that other apps also open photos, files, the camera, alarms and contacts with MesOS. Phone, Messages and Chrome stay installed; choose MesOS Phone, Messages and
+Browser as default apps instead. Undo with `-Restore`.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\mesos-emulator-mode.ps1

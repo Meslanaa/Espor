@@ -4,11 +4,15 @@
 
 .DESCRIPTION
     For the MesOS-only experience on the Android Emulator. It disables, for the
-    current user, the Google/Android apps that MesOS 0.2 replaces, so MesOS apps
-    also become the ones other apps open photos, files and the camera with.
+    current user, the Google/Android apps that MesOS replaces, so MesOS apps
+    also become the ones other apps open photos, files, the camera, alarms and
+    contacts with.
 
     Nothing is uninstalled and nothing else is touched (System UI, Play Store,
-    Play services, WebView and the system file picker stay on). Undo it with
+    Play services, WebView, the system file picker and the contacts, calendar
+    and SMS providers stay on). The Phone, Messages and Chrome apps stay on as
+    well: make MesOS Phone, Messages and Browser the default apps instead, so
+    calls, texts and links keep working if you switch back. Undo it with
     -Restore. The emulator must be running.
 
 .EXAMPLE
@@ -38,6 +42,10 @@ $replaced = [ordered]@{
     'com.google.android.GoogleCamera'    = 'MesOS Camera'
     'com.google.android.calculator'      = 'MesOS Calculator'
     'com.google.android.keep'            = 'MesOS Notes'
+    'com.google.android.deskclock'       = 'MesOS Clock'
+    'com.android.deskclock'              = 'MesOS Clock'
+    'com.google.android.contacts'        = 'MesOS Contacts'
+    'com.android.contacts'               = 'MesOS Contacts'
 }
 
 $installed = @(& $adb shell pm list packages | ForEach-Object { "$_".Trim() })
