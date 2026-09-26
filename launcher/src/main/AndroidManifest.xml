@@ -10,6 +10,9 @@
     </queries>
 
     <application>
+        <!-- taskAffinity="" keeps Home out of the app's default task: otherwise launching
+             MesOS Settings (same package, same affinity) just brings the Home task back
+             to the front instead of opening Settings. Launcher3 does the same. -->
         <activity
             android:name=".HomeActivity"
             android:clearTaskOnLaunch="true"
@@ -19,6 +22,7 @@
             android:launchMode="singleTask"
             android:resumeWhilePausing="true"
             android:stateNotNeeded="true"
+            android:taskAffinity=""
             android:theme="@style/Theme.MesOS"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
