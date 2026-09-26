@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
@@ -32,14 +33,11 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -58,7 +56,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -67,10 +64,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.mesos.core.R as CoreR
+import org.mesos.core.ui.EmptyState
+import org.mesos.core.ui.GroupDivider
+import org.mesos.core.ui.IconBadge
+import org.mesos.core.ui.ListGroup
+import org.mesos.core.ui.ListRow
+import org.mesos.core.ui.MesOSCard
+import org.mesos.core.ui.MesOSGlyphs
+import org.mesos.core.ui.MesOSListScreen
+import org.mesos.core.ui.MesOSPalette
 import org.mesos.core.ui.MesOSTopBar
 import org.mesos.core.ui.OnResume
 import org.mesos.core.ui.PermissionGate
 import org.mesos.core.ui.startActivitySafely
+import org.mesos.core.ui.theme.MesOSTheme
 import java.io.File
 
 /** A listed file with the details the row shows (read off the main thread). */
@@ -170,12 +177,12 @@ private fun FilesContent(topDirectory: File?, onExit: () -> Unit) {
 @Composable
 private fun FilesHome(root: File, open: (File) -> Unit) {
     val shortcuts = listOf(
-        Environment.DIRECTORY_DOWNLOADS to R.string.files_downloads,
-        Environment.DIRECTORY_DCIM to R.string.files_camera,
-        Environment.DIRECTORY_PICTURES to R.string.files_pictures,
-        Environment.DIRECTORY_DOCUMENTS to R.string.files_documents,
-        Environment.DIRECTORY_MUSIC to R.string.files_music,
-        Environment.DIRECTORY_MOVIES to R.string.files_movies,
+        Triple(Environment.DIRECTORY_DOWNLOADS, R.string.files_downloads, MesOSGlyphs.Download to MesOSPalette.Green),
+        Triple(Environment.DIRECTORY_DCIM, R.string.files_camera, MesOSGlyphs.Camera to MesOSPalette.Orange),
+        Triple(Environment.DIRECTORY_PICTURES, R.string.files_pictures, MesOSGlyphs.Image to MesOSPalette.Pink),
+        Triple(Environment.DIRECTORY_DOCUMENTS, R.string.files_documents, MesOSGlyphs.Folder to MesOSPalette.Blue),
+        Triple(Environment.DIRECTORY_MUSIC, R.string.files_music, MesOSGlyphs.Music to MesOSPalette.Rose),
+        Triple(Environment.DIRECTORY_MOVIES, R.string.files_movies, MesOSGlyphs.Video to MesOSPalette.Violet),
     )
     var usage by remember { mutableStateOf<Pair<Long, Long>?>(null) }
     LaunchedEffect(root) {
@@ -185,27 +192,30 @@ private fun FilesHome(root: File, open: (File) -> Unit) {
     }
     val context = LocalContext.current
 
-    Column(Modifier.fillMaxSize()) {
-        MesOSTopBar(title = stringResource(R.string.files_app_name))
-        LazyColumn(
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            item {
-                Card(
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { open(root) },
-                ) {
-                    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    MesOSListScreen(title = stringResource(R.string.files_app_name)) {
+        item(key = "storage") {
+            MesOSCard(onClick = { open(root) }) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                    IconBadge(MesOSGlyphs.Storage, MesOSPalette.Indigo, size = 44.dp)
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                         Text(stringResource(R.string.files_internal_storage), style = MaterialTheme.typography.titleMedium)
                         usage?.let { (total, free) ->
                             val used = total - free
-                            LinearProgressIndicator(
-                                progress = { if (total > 0) used.toFloat() / total else 0f },
-                                modifier = Modifier.fillMaxWidth(),
-                            )
+                            Box(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .height(8.dp)
+                                    .clip(CircleShape)
+                                    .background(MesOSTheme.colors.separator),
+                            ) {
+                                Box(
+                                    Modifier
+                                        .fillMaxWidth(if (total > 0) (used.toFloat() / total).coerceIn(0f, 1f) else 0f)
+                                        .height(8.dp)
+                                        .clip(CircleShape)
+                                        .background(MaterialTheme.colorScheme.primary),
+                                )
+                            }
                             Text(
                                 stringResource(
                                     R.string.files_storage_used,
@@ -213,51 +223,32 @@ private fun FilesHome(root: File, open: (File) -> Unit) {
                                     Formatter.formatShortFileSize(context, total),
                                 ),
                                 style = MaterialTheme.typography.bodyMedium,
+                                color = MesOSTheme.colors.dim,
                             )
                         }
                     }
                 }
             }
-            items(shortcuts) { (type, label) ->
-                val dir = Storage.publicDirectory(type)
-                FolderShortcut(stringResource(label)) { open(dir) }
+        }
+        item(key = "folders") {
+            ListGroup {
+                shortcuts.forEachIndexed { index, (type, label, look) ->
+                    if (index > 0) GroupDivider()
+                    ListRow(
+                        title = stringResource(label),
+                        icon = look.first,
+                        iconColor = look.second,
+                        onClick = { open(Storage.publicDirectory(type)) },
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-private fun FolderShortcut(label: String, onClick: () -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(MaterialTheme.shapes.medium)
-            .clickable(onClick = onClick)
-            .padding(horizontal = 8.dp, vertical = 12.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        FolderIcon()
-        Spacer(Modifier.width(16.dp))
-        Text(label, style = MaterialTheme.typography.titleMedium)
-    }
-}
-
-@Composable
 private fun FolderIcon() {
-    Box(
-        modifier = Modifier
-            .size(44.dp)
-            .clip(CircleShape)
-            .background(MaterialTheme.colorScheme.primaryContainer),
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(
-            painter = painterResource(R.drawable.ic_files_foreground),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onPrimaryContainer,
-            modifier = Modifier.size(44.dp),
-        )
-    }
+    IconBadge(MesOSGlyphs.Folder, MesOSPalette.Blue, size = 40.dp)
 }
 
 @Composable
@@ -357,11 +348,9 @@ private fun FolderBrowser(
         Box(Modifier.weight(1f)) {
             when {
                 list == null -> Unit
-                list.isEmpty() -> Text(
-                    stringResource(if (!dir.exists() || dir.canRead()) R.string.files_empty_folder else R.string.files_cannot_read),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(32.dp),
+                list.isEmpty() -> EmptyState(
+                    icon = if (!dir.exists() || dir.canRead()) MesOSGlyphs.Folder else MesOSGlyphs.Lock,
+                    title = stringResource(if (!dir.exists() || dir.canRead()) R.string.files_empty_folder else R.string.files_cannot_read),
                 )
                 else -> LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
                     items(list, key = { it.file.path }) { item ->
