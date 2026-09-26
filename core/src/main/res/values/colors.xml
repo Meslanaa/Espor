@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Window background shown before Compose draws; matches MesOSTheme background. -->
-    <color name="mesos_window_background">#FFF7F8FA</color>
+    <color name="mesos_window_background">#FFF3F5FA</color>
+    <!-- Aurora night sky, used by always-dark screens and the splash of MesOS Home. -->
+    <color name="mesos_night">#FF070C1A</color>
 </resources>
