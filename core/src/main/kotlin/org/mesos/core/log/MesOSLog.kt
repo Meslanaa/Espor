@@ -17,7 +17,7 @@ object MesOSLog {
     const val SETTINGS = "MesOSSettings"
     const val UPDATER = "MesOSUpdater"
 
-    /** Debug-only diagnostics; stripped from release behaviour. */
+    /** Debug-only diagnostics; suppressed in release builds. */
     fun d(tag: String, message: String) {
         if (BuildConfig.DEBUG) Log.d(tag, message)
     }
