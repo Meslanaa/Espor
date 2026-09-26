@@ -93,7 +93,8 @@ The key is created on the developer's PC and stored only in GitHub Actions secre
 1. On Windows, run `scripts/new-signing-key.ps1`:
    `powershell -ExecutionPolicy Bypass -File .\new-signing-key.ps1`
    It creates `%USERPROFILE%\.mesos\mesos-developer.jks` + a password file and copies
-   the keystore (Base64) to the clipboard.
+   the keystore (Base64) to the clipboard. Running it again never creates a second key;
+   it only copies the existing one to the clipboard again.
 2. GitHub → repository → Settings → Secrets and variables → Actions → New repository
    secret:
    - `MESOS_KEYSTORE_BASE64` = clipboard content
