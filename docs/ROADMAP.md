@@ -7,20 +7,20 @@ it is not stable yet. Rule: **first make MesOS boot and work, then improve it.**
 
 | Phase | Scope | State |
 | --- | --- | --- |
-| 0 — Environment audit | Inspect tools, disk, emulator; choose the build route | Cloud session audited; Windows desktop audit pending |
-| 1 — Bootstrap | Gradle project, version single source of truth, `:core`, `:shell`, docs, CI | In progress |
-| 2 — Launcher | MesOS Home (time, date, app grid, dock), swipe-up app drawer via `LauncherApps` | Not started |
-| 3 — Settings | MesOS Settings categories (delegating to Android where sensible), About MesOS with live device data | Not started |
-| 4 — Updater prototype | Manifest, HTTPS fetch, SHA-256 + signature checks, `PackageInstaller` install, 0.1.1 test update | Not started |
-| 5 — Emulator verification | Full checklist below on the Android Studio emulator, including reboot | Not started |
-| 6 — Release | Tag `mesos-0.1`, final report | Not started |
+| 0 — Environment audit | Tools, disk, emulator; build route | Done (cloud session + Studio Otter / API 37 AVD reported by the developer) |
+| 1 — Bootstrap | Gradle project, version single source of truth, `:core`, `:shell`, docs, CI | Done |
+| 2 — Launcher | MesOS Home (time, date, pinned apps, dock), swipe-up app drawer via `LauncherApps` | Done, awaiting emulator test |
+| 3 — Settings | Categories (delegating to Android), Display appearance, About MesOS | Done, awaiting emulator test |
+| 4 — Updater prototype | Manifest, HTTPS, SHA-256 + signature checks, `PackageInstaller`, signed GitHub releases | Done, awaiting signing secrets and emulator test |
+| 5 — Emulator verification | [TESTING.md](TESTING.md) checklist incl. reboot and 0.1 → 0.1.1 update | Not started |
+| 6 — Release | Final report, `MESOS 0.1 BOOTSTRAP VERIFIED` | Not started |
 
 ### 0.1 verification checklist
 
-- [ ] Development environment inspected (Windows desktop)
-- [ ] Disk usage checked
+- [x] Development environment inspected
+- [x] Disk usage checked
 - [x] Project created
-- [ ] Project builds successfully (CI + desktop)
+- [x] Project builds successfully (CI)
 - [ ] Emulator starts
 - [ ] MesOS home experience appears
 - [ ] Installed applications can be launched

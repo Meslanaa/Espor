@@ -26,9 +26,9 @@ changes behaviour.
 ## Where 0.1 sits
 
 MesOS 0.1 is a **prototype userland on stock Android**: the MesOS components are
-built with Gradle and installed as an ordinary app on the emulator's existing
-system image. This validates code, UX and the update flow cheaply. Nothing in the
-Android system image is modified yet.
+built with Gradle into one APK, installed on the emulator's existing system image
+and chosen by the user as the home app. This validates code, UX and the update flow
+cheaply. Nothing in the Android system image is modified yet.
 
 This is deliberate. A full AOSP build does not fit the current development machine
 (see [AOSP migration path](#aosp-migration-path)), and building MesOS components as
@@ -38,28 +38,32 @@ self-contained Android apps is also how they will later be dropped into an AOSP 
 
 | Module | Type | Responsibility |
 | --- | --- | --- |
-| `:core` | Android library | Release identity (`MesOSRelease`, `ReleaseChannel`), log tags (`MesOSLog`), design tokens (`MesOSTheme`, `MesOSWordmark`) |
-| `:shell` | Android application `org.mesos.shell` | The deployable MesOS userland APK |
+| `:core` | Android library | Release identity (`MesOSRelease`, `ReleaseChannel`), log tags (`MesOSLog`), persistent preferences (`MesOSPreferences`), home-role helper (`HomeRole`), cross-module intents (`MesOSIntents`), design tokens (`MesOSTheme`, `MesOSUserTheme`, `MesOSWordmark`) |
+| `:launcher` | Android library | `HomeActivity` (HOME), `AppRepository` (`LauncherApps` + package callbacks), role-based pinned apps and dock, app drawer |
+| `:settings` | Android library | `SettingsActivity`: MesOS pages, hand-offs to Android settings, About MesOS, MesOS Update screen |
+| `:updater` | Android library, no UI | `UpdateController`: manifest fetch, `UpdatePolicy`, SHA-256, `ApkVerifier`, `PackageInstaller` session |
+| `:shell` | Android application `org.mesos.shell` | Bundles the modules into the deployable MesOS userland APK; signing and app identity |
 
-Planned, created only in the phase that needs them:
+Dependencies: `shell → launcher, settings, updater, core`; `settings → updater, core`;
+`launcher → core`; `updater → core`. The launcher opens Settings through
+`MesOSIntents.ACTION_SETTINGS`, not a compile-time dependency.
 
-| Module | Phase | Responsibility |
-| --- | --- | --- |
-| `:launcher` | 2 | Home screen, dock, app drawer (queries `LauncherApps`, no hard-coded app lists) |
-| `:settings` | 3 | MesOS Settings, About MesOS, System → MesOS Update screen |
-| `:updater` | 4 | Update engine: manifest fetch, verification, install. No UI |
-
-### Why one APK in 0.1
-
-`:launcher`, `:settings` and `:updater` will be separate Gradle modules but ship
-inside the single `:shell` APK during 0.x:
+### Why one APK in 0.x
 
 - one version number describes the whole MesOS userland (`mesos.properties`);
 - one update unit keeps the prototype updater simple and testable;
 - one signing identity, so Android's signature-continuity check protects updates.
 
-Splitting into separate APKs (e.g. `MesOSLauncher`, `MesOSSettings`) later is a
-matter of adding application modules; the feature modules do not change.
+Splitting into separate APKs (e.g. `MesOSLauncher`, `MesOSSettings`) later means
+adding application modules; the feature modules do not change.
+
+### Persistence
+
+| Data | Store | Survives reboot / update |
+| --- | --- | --- |
+| MesOS appearance (System / Light / Dark) | `MesOSPreferences` (SharedPreferences) | Yes |
+| Last update check, last seen version, pending release notes | `UpdatePreferences` (SharedPreferences) | Yes |
+| Default home app | Android `RoleManager` (owned by Android) | Yes |
 
 ## Release identity flow
 
@@ -92,9 +96,33 @@ wallpapers are 0.2 work.
 ## Performance rules
 
 - No polling loops; react to system broadcasts/callbacks (e.g. package changes).
-- Query installed apps once and update incrementally on package events.
+- Query installed apps once; reload only when Android reports a package change.
 - No network or disk I/O on the main thread.
 - No long-running services without a user-visible purpose.
+
+## Google Play
+
+MesOS stays an Android system so Google Play apps keep working:
+
+- **MesOS 0.x (now):** MesOS runs on a stock emulator image. With a *Google Play*
+  system image, Play Store, Play Services and every app work exactly as on stock
+  Android; MesOS Home simply replaces the home screen.
+- **MesOS ROM (later):** Google's apps (GMS) may only be preinstalled on devices
+  certified by Google, so a self-built ROM cannot ship Play Store preinstalled.
+  Like other community ROMs, MesOS would let the user add Google apps afterwards
+  (e.g. a separately flashed GApps package) or use microG. Some apps that demand
+  strong Play Integrity (banking, some games) may refuse to run on any custom ROM.
+
+## Installing MesOS
+
+| Stage | Emulator | Real phone |
+| --- | --- | --- |
+| 0.x (now) | Install the release APK, set MesOS as home, update from MesOS Settings | Same APK works on any Android 8.0+ phone; nothing is flashed |
+| ROM (after the AOSP migration) | Build an emulator system image (`emu_img_zip`) and select it as a custom system image in Android Studio | Unlock the bootloader (erases data), flash MesOS images with `fastboot`, then update over the air |
+
+For real Pixel devices, Google stopped publishing Pixel device trees in AOSP in
+2025, so phone support would build on community device trees (e.g. LineageOS).
+Re-check the current situation at migration time.
 
 ## AOSP migration path
 

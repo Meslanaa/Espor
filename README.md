@@ -3,7 +3,7 @@
 MesOS is an Android-based operating system under development. The goal is a real,
 bootable, AOSP-derived OS with its own launcher, settings experience, system
 applications, visual identity and update architecture, while staying compatible
-with normal Android applications.
+with normal Android applications and Google Play.
 
 MesOS is built incrementally. The first milestone, **MesOS 0.1 — Bootstrap**, proves
 the development, build and update pipeline on the Android Emulator before any large
@@ -11,59 +11,72 @@ feature work begins.
 
 ## Current status
 
-**MesOS 0.1 Developer Preview — Phase 1 (Bootstrap).**
+**MesOS 0.1 Developer Preview** — implementation complete, emulator verification
+(Phase 5) pending.
 
 | Area | State |
 | --- | --- |
-| Gradle project, version single source of truth | Done (`mesos.properties`) |
-| `:core` — release identity, logging tags, design tokens | Done |
-| `:shell` — MesOS userland APK | Bootstrap identity screen only |
-| MesOS Home / app drawer | Phase 2 |
-| MesOS Settings / About MesOS | Phase 3 |
-| Updater prototype | Phase 4 |
-| Emulator verification | Phase 5 |
+| Version single source of truth (`mesos.properties`) | Done |
+| MesOS Home: clock/date, pinned apps, dock, swipe-up app drawer with search | Done |
+| MesOS Settings: categories, Display appearance (persisted), System, About MesOS | Done |
+| MesOS Update: GitHub release check, SHA-256 + signature verification, Android installer | Done |
+| Signed GitHub releases (`mesos-v*` tags) | Done — needs the signing secrets once |
+| Emulator verification | Pending ([docs/TESTING.md](docs/TESTING.md)) |
 
-At this stage MesOS is a **prototype userland running on stock Android**, not yet a
-ROM. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how it becomes one.
+At this stage MesOS is a **system shell running on stock Android** (installed as an
+app and set as the home screen), not yet a ROM. Google Play and all Android apps
+keep working. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the path to a
+real ROM.
 
-## Requirements
+## Install and test
 
-- Android Studio Panda 2 (2025.3.2) or newer, or JDK 17+ for command-line builds
-- Android SDK Platform 36 and SDK Build-Tools 36.0.0
-- An Android Emulator image (API 26 or newer; API 34–36 recommended)
+1. Download `mesos-shell-<version>.apk` from the
+   [latest release](https://github.com/Meslanaa/Espor/releases/latest).
+2. Drag it onto the running Android Emulator window.
+3. Open **MesOS Settings** → **Set as home**.
 
-## Build and run
+Later versions install from **MesOS Settings → System → MesOS Update**.
+Full checklist: [docs/TESTING.md](docs/TESTING.md).
+
+## Build
+
+- Android Studio Otter (2025.2.1) or newer, or JDK 17+ for command-line builds
+- Android SDK Platform 36
 
 ```sh
-./gradlew :shell:assembleDebug          # Windows: gradlew.bat :shell:assembleDebug
-adb install -r shell/build/outputs/apk/debug/shell-debug.apk
-adb shell am start -n org.mesos.shell/.BootstrapActivity
+./gradlew :shell:assembleDebug testDebugUnitTest   # Windows: gradlew.bat …
 ```
 
-Or open the repository folder in Android Studio and run the `shell` configuration.
-Full, reproducible steps: [docs/BUILDING.md](docs/BUILDING.md).
+Local builds install as **MesOS Dev** next to the released MesOS.
+Full steps: [docs/BUILDING.md](docs/BUILDING.md).
 
 ## Repository layout
 
 ```
-mesos.properties   MesOS release identity (version name/code, label, channel)
-core/              Shared foundation: MesOSRelease, MesOSLog, MesOSTheme
-shell/             MesOS Shell APK (org.mesos.shell)
-docs/              Architecture, building, updates, roadmap
-.github/workflows  CI: builds the debug APK and runs unit tests
+mesos.properties   MesOS release identity (version, channel, update URL)
+core/              MesOSRelease, MesOSLog, MesOSPreferences, MesOSTheme
+launcher/          MesOS Home and app drawer
+settings/          MesOS Settings, About MesOS, MesOS Update screen
+updater/           Update engine (manifest, verification, installer)
+shell/             MesOS Shell APK (org.mesos.shell) bundling the modules
+release/           Release notes and release packaging script
+scripts/           Developer tools (signing key creation)
+docs/              Architecture, building, testing, updates, roadmap
 ```
 
 ## Known limitations
 
-- Runs as an ordinary app on stock Android; it does not replace system components yet.
-- No launcher, settings or updater functionality yet (Phases 2–4).
-- The placeholder logo and wordmark are not final artwork.
+- Runs on top of the stock Android image; the boot animation, status bar, quick
+  settings and lock screen are still Android's.
+- Updates replace MesOS components only, not Android itself.
+- English UI only; placeholder logo and wordmark.
 
 ## Documentation
 
 - [Architecture](docs/ARCHITECTURE.md)
 - [Building](docs/BUILDING.md)
-- [Updates](docs/UPDATES.md)
+- [Testing on the emulator](docs/TESTING.md)
+- [Updates and signing](docs/UPDATES.md)
 - [Roadmap](docs/ROADMAP.md)
 - Original project brief (Turkish title, English content):
   `Claude için MesOS Android İşletim Sistemi Geliştirme Promptu.md`
