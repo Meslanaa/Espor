@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "org.mesos.weather"
+    namespace = "org.mesos.clock"
     compileSdk = 36
 
     defaultConfig {

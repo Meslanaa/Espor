@@ -1,4 +1,4 @@
-package org.mesos.launcher.wallpaper
+package org.mesos.core.ui.wallpaper
 
 import kotlin.math.PI
 import kotlin.math.exp

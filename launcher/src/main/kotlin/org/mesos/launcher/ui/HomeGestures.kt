@@ -13,6 +13,7 @@ import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.unit.IntSize
+import org.mesos.core.log.MesOSLog
 import org.mesos.launcher.layout.HomeItem
 import kotlin.math.abs
 
@@ -128,10 +129,14 @@ internal fun Modifier.homeLongPressDrag(
             @Suppress("UNREACHABLE_CODE")
             EarlyEnd.LIFTED
         }
+        MesOSLog.d(MesOSLog.LAUNCHER, "Home gesture at ${down.position}: ${early ?: "long press"}")
         when (early) {
             EarlyEnd.LIFTED, EarlyEnd.HORIZONTAL -> return@awaitEachGesture
             EarlyEnd.VERTICAL -> {
-                if (!sheetsEnabled(down.position)) return@awaitEachGesture
+                if (!sheetsEnabled(down.position)) {
+                    MesOSLog.d(MesOSLog.LAUNCHER, "Sheets disabled here")
+                    return@awaitEachGesture
+                }
                 // Own the swipe from here on: the pager and the icons do not see it.
                 onSheetDrag(last.y - down.position.y)
                 while (true) {
@@ -143,7 +148,9 @@ internal fun Modifier.homeLongPressDrag(
                     }
                     change.consume()
                     if (!change.pressed) {
-                        onSheetEnd(velocity.calculateVelocity().y)
+                        val v = velocity.calculateVelocity().y
+                        MesOSLog.d(MesOSLog.LAUNCHER, "Sheet swipe ended, velocity $v")
+                        onSheetEnd(v)
                         return@awaitEachGesture
                     }
                     velocity.addPosition(change.uptimeMillis, change.position)

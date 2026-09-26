@@ -43,6 +43,7 @@ import org.mesos.launcher.ui.HomeActions
 import org.mesos.launcher.ui.HomeScreen
 import org.mesos.launcher.ui.HomeUiState
 import org.mesos.launcher.widgets.AndroidWidgets
+import org.mesos.updater.UpdateCheckScheduler
 
 /** MesOS Home: the HOME activity Android shows when the user presses Home. */
 class HomeActivity : ComponentActivity(), HomeActions {
@@ -83,6 +84,7 @@ class HomeActivity : ComponentActivity(), HomeActions {
         preferences = MesOSPreferences.get(this)
         homeModel.start()
         restorePending(savedInstanceState)
+        UpdateCheckScheduler.sync(this)
 
         lifecycleScope.launch {
             preferences.wallpaper.collect(::applyWindowWallpaper)

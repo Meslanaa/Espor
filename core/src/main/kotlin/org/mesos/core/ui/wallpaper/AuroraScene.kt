@@ -1,4 +1,4 @@
-package org.mesos.launcher.wallpaper
+package org.mesos.core.ui.wallpaper
 
 import android.graphics.Bitmap
 import org.mesos.core.prefs.Accent
@@ -9,7 +9,7 @@ import kotlin.random.Random
  * Everything the Aurora wallpaper draws besides the sky: star positions and the
  * mountain silhouettes (from the Aurora design, on its 390 × 844 artboard).
  */
-internal object AuroraScene {
+object AuroraScene {
 
     /** Low-resolution render size; the image is scaled up with filtering. */
     const val RENDER_WIDTH = 108
@@ -55,7 +55,7 @@ internal object AuroraScene {
 }
 
 /** Renderer plus three bitmaps used in turn, so a frame on screen is never overwritten. */
-internal class AuroraFrames {
+class AuroraFrames {
     private val renderer = AuroraRenderer(AuroraScene.RENDER_WIDTH, AuroraScene.RENDER_HEIGHT)
     private val bitmaps = Array(3) {
         Bitmap.createBitmap(AuroraScene.RENDER_WIDTH, AuroraScene.RENDER_HEIGHT, Bitmap.Config.ARGB_8888)

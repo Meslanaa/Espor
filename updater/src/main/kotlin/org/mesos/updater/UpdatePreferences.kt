@@ -33,6 +33,13 @@ internal class UpdatePreferences(context: Context) {
     fun pendingNotesFor(versionCode: Int): String? =
         if (prefs.getInt(KEY_PENDING_NOTES_CODE, -1) == versionCode) prefs.getString(KEY_PENDING_NOTES, null) else null
 
+    /** Highest version the background check already told the user about. */
+    var lastNotifiedVersionCode: Int
+        get() = prefs.getInt(KEY_LAST_NOTIFIED_CODE, -1)
+        set(value) {
+            prefs.edit().putInt(KEY_LAST_NOTIFIED_CODE, value).apply()
+        }
+
     fun recordSeen(versionCode: Int, versionName: String) {
         prefs.edit()
             .putInt(KEY_LAST_SEEN_CODE, versionCode)
@@ -46,5 +53,6 @@ internal class UpdatePreferences(context: Context) {
         const val KEY_LAST_SEEN_NAME = "last_seen_version_name"
         const val KEY_PENDING_NOTES_CODE = "pending_notes_version_code"
         const val KEY_PENDING_NOTES = "pending_notes"
+        const val KEY_LAST_NOTIFIED_CODE = "last_notified_version_code"
     }
 }

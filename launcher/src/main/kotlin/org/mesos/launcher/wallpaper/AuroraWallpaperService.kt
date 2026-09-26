@@ -1,9 +1,5 @@
 package org.mesos.launcher.wallpaper
 
-import android.app.WallpaperManager
-import android.content.ComponentName
-import android.content.Context
-import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -17,11 +13,14 @@ import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
 import org.mesos.core.prefs.MesOSPreferences
 import org.mesos.core.prefs.Wallpaper
+import org.mesos.core.ui.wallpaper.AuroraFrames
+import org.mesos.core.ui.wallpaper.AuroraScene
 import kotlin.math.sin
 
 /**
  * The Aurora wallpaper as an Android live wallpaper, so it can also appear on the
- * lock screen. Renders on its own thread and only while visible.
+ * lock screen. Renders on its own thread and only while visible. Other modules
+ * reach it through [org.mesos.core.ui.wallpaper.AuroraLiveWallpaper].
  */
 class AuroraWallpaperService : WallpaperService() {
 
@@ -122,24 +121,5 @@ class AuroraWallpaperService : WallpaperService() {
             shapePaint.color = Color.BLACK or rgb
             canvas.drawPath(path, shapePaint)
         }
-    }
-
-    companion object {
-        /** Android's screen for making Aurora the system (and lock screen) wallpaper. */
-        fun chooserIntent(context: Context): Intent =
-            Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
-                .putExtra(
-                    WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                    ComponentName(context, AuroraWallpaperService::class.java),
-                )
-
-        /** Whether Android's current wallpaper is MesOS Aurora. */
-        fun isActive(context: Context): Boolean =
-            try {
-                WallpaperManager.getInstance(context).wallpaperInfo?.component ==
-                    ComponentName(context, AuroraWallpaperService::class.java)
-            } catch (e: RuntimeException) {
-                false
-            }
     }
 }

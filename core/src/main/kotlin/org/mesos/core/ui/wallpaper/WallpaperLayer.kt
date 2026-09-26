@@ -1,4 +1,4 @@
-package org.mesos.launcher.wallpaper
+package org.mesos.core.ui.wallpaper
 
 import android.os.SystemClock
 import androidx.compose.foundation.layout.Spacer
@@ -40,7 +40,7 @@ import kotlin.math.sin
  * shade so white text stays readable.
  */
 @Composable
-internal fun WallpaperLayer(wallpaper: Wallpaper, accent: Accent, modifier: Modifier = Modifier) {
+fun WallpaperLayer(wallpaper: Wallpaper, accent: Accent, modifier: Modifier = Modifier) {
     if (wallpaper == Wallpaper.SYSTEM) {
         Spacer(
             modifier

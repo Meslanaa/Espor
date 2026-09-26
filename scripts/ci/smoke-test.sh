@@ -81,9 +81,24 @@ while read -r name cls args <&3; do
     shot drawer
     adb shell input keyevent KEYCODE_BACK
     sleep 2
+    adb shell input tap 540 1920
+    sleep 3
+    shot search
+    adb shell input text "12x4"
+    sleep 3
+    shot search-results
+    adb shell input keyevent KEYCODE_BACK
+    sleep 1
+    adb shell input keyevent KEYCODE_BACK
+    sleep 2
     adb shell input swipe 1000 1200 80 1200 300
     sleep 3
     shot home-page-2
+    adb shell input swipe 540 1200 540 1210 1500
+    sleep 2
+    shot home-long-press
+    adb shell input keyevent KEYCODE_BACK
+    sleep 1
     home
     continue
   fi

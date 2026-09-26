@@ -74,11 +74,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.mesos.core.MesOSIntents
+import org.mesos.core.log.MesOSLog
 import org.mesos.core.prefs.MesOSPreferences
 import org.mesos.core.ui.MesOSGlyphs
 import org.mesos.core.ui.MesOSMotion
 import org.mesos.core.ui.glass
 import org.mesos.core.ui.rememberHaptics
+import org.mesos.core.ui.wallpaper.WallpaperLayer
 import org.mesos.launcher.AppEntry
 import org.mesos.launcher.AppRepository
 import org.mesos.launcher.LauncherModel
@@ -92,7 +94,6 @@ import org.mesos.launcher.layout.HomeLayout
 import org.mesos.launcher.layout.WidgetKinds
 import org.mesos.launcher.search.SearchEngine
 import org.mesos.launcher.search.SearchResults
-import org.mesos.launcher.wallpaper.WallpaperLayer
 import org.mesos.launcher.widgets.AndroidWidgets
 import org.mesos.launcher.widgets.MesOSWidget
 import kotlin.math.max
@@ -611,6 +612,7 @@ private class SheetDrag(
     }
 
     fun end(velocity: Float) {
+        MesOSLog.d(MesOSLog.LAUNCHER, "Sheet $target released at drawer=$drawer control=$control")
         when (target) {
             Sheet.DRAWER -> settle(Sheet.DRAWER, velocity < -FLING_VELOCITY || (drawer > 0.3f && velocity < FLING_VELOCITY))
             Sheet.CONTROL -> settle(Sheet.CONTROL, velocity > FLING_VELOCITY || (control > 0.3f && velocity > -FLING_VELOCITY))

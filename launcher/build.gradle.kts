@@ -32,6 +32,8 @@ kotlin {
 
 dependencies {
     implementation(project(":core"))
+    // Keeps the daily background update check scheduled.
+    implementation(project(":updater"))
     // Search and widgets read MesOS app data through their public feeds.
     implementation(project(":apps:calculator"))
     implementation(project(":apps:notes"))
