@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_app_label">MesOS Settings</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_opens_android">Opens Android settings</string>
+    <string name="settings_not_available">Not available on this device</string>
+
+    <string name="settings_set_home_title">Make MesOS your home screen</string>
+    <string name="settings_set_home_summary">MesOS Home is installed but another app is the default home app.</string>
+    <string name="settings_set_home_action">Set as home</string>
+
+    <string name="settings_network">Network &amp; Internet</string>
+    <string name="settings_display">Display</string>
+    <string name="settings_display_summary">MesOS appearance, brightness, screen timeout</string>
+    <string name="settings_sound">Sound</string>
+    <string name="settings_apps">Apps</string>
+    <string name="settings_storage">Storage</string>
+    <string name="settings_system">System</string>
+    <string name="settings_system_summary">MesOS Update, Android system settings</string>
+    <string name="settings_about">About MesOS</string>
+
+    <string name="settings_theme_header">MesOS appearance</string>
+    <string name="settings_theme_system">System default</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_android_display">Android display settings</string>
+
+    <string name="settings_update">MesOS Update</string>
+    <string name="settings_android_system">Android system settings</string>
+
+    <string name="about_mesos_version">MesOS version</string>
+    <string name="about_mesos_build">MesOS build</string>
+    <string name="about_mesos_build_value">%1$s · %2$s channel</string>
+    <string name="about_android_base">Android base</string>
+    <string name="about_android_base_value">Android %1$s (API %2$d)</string>
+    <string name="about_android_build">Android build</string>
+    <string name="about_security_patch">Security patch</string>
+    <string name="about_device">Device</string>
+    <string name="about_update_status">Update status</string>
+    <string name="about_unknown">Not available</string>
+    <string name="about_scope_note">MesOS 0.x runs as a system shell on top of Android. MesOS updates change MesOS components only; the Android version and security patch come from the device image.</string>
+
+    <string name="update_current_version">Installed version</string>
+    <string name="update_status_never">Not checked yet</string>
+    <string name="update_status_last_checked">Last checked %1$s</string>
+    <string name="update_status_up_to_date">Up to date · checked %1$s</string>
+    <string name="update_status_available">MesOS %1$s is available</string>
+    <string name="update_status_updated_from">Updated from %1$s</string>
+    <string name="update_check">Check for updates</string>
+    <string name="update_checking">Checking for updates…</string>
+    <string name="update_up_to_date">MesOS is up to date.</string>
+    <string name="update_available_title">MesOS %1$s</string>
+    <string name="update_available_size">Download size: %1$s</string>
+    <string name="update_release_notes">Release notes</string>
+    <string name="update_download_install">Download and install</string>
+    <string name="update_downloading">Downloading… %1$d%%</string>
+    <string name="update_verifying">Verifying update (SHA-256 and signature)…</string>
+    <string name="update_permission_needed">Android needs your permission for MesOS to install its own updates.</string>
+    <string name="update_permission_action">Allow MesOS updates</string>
+    <string name="update_awaiting_confirmation">Confirm the installation in the Android dialog. MesOS restarts after the update.</string>
+    <string name="update_installed">Update installed. MesOS is restarting…</string>
+    <string name="update_just_updated">MesOS was updated from %1$s to %2$s.</string>
+    <string name="update_whats_new">What\'s new in %1$s</string>
+    <string name="update_failed">Update failed</string>
+    <string name="update_try_again">Try again</string>
+    <string name="update_source">Update source: %1$s</string>
+    <string name="update_scope_note">This updates MesOS components (Home, Settings, Updater). Android itself is not changed.</string>
+
+    <string name="update_error_network">Could not reach the update server.</string>
+    <string name="update_error_no_release">No MesOS release has been published yet.</string>
+    <string name="update_error_invalid_manifest">The update information is invalid.</string>
+    <string name="update_error_unsupported_manifest">This update needs a newer MesOS updater.</string>
+    <string name="update_error_wrong_package">This MesOS build does not receive updates from this channel (development build).</string>
+    <string name="update_error_wrong_channel">The published update belongs to a different release channel.</string>
+    <string name="update_error_insecure_url">The update uses an insecure (non-HTTPS) address and was rejected.</string>
+    <string name="update_error_not_supported_from_installed">This version is too old to update directly. Install the latest MesOS manually.</string>
+    <string name="update_error_too_large">The download is larger than announced and was stopped.</string>
+    <string name="update_error_checksum">The download is corrupted (SHA-256 mismatch) and was deleted.</string>
+    <string name="update_error_package_mismatch">The downloaded package does not match the update information.</string>
+    <string name="update_error_signature">The update is not signed with the MesOS key and was rejected.</string>
+    <string name="update_error_install_failed">Android could not install the update.</string>
+    <string name="update_error_install_cancelled">Installation was cancelled.</string>
+    <string name="update_error_storage">Not enough storage to download the update.</string>
+</resources>

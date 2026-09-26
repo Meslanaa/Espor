@@ -1,0 +1,34 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "MesOS"
+
+// MesOS shared foundation: version identity, logging, preferences, design system.
+include(":core")
+// MesOS Home: home screen, dock and app drawer.
+include(":launcher")
+// MesOS Settings: settings categories, About MesOS, MesOS Update screen.
+include(":settings")
+// MesOS component updater engine (no UI).
+include(":updater")
+// MesOS Shell: the deployable MesOS userland APK that bundles the modules above.
+include(":shell")
