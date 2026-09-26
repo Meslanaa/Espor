@@ -94,10 +94,12 @@ object CallLogRepository {
             false
         }
 
-    fun changes(context: Context): Flow<Unit> = callbackFlow {
+    fun changes(context: Context): Flow<Int> = callbackFlow {
+        // A counter, not Unit: Compose only reacts to values that differ.
+        var version = 0
         val observer = object : ContentObserver(Handler(Looper.getMainLooper())) {
             override fun onChange(selfChange: Boolean) {
-                trySend(Unit)
+                trySend(++version)
             }
         }
         try {
@@ -105,7 +107,7 @@ object CallLogRepository {
         } catch (e: SecurityException) {
             // No permission yet; the screen reloads when it is granted.
         }
-        trySend(Unit)
+        trySend(version)
         awaitClose { context.contentResolver.unregisterContentObserver(observer) }
     }
 

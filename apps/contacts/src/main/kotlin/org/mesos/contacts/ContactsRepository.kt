@@ -348,14 +348,16 @@ object ContactsRepository {
     fun vcardUri(detail: ContactDetail): Uri = Uri.withAppendedPath(Contacts.CONTENT_VCARD_URI, detail.lookupKey)
 
     /** Emits whenever Android's contacts change. */
-    fun changes(context: Context): Flow<Unit> = callbackFlow {
+    fun changes(context: Context): Flow<Int> = callbackFlow {
+        // A counter, not Unit: Compose only reacts to values that differ.
+        var version = 0
         val observer = object : ContentObserver(Handler(Looper.getMainLooper())) {
             override fun onChange(selfChange: Boolean) {
-                trySend(Unit)
+                trySend(++version)
             }
         }
         context.contentResolver.registerContentObserver(Contacts.CONTENT_URI, true, observer)
-        trySend(Unit)
+        trySend(version)
         awaitClose { context.contentResolver.unregisterContentObserver(observer) }
     }
 

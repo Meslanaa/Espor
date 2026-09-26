@@ -47,5 +47,6 @@ include(":apps:contacts")
 include(":apps:tips")
 include(":apps:browser")
 include(":apps:phone")
+include(":apps:messages")
 // MesOS Shell: the deployable MesOS userland APK that bundles the modules above.
 include(":shell")

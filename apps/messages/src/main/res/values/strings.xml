@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="messages_app_name">Messages</string>
+    <string name="messages_rationale">MesOS Messages shows your text messages. Contacts are used to show names instead of numbers.</string>
+    <string name="messages_search">Search messages</string>
+    <string name="messages_new">New message</string>
+    <string name="messages_empty">No messages yet</string>
+    <string name="messages_empty_text">Start a conversation with the pencil button.</string>
+    <string name="messages_no_results">No matching conversations</string>
+    <string name="messages_unknown">Unknown sender</string>
+    <string name="messages_attachment">Attachment</string>
+    <string name="messages_delete_title">Delete the conversation with %1$s?</string>
+    <string name="messages_make_default">Use MesOS for messages</string>
+    <string name="messages_make_default_text">Make MesOS your SMS app to receive messages here, reply from notifications and manage conversations. Picture messages (MMS) can be read but not downloaded yet.</string>
+    <string name="messages_make_default_action">Set as SMS app</string>
+    <string name="messages_not_available">Not available on this device</string>
+    <string name="messages_call">Call</string>
+    <string name="messages_chat_empty">No messages yet. Say hello!</string>
+    <string name="messages_group_unsupported">Replying to group conversations is not supported yet.</string>
+    <string name="messages_type">Text message</string>
+    <string name="messages_send">Send</string>
+    <string name="messages_sending">Sending…</string>
+    <string name="messages_failed_tap_retry">Not sent. Tap to try again.</string>
+    <string name="messages_send_failed">Message not sent</string>
+    <string name="messages_send_failed_text">Check your mobile network and try again.</string>
+    <string name="messages_send_permission">MesOS Messages needs permission to send SMS.</string>
+    <string name="messages_to">Name or phone number</string>
+    <string name="messages_send_to">Send to %1$s</string>
+    <string name="messages_me">Me</string>
+    <string name="messages_reply">Reply</string>
+    <string name="messages_mark_read">Mark as read</string>
+    <string name="messages_channel">Messages</string>
+    <string name="messages_channel_alerts">Message problems</string>
+    <string name="messages_mms_not_downloaded">Picture message (not downloaded)</string>
+    <string name="messages_mms_waiting">Picture message waiting</string>
+    <string name="messages_mms_waiting_long">MesOS 0.3 cannot download picture messages (MMS) yet. The message stays on your carrier for a while; an MMS-capable app set as SMS app can download it.</string>
+</resources>

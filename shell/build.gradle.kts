@@ -81,4 +81,5 @@ dependencies {
     implementation(project(":apps:tips"))
     implementation(project(":apps:browser"))
     implementation(project(":apps:phone"))
+    implementation(project(":apps:messages"))
 }

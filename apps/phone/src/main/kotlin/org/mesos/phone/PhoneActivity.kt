@@ -402,7 +402,7 @@ private fun RecentsScreen(onCall: (String) -> Unit) {
 private fun RecentsList(onCall: (String) -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val changes by remember { CallLogRepository.changes(context) }.collectAsState(Unit)
+    val changes by remember { CallLogRepository.changes(context) }.collectAsState(0)
     var groups by remember { mutableStateOf<List<CallGroup>?>(null) }
     var confirmClear by remember { mutableStateOf(false) }
     LaunchedEffect(changes) { groups = withContext(Dispatchers.IO) { CallLogRepository.recent(context) } }
@@ -542,7 +542,7 @@ private fun ContactsScreen(onCall: (String) -> Unit) {
 @Composable
 private fun ContactsList(onCall: (String) -> Unit) {
     val context = LocalContext.current
-    val changes by remember { ContactsRepository.changes(context) }.collectAsState(Unit)
+    val changes by remember { ContactsRepository.changes(context) }.collectAsState(0)
     var phones by remember { mutableStateOf<List<Pair<ContactSummary, ContactPhone>>>(emptyList()) }
     var query by rememberSaveable { mutableStateOf("") }
     var choosing by remember { mutableStateOf<List<Pair<ContactSummary, ContactPhone>>?>(null) }

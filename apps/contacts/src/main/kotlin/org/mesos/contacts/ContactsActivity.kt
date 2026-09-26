@@ -154,7 +154,7 @@ private fun ContactsApp(request: ContactsScreen?, onRequestHandled: () -> Unit, 
             onRequestHandled()
         }
     }
-    val changes by remember { ContactsRepository.changes(context) }.collectAsState(Unit)
+    val changes by remember { ContactsRepository.changes(context) }.collectAsState(0)
     var contacts by remember { mutableStateOf<List<ContactSummary>>(emptyList()) }
     var version by remember { mutableIntStateOf(0) }
     LaunchedEffect(changes, version) { contacts = withContext(Dispatchers.IO) { ContactsRepository.all(context) } }
