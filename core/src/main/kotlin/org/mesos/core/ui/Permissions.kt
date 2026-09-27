@@ -11,13 +11,12 @@ import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -27,9 +26,9 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -88,6 +87,8 @@ fun PermissionGate(
     permissions: List<String>,
     rationale: String,
     isGranted: (Context) -> Boolean = { context -> permissions.all(context::hasPermission) },
+    icon: ImageVector = MesOSGlyphs.Lock,
+    title: String? = null,
     content: @Composable () -> Unit,
 ) {
     val context = LocalContext.current
@@ -104,21 +105,26 @@ fun PermissionGate(
         return
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(32.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(rationale, style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center)
-        Button(onClick = { launcher.launch(permissions.toTypedArray()) }) {
-            Text(stringResource(R.string.mesos_permission_allow))
-        }
-        if (askedOnce) {
-            OutlinedButton(onClick = { context.startActivitySafely(appDetailsIntent(context)) }) {
-                Text(stringResource(R.string.mesos_permission_open_settings))
-            }
-        }
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        EmptyState(
+            icon = icon,
+            title = title ?: stringResource(R.string.mesos_permission_title),
+            message = rationale,
+            action = {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    Button(onClick = { launcher.launch(permissions.toTypedArray()) }) {
+                        Text(stringResource(R.string.mesos_permission_allow))
+                    }
+                    if (askedOnce) {
+                        TextButton(onClick = { context.startActivitySafely(appDetailsIntent(context)) }) {
+                            Text(stringResource(R.string.mesos_permission_open_settings))
+                        }
+                    }
+                }
+            },
+        )
     }
 }

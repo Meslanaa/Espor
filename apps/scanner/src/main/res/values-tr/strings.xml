@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scanner_app_name">Kod Tarayıcı</string>
+    <string name="scanner_camera_rationale">MesOS Kod Tarayıcı, QR kodları ve barkodları okumak için kamerayı kullanır. Hiçbir şey kaydedilmez veya bir yere gönderilmez.</string>
+    <string name="scanner_hint">Kamerayı bir QR koda veya barkoda doğrult</string>
+    <string name="scanner_close">Kapat</string>
+    <string name="scanner_torch">El feneri</string>
+    <string name="scanner_from_image">Resimden tara</string>
+    <string name="scanner_history">Son taramalar</string>
+    <string name="scanner_history_empty">Taradığın kodlar burada görünür. Yalnızca bu cihazda kalırlar.</string>
+    <string name="scanner_clear_history">Temizle</string>
+    <string name="scanner_no_code_in_image">Bu resimde kod bulunamadı</string>
+    <string name="scanner_scan_again">Tekrar tara</string>
+    <string name="scanner_insecure_link">Bu bağlantı şifrelenmemiş (http). Yalnızca kodun kaynağına güveniyorsan aç.</string>
+
+    <string name="scanner_kind_link">Web bağlantısı</string>
+    <string name="scanner_kind_wifi">Wi‑Fi ağı</string>
+    <string name="scanner_kind_phone">Telefon numarası</string>
+    <string name="scanner_kind_email">E-posta</string>
+    <string name="scanner_kind_sms">Kısa mesaj</string>
+    <string name="scanner_kind_location">Konum</string>
+    <string name="scanner_kind_contact">Kişi</string>
+    <string name="scanner_kind_product">Ürün kodu</string>
+    <string name="scanner_kind_text">Metin</string>
+
+    <string name="scanner_open_link">Tarayıcıda aç</string>
+    <string name="scanner_wifi_connect">Ağa katıl</string>
+    <string name="scanner_wifi_name">Ağ</string>
+    <string name="scanner_wifi_security">Güvenlik</string>
+    <string name="scanner_wifi_password">Şifre</string>
+    <string name="scanner_wifi_open">Yok (açık ağ)</string>
+    <string name="scanner_wifi_password_copied">Şifre kopyalandı. Ağı seç ve yapıştır.</string>
+    <string name="scanner_call">Ara</string>
+    <string name="scanner_send_email">E-posta yaz</string>
+    <string name="scanner_send_message">Mesaj gönder</string>
+    <string name="scanner_open_map">Haritada göster</string>
+    <string name="scanner_add_contact">Kişilere ekle</string>
+    <string name="scanner_search_web">Web\'de ara</string>
+</resources>

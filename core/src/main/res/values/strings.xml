@@ -8,4 +8,20 @@
     <string name="mesos_delete">Delete</string>
     <string name="mesos_share">Share</string>
     <string name="mesos_open_failed">No app can open this</string>
+    <string name="mesos_clear">Clear</string>
+    <string name="mesos_save">Save</string>
+    <string name="mesos_done">Done</string>
+    <string name="mesos_add">Add</string>
+    <string name="mesos_edit">Edit</string>
+    <string name="mesos_rename">Rename</string>
+    <string name="mesos_copy">Copy</string>
+    <string name="mesos_copied">Copied</string>
+    <string name="mesos_open">Open</string>
+    <string name="mesos_search">Search</string>
+    <string name="mesos_more">More</string>
+    <string name="mesos_close">Close</string>
+    <string name="mesos_retry">Try again</string>
+    <string name="mesos_not_now">Not now</string>
+    <string name="mesos_continue">Continue</string>
+    <string name="mesos_permission_title">Access needed</string>
 </resources>

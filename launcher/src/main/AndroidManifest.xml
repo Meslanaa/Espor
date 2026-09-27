@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- A launcher must see every app that has a launcher entry. -->
+    <!-- Uninstall dialogs from the app menu (Android asks the user). -->
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <!-- Control center: Wi-Fi/Bluetooth state, Do Not Disturb, rotation and brightness. -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- Universal search in contacts (granted through MesOS Contacts). -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <queries>
+        <!-- A launcher must see every app that has a launcher entry. -->
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <!-- Apps that offer home screen widgets. -->
+        <intent>
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
         </intent>
     </queries>
 
@@ -16,14 +37,14 @@
         <activity
             android:name=".HomeActivity"
             android:clearTaskOnLaunch="true"
-            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
             android:excludeFromRecents="true"
             android:exported="true"
             android:launchMode="singleTask"
             android:resumeWhilePausing="true"
             android:stateNotNeeded="true"
             android:taskAffinity=""
-            android:theme="@style/Theme.MesOS"
+            android:theme="@style/Theme.MesOS.Home"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +52,31 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <!-- Bound by Android only after the user grants notification access. -->
+        <service
+            android:name=".control.MesOSNotificationService"
+            android:exported="true"
+            android:label="@string/launcher_notification_service_label"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- The Aurora wallpaper as an Android live wallpaper (home and lock screen). -->
+        <service
+            android:name=".wallpaper.AuroraWallpaperService"
+            android:exported="true"
+            android:label="@string/launcher_wallpaper_name"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/aurora_wallpaper" />
+        </service>
     </application>
 
 </manifest>

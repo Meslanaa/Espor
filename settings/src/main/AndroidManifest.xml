@@ -5,7 +5,10 @@
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
+            android:icon="@mipmap/ic_settings"
             android:label="@string/settings_app_label"
+            android:launchMode="singleTask"
+            android:taskAffinity="org.mesos.settings"
             android:theme="@style/Theme.MesOS">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,6 +19,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <!-- First-start setup, opened by MesOS Home and from Settings → System. -->
+        <activity
+            android:name=".SetupActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="@string/setup_label"
+            android:launchMode="singleTask"
+            android:taskAffinity="org.mesos.setup"
+            android:theme="@style/Theme.MesOS.Dark" />
     </application>
 
 </manifest>

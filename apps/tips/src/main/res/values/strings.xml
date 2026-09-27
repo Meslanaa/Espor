@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tips_app_name">Tips</string>
+    <string name="tips_try">Try it</string>
+    <string name="tips_open_settings">Open Settings</string>
+    <string name="tips_whats_new">What\'s new in MesOS %1$s</string>
+    <string name="tips_new_design">A new look: Aurora wallpaper, new icons, fonts and motion everywhere</string>
+    <string name="tips_new_home">Home with pages, folders, widgets, drag and drop and search</string>
+    <string name="tips_new_control">Control center with toggles, sliders, media and notifications</string>
+    <string name="tips_new_settings">Settings 2.0 with search, and a setup wizard</string>
+    <string name="tips_new_apps">New apps: Clock, Calendar, Weather, Music, Recorder, Scanner, Contacts, Phone, Messages, Browser, Device Care and Tips</string>
+    <string name="tips_new_updates">MesOS checks for updates once a day and asks before installing</string>
+
+    <string name="tips_section_home">Home</string>
+    <string name="tips_section_apps">MesOS apps</string>
+    <string name="tips_section_privacy">Privacy and updates</string>
+
+    <string name="tip_control_title">Pull down for the control center</string>
+    <string name="tip_control_text">Swipe down anywhere on Home for Wi‑Fi, Bluetooth, flashlight, brightness, what is playing and your notifications.</string>
+    <string name="tip_search_title">Swipe up to find anything</string>
+    <string name="tip_search_text">All your apps, plus search across apps, contacts, notes and settings. Type a sum like 12x4 to calculate.</string>
+    <string name="tip_edit_title">Make Home yours</string>
+    <string name="tip_edit_text">Long-press empty space to edit. Drag icons around, drop one icon on another to make a folder, or drag to the edge for a new page.</string>
+    <string name="tip_widgets_title">Widgets at a glance</string>
+    <string name="tip_widgets_text">Clock, weather, today\'s events, notes and battery, plus widgets from apps you install from Google Play.</string>
+    <string name="tip_style_title">Aurora, your way</string>
+    <string name="tip_style_text">Pick a wallpaper, an accent colour and an icon shape. Aurora can also be your lock screen.</string>
+
+    <string name="tip_scanner_title">Scan codes</string>
+    <string name="tip_scanner_text">Point the camera at a QR code or barcode. MesOS shows what is inside before anything opens; Wi‑Fi codes join the network.</string>
+    <string name="tip_recorder_title">Record your voice or the screen</string>
+    <string name="tip_recorder_text">Recordings keep going in the background. Screen recording starts from the control center too.</string>
+    <string name="tip_clock_title">Alarms that ring on time</string>
+    <string name="tip_clock_text">Repeating alarms, world clocks, a stopwatch with laps and a timer that shows in notifications.</string>
+    <string name="tip_weather_title">Weather where you are</string>
+    <string name="tip_weather_text">Hourly and 10-day forecasts for your location and any city you add.</string>
+    <string name="tip_music_title">Your music</string>
+    <string name="tip_music_text">Songs, albums and artists on this device, with controls on the lock screen and in the control center.</string>
+    <string name="tip_care_title">Keep an eye on your device</string>
+    <string name="tip_care_text">Battery health, storage and memory with a clear score and honest advice.</string>
+
+    <string name="tip_privacy_title">You decide who sees what</string>
+    <string name="tip_privacy_text">Settings → Privacy &amp; permissions lists every permission and special access, and lets you change them.</string>
+    <string name="tip_update_title">Safe MesOS updates</string>
+    <string name="tip_update_text">Updates come from the MesOS GitHub releases over HTTPS, are checked (SHA-256 and signature) and install only when you confirm.</string>
+    <string name="tip_language_title">Türkçe or English</string>
+    <string name="tip_language_text">MesOS can use its own language, separate from Android\'s.</string>
+</resources>

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageInstaller
 import android.net.Uri
 import android.provider.Settings
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -143,6 +144,8 @@ object UpdateController {
                 // comes from handing the APK to the installer.
                 MesOSLog.w(MesOSLog.UPDATER, "Update failed", e)
                 _state.value = UpdateState.Failed(FailureReason.INSTALL_FAILED, e.message)
+            } catch (e: CancellationException) {
+                throw e
             } catch (e: RuntimeException) {
                 MesOSLog.w(MesOSLog.UPDATER, "Update failed", e)
                 _state.value = UpdateState.Failed(FailureReason.INSTALL_FAILED, e.message)
@@ -164,10 +167,39 @@ object UpdateController {
         pendingManifest = null
     }
 
-    private fun installedRelease(): InstalledRelease {
+    /**
+     * Background check (see [UpdateCheckJob]): posts a notification once per new
+     * version. Never downloads or installs anything by itself.
+     */
+    internal suspend fun backgroundCheck(context: Context) = withContext(Dispatchers.IO) {
+        val app = context.applicationContext
+        val prefs = UpdatePreferences(app)
+        val manifest = try {
+            UpdateManifestParser.parse(client.fetchText(manifestUrl, MAX_MANIFEST_BYTES))
+        } catch (e: UpdateException) {
+            MesOSLog.w(MesOSLog.UPDATER, "Background update check failed", e)
+            return@withContext
+        } catch (e: IOException) {
+            MesOSLog.w(MesOSLog.UPDATER, "Background update check failed", e)
+            return@withContext
+        }
+        val now = System.currentTimeMillis()
+        prefs.lastCheckedAt = now
+        _lastCheckedAt.value = now
+        val decision = UpdatePolicy.evaluate(manifest, installedRelease(app))
+        MesOSLog.i(MesOSLog.UPDATER, "Background update check: $decision")
+        if (decision == UpdateDecision.Available && manifest.versionCode > prefs.lastNotifiedVersionCode) {
+            UpdateNotifier.notifyAvailable(app, manifest.versionName)
+            prefs.lastNotifiedVersionCode = manifest.versionCode
+        }
+    }
+
+    private fun installedRelease(): InstalledRelease = installedRelease(appContext)
+
+    private fun installedRelease(context: Context): InstalledRelease {
         val current = MesOSRelease.current
         return InstalledRelease(
-            packageName = appContext.packageName,
+            packageName = context.packageName,
             versionCode = current.versionCode,
             channel = current.channel.id,
         )

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="contacts_app_name">Contacts</string>
+    <string name="contacts_rationale">MesOS Contacts shows and edits the contacts stored on this device and in your accounts.</string>
+    <string name="contacts_search">Search %1$d contacts</string>
+    <string name="contacts_favorites">Favourites</string>
+    <string name="contacts_empty">No contacts yet</string>
+    <string name="contacts_empty_text">Tap + to add someone. Contacts from your Google account appear here too.</string>
+    <string name="contacts_no_results">No matching contacts</string>
+    <string name="contacts_missing">This contact no longer exists</string>
+    <string name="contacts_add">Add contact</string>
+    <string name="contacts_new">New contact</string>
+    <string name="contacts_edit">Edit contact</string>
+    <string name="contacts_favorite">Favourite</string>
+    <string name="contacts_call">Call</string>
+    <string name="contacts_message">Message</string>
+    <string name="contacts_email">Email</string>
+    <string name="contacts_delete">Delete contact</string>
+    <string name="contacts_delete_title">Delete %1$s?</string>
+    <string name="contacts_delete_text">The contact is removed from this device and from accounts it is synced with.</string>
+    <string name="contacts_failed">That did not work</string>
+    <string name="contacts_kind_mobile">Mobile</string>
+    <string name="contacts_kind_home">Home</string>
+    <string name="contacts_kind_work">Work</string>
+    <string name="contacts_kind_other">Other</string>
+    <string name="contacts_given_name">First name</string>
+    <string name="contacts_family_name">Last name</string>
+    <string name="contacts_company">Company</string>
+    <string name="contacts_phones">Phone numbers</string>
+    <string name="contacts_phone">Phone</string>
+    <string name="contacts_add_phone">Add phone number</string>
+    <string name="contacts_emails">Email addresses</string>
+    <string name="contacts_add_email">Add email address</string>
+    <string name="contacts_saved_where">New contacts are saved on this device. Contacts from an account stay in that account.</string>
+</resources>

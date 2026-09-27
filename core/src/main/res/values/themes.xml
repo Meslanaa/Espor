@@ -3,4 +3,18 @@
     <style name="Theme.MesOS" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/mesos_window_background</item>
     </style>
+
+    <!-- Screens that are always dark (viewfinders, in-call, alarm). -->
+    <style name="Theme.MesOS.Dark" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/mesos_night</item>
+    </style>
+
+    <!-- Transparent activities that only show a system dialog or a sheet. -->
+    <style name="Theme.MesOS.Translucent" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
 </resources>

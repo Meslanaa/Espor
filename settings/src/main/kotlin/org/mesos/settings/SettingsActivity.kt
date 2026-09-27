@@ -7,6 +7,10 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import org.mesos.core.MesOSIntents
 import org.mesos.core.log.MesOSLog
 import org.mesos.core.ui.theme.MesOSUserTheme
 import org.mesos.updater.UpdateController
@@ -14,26 +18,42 @@ import org.mesos.updater.UpdateController
 /** MesOS Settings: MesOS pages plus clean hand-offs to Android's own settings screens. */
 class SettingsActivity : ComponentActivity() {
 
+    private var request by mutableStateOf(PageRequest(null, 0))
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         UpdateController.init(this)
-        MesOSLog.i(MesOSLog.SETTINGS, "MesOS Settings opened")
+        val page = Page.fromId(intent.getStringExtra(MesOSIntents.EXTRA_SETTINGS_PAGE))
+        MesOSLog.i(MesOSLog.SETTINGS, "MesOS Settings opened" + (page?.let { " at ${it.id}" } ?: ""))
 
         setContent {
             MesOSUserTheme {
-                SettingsApp(openExternal = ::openExternal)
+                SettingsApp(initialPage = page, request = request, openExternal = ::openExternal, finish = ::finish)
             }
         }
     }
 
-    /** Opens an Android settings screen, or tells the user this device has none. */
-    private fun openExternal(intent: Intent) {
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            MesOSLog.w(MesOSLog.SETTINGS, "No activity for ${intent.action}", e)
-            Toast.makeText(this, R.string.settings_not_available, Toast.LENGTH_SHORT).show()
+    /** A page asked for while Settings is already open (Settings is single-task). */
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        val page = Page.fromId(intent.getStringExtra(MesOSIntents.EXTRA_SETTINGS_PAGE)) ?: return
+        request = PageRequest(page, request.serial + 1)
+    }
+
+    /** Opens the first of [intents] that works, or tells the user this device has none. */
+    private fun openExternal(intents: List<Intent>) {
+        for (intent in intents) {
+            try {
+                startActivity(intent)
+                return
+            } catch (e: ActivityNotFoundException) {
+                MesOSLog.w(MesOSLog.SETTINGS, "No activity for ${intent.action}")
+            } catch (e: SecurityException) {
+                MesOSLog.w(MesOSLog.SETTINGS, "Not allowed to open ${intent.action}", e)
+            }
         }
+        Toast.makeText(this, R.string.settings_not_available, Toast.LENGTH_SHORT).show()
     }
 }

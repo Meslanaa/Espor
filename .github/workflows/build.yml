@@ -2,7 +2,7 @@ name: build
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'claude/**']
   pull_request:
   workflow_dispatch:
 
@@ -40,4 +40,44 @@ jobs:
           name: mesos-shell-debug
           path: shell/build/outputs/apk/debug/*.apk
           if-no-files-found: error
+          retention-days: 14
+
+  # Installs the debug build on an Android emulator, opens every MesOS screen and
+  # fails when a MesOS process crashes. Screenshots are kept as an artifact.
+  smoke:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/download-artifact@v5
+        with:
+          name: mesos-shell-debug
+          path: apk
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Smoke test on the emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_7
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back emulated
+          disable-animations: false
+          script: bash scripts/ci/smoke-test.sh apk smoke
+
+      - name: Upload screenshots and logs
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: mesos-smoke
+          path: smoke
+          if-no-files-found: warn
           retention-days: 14

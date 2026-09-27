@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="messages_app_name">Mesajlar</string>
+    <string name="messages_rationale">MesOS Mesajlar kısa mesajlarını gösterir. Numaralar yerine isim göstermek için kişiler kullanılır.</string>
+    <string name="messages_search">Mesajlarda ara</string>
+    <string name="messages_new">Yeni mesaj</string>
+    <string name="messages_empty">Henüz mesaj yok</string>
+    <string name="messages_empty_text">Kalem düğmesiyle bir sohbet başlat.</string>
+    <string name="messages_no_results">Eşleşen sohbet yok</string>
+    <string name="messages_unknown">Bilinmeyen gönderen</string>
+    <string name="messages_attachment">Ek</string>
+    <string name="messages_delete_title">%1$s ile olan sohbet silinsin mi?</string>
+    <string name="messages_make_default">Mesajlar için MesOS\'u kullan</string>
+    <string name="messages_make_default_text">Mesajları burada almak, bildirimlerden yanıtlamak ve sohbetleri yönetmek için MesOS\'u SMS uygulaman yap. Resimli mesajlar (MMS) okunabilir ama henüz indirilemez.</string>
+    <string name="messages_make_default_action">SMS uygulaması yap</string>
+    <string name="messages_not_available">Bu cihazda kullanılamıyor</string>
+    <string name="messages_call">Ara</string>
+    <string name="messages_chat_empty">Henüz mesaj yok. Merhaba de!</string>
+    <string name="messages_group_unsupported">Grup sohbetlerine yanıt henüz desteklenmiyor.</string>
+    <string name="messages_type">Kısa mesaj</string>
+    <string name="messages_send">Gönder</string>
+    <string name="messages_sending">Gönderiliyor…</string>
+    <string name="messages_failed_tap_retry">Gönderilemedi. Tekrar denemek için dokun.</string>
+    <string name="messages_send_failed">Mesaj gönderilemedi</string>
+    <string name="messages_send_failed_text">Mobil ağını kontrol et ve tekrar dene.</string>
+    <string name="messages_send_permission">MesOS Mesajlar\'ın SMS göndermek için izne ihtiyacı var.</string>
+    <string name="messages_to">Ad veya telefon numarası</string>
+    <string name="messages_send_to">%1$s numarasına gönder</string>
+    <string name="messages_me">Ben</string>
+    <string name="messages_reply">Yanıtla</string>
+    <string name="messages_mark_read">Okundu olarak işaretle</string>
+    <string name="messages_channel">Mesajlar</string>
+    <string name="messages_channel_alerts">Mesaj sorunları</string>
+    <string name="messages_mms_not_downloaded">Resimli mesaj (indirilmedi)</string>
+    <string name="messages_mms_waiting">Resimli mesaj bekliyor</string>
+    <string name="messages_mms_waiting_long">MesOS 0.3 resimli mesajları (MMS) henüz indiremez. Mesaj bir süre operatöründe kalır; SMS uygulaması olarak ayarlanan MMS destekli bir uygulama onu indirebilir.</string>
+</resources>

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings_app_label">MesOS Ayarlar</string>
+    <string name="settings_app_label">Ayarlar</string>
     <string name="settings_title">Ayarlar</string>
-    <string name="settings_back">Geri</string>
-    <string name="settings_opens_android">Android ayarlarını açar</string>
     <string name="settings_not_available">Bu cihazda kullanılamıyor</string>
 
     <string name="settings_set_home_title">MesOS\'u ana ekranın yap</string>
@@ -11,8 +9,6 @@
     <string name="settings_set_home_action">Ana ekran yap</string>
 
     <string name="settings_network">Ağ ve İnternet</string>
-    <string name="settings_display">Ekran</string>
-    <string name="settings_display_summary">MesOS görünümü, parlaklık, ekran zaman aşımı</string>
     <string name="settings_sound">Ses</string>
     <string name="settings_apps">Uygulamalar</string>
     <string name="settings_apps_summary">MesOS uygulamaları, Android uygulamaları</string>
@@ -24,11 +20,6 @@
     <string name="settings_system_summary">MesOS Güncelleme, Android sistem ayarları</string>
     <string name="settings_about">MesOS Hakkında</string>
 
-    <string name="settings_theme_header">MesOS görünümü</string>
-    <string name="settings_theme_system">Sistem varsayılanı</string>
-    <string name="settings_theme_light">Açık</string>
-    <string name="settings_theme_dark">Koyu</string>
-    <string name="settings_android_display">Android ekran ayarları</string>
 
     <string name="settings_update">MesOS Güncelleme</string>
     <string name="settings_android_system">Android sistem ayarları</string>
@@ -45,7 +36,6 @@
     <string name="about_unknown">Bilinmiyor</string>
     <string name="about_scope_note">MesOS 0.x, Android\'in üzerinde bir sistem kabuğu olarak çalışır. MesOS güncellemeleri yalnızca MesOS bileşenlerini değiştirir; Android sürümü ve güvenlik yaması cihaz imajından gelir.</string>
 
-    <string name="update_current_version">Yüklü sürüm</string>
     <string name="update_status_never">Henüz denetlenmedi</string>
     <string name="update_status_last_checked">Son denetim: %1$s</string>
     <string name="update_status_up_to_date">Güncel · %1$s tarihinde denetlendi</string>
@@ -86,4 +76,187 @@
     <string name="update_error_install_failed">Android güncellemeyi yükleyemedi.</string>
     <string name="update_error_install_cancelled">Yükleme iptal edildi.</string>
     <string name="update_error_storage">Güncellemeyi indirmek için yeterli depolama alanı yok.</string>
+
+    <string name="settings_android_tag">Android</string>
+    <string name="settings_on">Açık</string>
+    <string name="settings_off">Kapalı</string>
+    <string name="settings_search_hint">Ayarlarda ara</string>
+    <string name="settings_search_empty_title">Sonuç yok</string>
+    <string name="settings_search_empty">Ayarlarda “%1$s” ile eşleşen bir şey yok.</string>
+
+    <string name="settings_network_summary">Wi‑Fi, mobil veri, uçak modu</string>
+    <string name="settings_network_keywords">wifi internet mobil veri uçak modu hotspot erişim noktası vpn sim ağ</string>
+    <string name="settings_devices">Bağlı cihazlar</string>
+    <string name="settings_devices_summary">Bluetooth, eşleştirme</string>
+    <string name="settings_devices_keywords">bluetooth eşleştir kulaklık hoparlör araba yayın nfc</string>
+    <string name="settings_appearance">Görünüm</string>
+    <string name="settings_appearance_summary">Tema, vurgu rengi, duvar kağıdı, simgeler</string>
+    <string name="settings_appearance_keywords">karanlık mod koyu açık tema renk vurgu duvar kağıdı arka plan simge stil</string>
+    <string name="settings_home">Ana ekran</string>
+    <string name="settings_home_summary">Varsayılan ana ekran, bildirim noktaları</string>
+    <string name="settings_home_keywords">başlatıcı ana ekran dock sayfa widget pencere öğesi rozet nokta</string>
+    <string name="settings_notifications">Bildirimler</string>
+    <string name="settings_notifications_summary">Bildirim erişimi, Rahatsız Etmeyin</string>
+    <string name="settings_notifications_keywords">bildirim uyarı rahatsız etmeyin sessiz kontrol merkezi</string>
+    <string name="settings_sound_summary">Ses seviyesi, titreşim, zil sesi</string>
+    <string name="settings_sound_keywords">ses seviye titreşim zil sessiz alarm medya</string>
+    <string name="settings_apps_keywords">uygulama varsayılan kaldır android google play</string>
+    <string name="settings_care">Pil ve cihaz bakımı</string>
+    <string name="settings_care_summary">Pil, bellek ve depolama durumu</string>
+    <string name="settings_care_keywords">pil şarj güç bellek ram depolama performans bakım</string>
+    <string name="settings_storage_summary">Boş alan, büyük dosyalar</string>
+    <string name="settings_storage_keywords">depolama alan disk dosya bellek temizle</string>
+    <string name="settings_privacy">Gizlilik ve izinler</string>
+    <string name="settings_privacy_summary">Uygulama izinleri, özel erişim</string>
+    <string name="settings_privacy_keywords">gizlilik izin kamera mikrofon konum güvenlik erişim</string>
+    <string name="settings_language">Dil</string>
+    <string name="settings_language_summary">MesOS dili, klavye</string>
+    <string name="settings_language_keywords">dil türkçe ingilizce bölge klavye giriş</string>
+    <string name="settings_update_keywords">güncelle güncelleme sürüm indir yeni</string>
+    <string name="settings_system_keywords">sistem tarih saat erişilebilirlik kurulum sıfırla</string>
+    <string name="settings_about_keywords">hakkında telefon sürüm derleme android cihaz model güvenlik yaması</string>
+    <string name="settings_licenses">Açık kaynak lisansları</string>
+
+    <string name="appearance_theme">Tema</string>
+    <string name="appearance_theme_keywords">karanlık mod koyu mod açık mod gece</string>
+    <string name="appearance_theme_system">Otomatik</string>
+    <string name="appearance_theme_light">Açık</string>
+    <string name="appearance_theme_dark">Koyu</string>
+    <string name="appearance_accent">Vurgu rengi</string>
+    <string name="appearance_wallpaper">Duvar kağıdı</string>
+    <string name="appearance_wallpaper_live">Canlı</string>
+    <string name="appearance_live_wallpaper">Kilit ekranında Aurora</string>
+    <string name="appearance_live_wallpaper_summary">Aurora\'yı Android duvar kağıdı yap, kilit ekranında da görünsün</string>
+    <string name="appearance_live_wallpaper_on">Aurora, Android\'in duvar kağıdı. Başkasını seçmek için dokun.</string>
+    <string name="appearance_icon_shape">Simge şekli</string>
+    <string name="appearance_shape_squircle">Yumuşak kare</string>
+    <string name="appearance_shape_circle">Daire</string>
+    <string name="appearance_shape_rounded">Yuvarlak köşe</string>
+    <string name="appearance_themed_icons">Temalı simgeler</string>
+    <string name="appearance_themed_icons_summary">Destekleyen uygulamaların simgelerini vurgu renginle çiz</string>
+    <string name="appearance_themed_icons_unsupported">Android 13 veya daha yenisi gerekir</string>
+    <string name="appearance_android_display">Parlaklık ve ekran</string>
+    <string name="appearance_android_display_summary">Parlaklık, ekran zaman aşımı, yazı boyutu</string>
+    <string name="appearance_android_display_keywords">parlaklık ekran zaman aşımı yazı boyutu çözünürlük</string>
+
+    <string name="wallpaper_aurora">Aurora</string>
+    <string name="wallpaper_aurora_still">Aurora sabit</string>
+    <string name="wallpaper_dawn">Şafak</string>
+    <string name="wallpaper_ocean">Okyanus</string>
+    <string name="wallpaper_graphite">Grafit</string>
+    <string name="wallpaper_system">Android</string>
+
+    <string name="home_default">Varsayılan ana ekran</string>
+    <string name="home_default_on">Ana ekran tuşuna basınca MesOS Home açılır</string>
+    <string name="home_default_off">Ana ekran başka bir uygulama. MesOS\'u seçmek için dokun.</string>
+    <string name="home_default_mesos">MesOS</string>
+    <string name="home_badges">Bildirim noktaları</string>
+    <string name="home_badges_summary">Yeni bildirimi olan uygulamalarda nokta göster</string>
+    <string name="home_badges_needs_access">Bildirim erişimi gerekir (Bildirimler sayfası)</string>
+    <string name="home_style">Duvar kağıdı ve stil</string>
+    <string name="home_gestures">Hareketler</string>
+    <string name="home_gesture_control">Ana ekranda aşağı kaydır: kontrol merkezi ve bildirimler</string>
+    <string name="home_gesture_drawer">Yukarı kaydır: tüm uygulamalar ve arama</string>
+    <string name="home_gesture_edit">Boş alana uzun bas: sayfaları düzenle, simgeleri taşı, klasör yap</string>
+    <string name="home_gesture_widgets">Widget\'ları düzenleme modundan ekle</string>
+
+    <string name="notifications_access">Bildirim erişimi</string>
+    <string name="notifications_access_summary">Kontrol merkezi bildirimlerini ve medyayı gösterebilsin</string>
+    <string name="notifications_post">MesOS bildirimleri</string>
+    <string name="notifications_post_summary">Alarm, hatırlatıcı, indirme ve güncelleme bildirimleri</string>
+    <string name="notifications_dnd">Rahatsız Etmeyin kontrolü</string>
+    <string name="notifications_dnd_summary">Kontrol merkezi Rahatsız Etmeyin\'i açıp kapatabilsin</string>
+    <string name="notifications_android">Tüm uygulamaların bildirimleri</string>
+    <string name="notifications_android_summary">Hangi uygulama nasıl bildirim gönderebilir</string>
+    <string name="notifications_note">Her erişim Android\'in kendi ekranında verilir ve istediğin zaman orada geri alınabilir.</string>
+
+    <string name="privacy_app_permissions">Uygulama izinleri</string>
+    <string name="privacy_special_access">Özel erişim</string>
+    <string name="privacy_allowed">İzinli</string>
+    <string name="privacy_not_allowed">İzin yok</string>
+    <string name="privacy_write_settings">Sistem ayarlarını değiştirme</string>
+    <string name="privacy_write_settings_summary">Kontrol merkezinde parlaklık ve otomatik döndürme</string>
+    <string name="privacy_all_files">Tüm dosyalara erişim</string>
+    <string name="privacy_all_files_summary">MesOS Dosyalar tüm klasörleri görüp yönetebilsin</string>
+    <string name="privacy_install">MesOS güncellemelerini yükleme</string>
+    <string name="privacy_install_summary">MesOS Güncelleme doğrulanmış güncellemeleri Android yükleyicisine verebilsin</string>
+    <string name="privacy_alarms">Alarmlar ve hatırlatıcılar</string>
+    <string name="privacy_alarms_summary">Saat ve Takvim tam zamanında çalsın</string>
+    <string name="privacy_full_screen">Tam ekran uyarılar</string>
+    <string name="privacy_full_screen_summary">Alarmlar telefon kilitliyken ekranı kaplayabilsin</string>
+    <string name="privacy_android">Android gizlilik ayarları</string>
+    <string name="privacy_location_settings">Konum</string>
+    <string name="privacy_security">Güvenlik ve ekran kilidi</string>
+    <string name="privacy_note">MesOS bir izni yalnızca bir özellik ona ihtiyaç duyduğunda ister. Android, kamerayı, mikrofonu veya konumu hangi uygulamanın kullandığını her zaman gösterir.</string>
+
+    <string name="permission_notifications">Bildirimler</string>
+    <string name="permission_notifications_summary">Alarm, hatırlatıcı ve güncelleme bildirimleri</string>
+    <string name="permission_location">Konum</string>
+    <string name="permission_location_summary">Bulunduğun yerin hava durumu</string>
+    <string name="permission_photos">Fotoğraflar ve videolar</string>
+    <string name="permission_photos_summary">MesOS Fotoğraflar ve Dosyalar</string>
+    <string name="permission_music">Müzik ve ses</string>
+    <string name="permission_music_summary">MesOS Müzik ve kayıtlar</string>
+    <string name="permission_storage">Fotoğraflar, medya ve dosyalar</string>
+    <string name="permission_storage_summary">Fotoğraflar, Müzik ve Dosyalar</string>
+    <string name="permission_camera">Kamera</string>
+    <string name="permission_camera_summary">MesOS Kamera ve QR tarayıcı</string>
+    <string name="permission_microphone">Mikrofon</string>
+    <string name="permission_microphone_summary">Video, ses kaydı, aramalar</string>
+    <string name="permission_contacts">Kişiler</string>
+    <string name="permission_contacts_summary">Kişiler, Telefon, Mesajlar ve arama</string>
+    <string name="permission_phone">Telefon</string>
+    <string name="permission_phone_summary">Aramalar ve arama geçmişi</string>
+    <string name="permission_sms">SMS</string>
+    <string name="permission_sms_summary">MesOS Mesajlar</string>
+
+    <string name="language_mesos">MesOS dili</string>
+    <string name="language_system">Android ile aynı</string>
+    <string name="language_system_summary">Android\'de seçilen dili kullan</string>
+    <string name="language_follows_android">Bu Android sürümünde MesOS, Android ayarlarında seçilen dili kullanır.</string>
+    <string name="language_android">Android dilleri</string>
+    <string name="language_android_summary">Sistem dili ve bölge</string>
+    <string name="language_keyboard">Klavye</string>
+    <string name="language_keyboard_summary">Ekran klavyesi ve giriş</string>
+    <string name="language_note">MesOS Türkçe ve İngilizce kullanılabilir. Google Play uygulamaları Android\'in dilini kullanır.</string>
+
+    <string name="apps_default_apps">Varsayılan uygulamalar</string>
+    <string name="apps_default_apps_summary">Tarayıcı, telefon, mesajlar, ana ekran</string>
+    <string name="apps_manage_summary">Depolama, izinler ve kaldırma</string>
+    <string name="apps_mesos_info">Android\'de MesOS</string>
+    <string name="apps_mesos_info_summary">MesOS paketi, depolama ve izinler</string>
+
+    <string name="system_date_time">Tarih ve saat</string>
+    <string name="system_accessibility">Erişilebilirlik</string>
+    <string name="system_run_setup">MesOS kurulumunu yeniden çalıştır</string>
+    <string name="system_run_setup_summary">Dil, stil, izinler ve ana ekran</string>
+
+    <string name="update_auto_check">Otomatik denetle</string>
+    <string name="update_auto_check_summary">Günde bir kez. MesOS yeni sürümü haber verir, yalnızca sen onaylayınca yükler.</string>
+
+    <string name="licenses_summary">MesOS\'un kullandığı yazı tipleri, kitaplıklar ve veriler</string>
+    <string name="licenses_note">MesOS açık kaynak yazılımlarla yapılır. Bunları yapan herkese teşekkürler.</string>
+
+    <string name="setup_label">MesOS kurulumu</string>
+    <string name="setup_skip">Kurulumu atla</string>
+    <string name="setup_start">Başlayalım</string>
+    <string name="setup_continue">Devam</string>
+    <string name="setup_finish">MesOS\'u kullanmaya başla</string>
+    <string name="setup_allow">İzin ver</string>
+    <string name="setup_granted">İzin verildi</string>
+    <string name="setup_welcome_title">MesOS\'a hoş geldin</string>
+    <string name="setup_welcome_message">Birkaç adımda MesOS\'u sana göre hazırlayalım.</string>
+    <string name="setup_style_title">Tarzını seç</string>
+    <string name="setup_style_message">Bir duvar kağıdı, vurgu rengi ve tema seç. Hepsini istediğin zaman Ayarlar\'dan değiştirebilirsin.</string>
+    <string name="setup_theme_title">MesOS uygulamalarının teması</string>
+    <string name="setup_permissions_title">İzinler</string>
+    <string name="setup_permissions_message">Şimdi kullanmak istediklerine izin ver. Diğerleri ilk ihtiyaç duyulduğunda sorulur.</string>
+    <string name="setup_permission_listener">Kontrol merkezinde bildirimler ve medya</string>
+    <string name="setup_permissions_note">Tüm izinleri sonra Ayarlar → Gizlilik ve izinler\'den değiştirebilirsin.</string>
+    <string name="setup_home_title">Ana ekran</string>
+    <string name="setup_home_message">MesOS\'u ana ekranın yap ve Aurora\'nın nerede görüneceğini seç.</string>
+    <string name="setup_home_default">Ana ekran tuşu seni MesOS\'a getirsin</string>
+    <string name="setup_done_title">Her şey hazır</string>
+    <string name="setup_done_message">MesOS\'ta gezinmek için birkaç hareket:</string>
+    <string name="setup_done_settings">Burada seçtiğin her şey Ayarlar\'da</string>
 </resources>

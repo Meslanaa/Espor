@@ -1,0 +1,31 @@
+# MesOS smoke test screens: <screenshot name> <activity class> [am start arguments]
+# "@setup" walks through the setup wizard, "@setup-done" marks it as finished
+# (resetting other preferences), "@home" tests MesOS Home gestures.
+@setup
+settings org.mesos.settings.SettingsActivity
+settings-appearance org.mesos.settings.SettingsActivity --es org.mesos.intent.extra.SETTINGS_PAGE appearance
+settings-notifications org.mesos.settings.SettingsActivity --es org.mesos.intent.extra.SETTINGS_PAGE notifications
+settings-privacy org.mesos.settings.SettingsActivity --es org.mesos.intent.extra.SETTINGS_PAGE privacy
+settings-update org.mesos.settings.SettingsActivity --es org.mesos.intent.extra.SETTINGS_PAGE update
+@setup-done
+@home
+camera org.mesos.camera.CameraActivity
+photos org.mesos.photos.PhotosActivity
+files org.mesos.files.FilesActivity
+downloads org.mesos.files.DownloadsActivity
+calculator org.mesos.calculator.CalculatorActivity
+notes org.mesos.notes.NotesActivity
+weather org.mesos.weather.WeatherActivity
+calendar org.mesos.calendar.CalendarActivity
+clock org.mesos.clock.ClockActivity
+clock-timer org.mesos.clock.ClockActivity --es org.mesos.clock.extra.TAB TIMER
+music org.mesos.music.MusicActivity
+scanner org.mesos.scanner.ScannerActivity
+care org.mesos.care.CareActivity
+recorder org.mesos.recorder.RecorderActivity
+contacts org.mesos.contacts.ContactsActivity
+tips org.mesos.tips.TipsActivity
+browser org.mesos.browser.BrowserActivity
+phone org.mesos.phone.PhoneActivity
+phone-dial org.mesos.phone.PhoneActivity -a android.intent.action.DIAL -d tel:05551234567
+messages org.mesos.messages.MessagesActivity

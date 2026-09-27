@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="updater_channel">MesOS güncellemeleri</string>
+    <string name="updater_available_title">MesOS %1$s hazır</string>
+    <string name="updater_available_text">Yeniliklere bakmak ve yüklemek için dokun.</string>
+</resources>

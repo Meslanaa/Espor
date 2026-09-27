@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="clock_app_name">Clock</string>
+    <string name="clock_tab_alarms">Alarms</string>
+    <string name="clock_tab_world">World clock</string>
+    <string name="clock_tab_stopwatch">Stopwatch</string>
+    <string name="clock_tab_timer">Timer</string>
+    <string name="clock_alarm">Alarm</string>
+    <string name="clock_add_alarm">New alarm</string>
+    <string name="clock_edit_alarm">Edit alarm</string>
+    <string name="clock_no_alarms">No alarms</string>
+    <string name="clock_no_alarms_hint">Tap + to set one.</string>
+    <string name="clock_rings_in">Rings in %1$d h %2$d min</string>
+    <string name="clock_alarm_set_at">Alarm set for %1$s</string>
+    <string name="clock_once">Once</string>
+    <string name="clock_every_day">Every day</string>
+    <string name="clock_weekdays">Weekdays</string>
+    <string name="clock_weekend">Weekend</string>
+    <string name="clock_label">Label</string>
+    <string name="clock_vibrate">Vibrate</string>
+    <string name="clock_save">Save</string>
+    <string name="clock_cancel">Cancel</string>
+    <string name="clock_delete">Delete alarm</string>
+    <string name="clock_remove">Remove</string>
+    <string name="clock_snooze">Snooze</string>
+    <string name="clock_dismiss">Stop</string>
+    <string name="clock_no_cities">No cities</string>
+    <string name="clock_no_cities_hint">Add cities to see their time at a glance.</string>
+    <string name="clock_add_city">Add city</string>
+    <string name="clock_search_city">Search for a city or region</string>
+    <string name="clock_same_time">Same time as here</string>
+    <string name="clock_hours_ahead">%1$s h ahead</string>
+    <string name="clock_hours_behind">%1$s h behind</string>
+    <string name="clock_start">Start</string>
+    <string name="clock_pause">Pause</string>
+    <string name="clock_resume">Resume</string>
+    <string name="clock_reset">Reset</string>
+    <string name="clock_lap">Lap</string>
+    <string name="clock_lap_number">Lap %1$d</string>
+    <string name="clock_timer">Timer</string>
+    <string name="clock_timer_done">Time is up</string>
+    <string name="clock_delete_digit">Delete digit</string>
+    <string name="clock_channel_alarms">Alarms and timers</string>
+    <string name="clock_channel_timer">Running timer</string>
+</resources>

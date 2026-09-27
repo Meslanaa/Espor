@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Recording continues in the background, with a notification and Android's indicators. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+
+    <application>
+        <activity
+            android:name=".RecorderActivity"
+            android:exported="true"
+            android:icon="@mipmap/ic_recorder"
+            android:label="@string/recorder_app_name"
+            android:launchMode="singleTask"
+            android:taskAffinity="org.mesos.recorder"
+            android:theme="@style/Theme.MesOS">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Screen recording on/off (control center tile). Android asks for consent every time. -->
+        <activity
+            android:name=".ScreenRecordActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:taskAffinity="org.mesos.recorder.screen"
+            android:theme="@style/Theme.MesOS.Translucent">
+            <intent-filter>
+                <action android:name="org.mesos.intent.action.TOGGLE_SCREEN_RECORDING" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".VoiceRecordService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <service
+            android:name=".ScreenRecordService"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection|microphone" />
+    </application>
+
+</manifest>

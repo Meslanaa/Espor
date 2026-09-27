@@ -51,6 +51,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import org.mesos.core.ui.EmptyState
+import org.mesos.core.ui.MesOSGlyphs
 import org.mesos.core.ui.MesOSTopBar
 import org.mesos.core.ui.OnResume
 import org.mesos.core.ui.PermissionGate
@@ -190,11 +192,10 @@ private fun Gallery(onExit: () -> Unit) {
         }
         when {
             items == null -> Unit
-            all.isEmpty() -> Text(
-                stringResource(R.string.photos_empty),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(32.dp),
+            all.isEmpty() -> EmptyState(
+                icon = MesOSGlyphs.Image,
+                title = stringResource(R.string.photos_empty_title),
+                message = stringResource(R.string.photos_empty),
             )
             albumName == null && tab == Tab.ALBUMS -> AlbumGrid(albums) { albumName = it.name }
             else -> MediaGrid(shown) { viewerIndex = it }

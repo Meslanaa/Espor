@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tips_app_name">İpuçları</string>
+    <string name="tips_try">Dene</string>
+    <string name="tips_open_settings">Ayarları aç</string>
+    <string name="tips_whats_new">MesOS %1$s\'te yenilikler</string>
+    <string name="tips_new_design">Yepyeni görünüm: Aurora duvar kağıdı, yeni simgeler, yazı tipleri ve her yerde animasyon</string>
+    <string name="tips_new_home">Sayfalar, klasörler, widget\'lar, sürükle-bırak ve arama ile yeni Ana ekran</string>
+    <string name="tips_new_control">Geçişler, kaydırıcılar, medya ve bildirimlerle kontrol merkezi</string>
+    <string name="tips_new_settings">Aramalı Ayarlar 2.0 ve kurulum sihirbazı</string>
+    <string name="tips_new_apps">Yeni uygulamalar: Saat, Takvim, Hava Durumu, Müzik, Ses Kaydedici, Kod Tarayıcı, Kişiler, Telefon, Mesajlar, Tarayıcı, Cihaz Bakımı ve İpuçları</string>
+    <string name="tips_new_updates">MesOS günde bir kez güncellemeleri denetler ve yüklemeden önce sorar</string>
+
+    <string name="tips_section_home">Ana ekran</string>
+    <string name="tips_section_apps">MesOS uygulamaları</string>
+    <string name="tips_section_privacy">Gizlilik ve güncellemeler</string>
+
+    <string name="tip_control_title">Kontrol merkezi için aşağı çek</string>
+    <string name="tip_control_text">Ana ekranda herhangi bir yerden aşağı kaydır: Wi‑Fi, Bluetooth, el feneri, parlaklık, çalan müzik ve bildirimlerin.</string>
+    <string name="tip_search_title">Her şeyi bulmak için yukarı kaydır</string>
+    <string name="tip_search_text">Tüm uygulamaların, ayrıca uygulamalarda, kişilerde, notlarda ve ayarlarda arama. Hesaplamak için 12x4 gibi bir işlem yaz.</string>
+    <string name="tip_edit_title">Ana ekranı kişiselleştir</string>
+    <string name="tip_edit_text">Düzenlemek için boş alana uzun bas. Simgeleri sürükle, klasör yapmak için bir simgeyi diğerinin üstüne bırak veya yeni sayfa için kenara sürükle.</string>
+    <string name="tip_widgets_title">Bir bakışta widget\'lar</string>
+    <string name="tip_widgets_text">Saat, hava durumu, bugünün etkinlikleri, notlar ve pil; ayrıca Google Play\'den yüklediğin uygulamaların widget\'ları.</string>
+    <string name="tip_style_title">Aurora, senin tarzında</string>
+    <string name="tip_style_text">Bir duvar kağıdı, vurgu rengi ve simge şekli seç. Aurora kilit ekranın da olabilir.</string>
+
+    <string name="tip_scanner_title">Kod tara</string>
+    <string name="tip_scanner_text">Kamerayı bir QR koda veya barkoda doğrult. MesOS bir şey açmadan önce içeriği gösterir; Wi‑Fi kodları ağa bağlar.</string>
+    <string name="tip_recorder_title">Sesini veya ekranı kaydet</string>
+    <string name="tip_recorder_text">Kayıtlar arka planda devam eder. Ekran kaydı kontrol merkezinden de başlar.</string>
+    <string name="tip_clock_title">Zamanında çalan alarmlar</string>
+    <string name="tip_clock_text">Tekrarlayan alarmlar, dünya saatleri, turlu kronometre ve bildirimlerde görünen zamanlayıcı.</string>
+    <string name="tip_weather_title">Bulunduğun yerin havası</string>
+    <string name="tip_weather_text">Konumun ve eklediğin her şehir için saatlik ve 10 günlük tahmin.</string>
+    <string name="tip_music_title">Müziğin</string>
+    <string name="tip_music_text">Bu cihazdaki şarkılar, albümler ve sanatçılar; kilit ekranında ve kontrol merkezinde kontroller.</string>
+    <string name="tip_care_title">Cihazına göz kulak ol</string>
+    <string name="tip_care_text">Pil sağlığı, depolama ve bellek; anlaşılır bir puan ve dürüst önerilerle.</string>
+
+    <string name="tip_privacy_title">Kimin neyi göreceğine sen karar ver</string>
+    <string name="tip_privacy_text">Ayarlar → Gizlilik ve izinler her izni ve özel erişimi listeler, değiştirmene izin verir.</string>
+    <string name="tip_update_title">Güvenli MesOS güncellemeleri</string>
+    <string name="tip_update_text">Güncellemeler MesOS GitHub sürümlerinden HTTPS ile gelir, denetlenir (SHA-256 ve imza) ve yalnızca sen onaylayınca yüklenir.</string>
+    <string name="tip_language_title">Türkçe veya English</string>
+    <string name="tip_language_text">MesOS, Android\'den ayrı olarak kendi dilini kullanabilir.</string>
+</resources>

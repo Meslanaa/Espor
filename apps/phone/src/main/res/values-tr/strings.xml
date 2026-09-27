@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="phone_app_name">Telefon</string>
+    <string name="phone_tab_keypad">Tuş takımı</string>
+    <string name="phone_tab_recents">Son aramalar</string>
+    <string name="phone_tab_contacts">Kişiler</string>
+    <string name="phone_call">Ara</string>
+    <string name="phone_delete_digit">Sil</string>
+    <string name="phone_add_contact">Kişilere ekle</string>
+    <string name="phone_make_default">Aramalar için MesOS\'u kullan</string>
+    <string name="phone_make_default_text">Gelen ve giden aramalarda MesOS arama ekranını kullanmak için MesOS\'u telefon uygulaman yap.</string>
+    <string name="phone_make_default_action">Telefon uygulaması yap</string>
+    <string name="phone_not_available">Bu cihazda kullanılamıyor</string>
+    <string name="phone_call_log_rationale">MesOS Telefon, son aramalarını Android\'in arama kaydından gösterir.</string>
+    <string name="phone_contacts_rationale">MesOS Telefon, onları arayabilmen için kişilerini gösterir.</string>
+    <string name="phone_recents_empty">Son arama yok</string>
+    <string name="phone_contacts_empty">Telefon numarası olan kişi yok</string>
+    <string name="phone_search_contacts">Ad veya numara ara</string>
+    <string name="phone_favorites">Favoriler</string>
+    <string name="phone_open_contacts">Kişiler\'i aç</string>
+    <string name="phone_clear">Temizle</string>
+    <string name="phone_clear_title">Tüm arama kaydı silinsin mi?</string>
+    <string name="phone_unknown">Bilinmeyen numara</string>
+    <string name="phone_message">Mesaj</string>
+    <string name="phone_kind_incoming">Gelen</string>
+    <string name="phone_kind_outgoing">Giden</string>
+    <string name="phone_kind_missed">Cevapsız</string>
+    <string name="phone_kind_rejected">Reddedildi</string>
+    <string name="phone_kind_blocked">Engellendi</string>
+    <string name="phone_kind_voicemail">Sesli mesaj</string>
+
+    <string name="phone_incoming">Gelen arama</string>
+    <string name="phone_ongoing">Devam eden arama</string>
+    <string name="phone_calling">Aranıyor…</string>
+    <string name="phone_on_hold">Beklemede</string>
+    <string name="phone_call_ended">Arama bitti</string>
+    <string name="phone_answer">Cevapla</string>
+    <string name="phone_decline">Reddet</string>
+    <string name="phone_hang_up">Kapat</string>
+    <string name="phone_mute">Sessiz</string>
+    <string name="phone_keypad">Tuş takımı</string>
+    <string name="phone_hide_keypad">Tuş takımını gizle</string>
+    <string name="phone_speaker">Hoparlör</string>
+    <string name="phone_hold">Beklet</string>
+    <string name="phone_channel_incoming">Gelen aramalar</string>
+    <string name="phone_channel_ongoing">Devam eden aramalar</string>
+</resources>

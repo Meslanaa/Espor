@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="care_app_name">Cihaz Bakımı</string>
+    <string name="care_android">Android</string>
+    <string name="care_not_available">Bu cihazda kullanılamıyor</string>
+
+    <string name="care_status_good">Cihazın iyi durumda</string>
+    <string name="care_status_fair">Birkaç şey ilgini bekliyor</string>
+    <string name="care_status_attention">Cihazın ilgi bekliyor</string>
+    <string name="care_score_note">Pil, sıcaklık, depolama ve belleğe göre. Birkaç saniyede bir güncellenir.</string>
+    <string name="care_advice_battery_health">Android, pil sağlığında bir sorun bildiriyor.</string>
+    <string name="care_advice_temperature">Cihaz ısınmış. Biraz dinlendir ve bir süre şarjdan çıkar.</string>
+    <string name="care_advice_storage">Depolama neredeyse dolu. Büyük dosyaları veya kullanmadığın uygulamaları sil.</string>
+    <string name="care_advice_memory">Bellek az. Kullanmadığın uygulamaları kapatmak Android\'e yardımcı olur.</string>
+    <string name="care_advice_charge">Pil düşük. Şarj etmeyi unutma.</string>
+
+    <string name="care_battery">Pil</string>
+    <string name="care_on_battery">Pilde</string>
+    <string name="care_charging">Şarj oluyor</string>
+    <string name="care_charging_usb">USB ile şarj oluyor</string>
+    <string name="care_charging_wireless">Kablosuz şarj oluyor</string>
+    <string name="care_temperature">Sıcaklık</string>
+    <string name="care_health">Sağlık</string>
+    <string name="care_voltage">Voltaj</string>
+    <string name="care_current">Akım</string>
+    <string name="care_technology">Teknoloji</string>
+    <string name="care_until_full">Dolmasına</string>
+    <string name="care_health_good">İyi</string>
+    <string name="care_health_overheat">Aşırı ısınma</string>
+    <string name="care_health_dead">Ölü</string>
+    <string name="care_health_over_voltage">Aşırı voltaj</string>
+    <string name="care_health_cold">Çok soğuk</string>
+    <string name="care_health_failure">Arıza</string>
+    <string name="care_health_unknown">Bildirilmiyor</string>
+    <string name="care_battery_saver">Pil tasarrufu</string>
+    <string name="care_battery_usage">Uygulamalara göre pil kullanımı</string>
+
+    <string name="care_storage">Depolama</string>
+    <string name="care_free_of">%2$s içinde %1$s boş</string>
+    <string name="care_used_percent">%%%1$d kullanılıyor</string>
+    <string name="care_open_files">Büyük dosyaları bul</string>
+    <string name="care_open_files_summary">MesOS Dosyalar\'da gözat ve temizle</string>
+    <string name="care_storage_settings">Depolama ayarları</string>
+    <string name="care_cache">MesOS önbelleği</string>
+    <string name="care_cache_summary">MesOS\'un güvenle silebileceği geçici dosyalar</string>
+    <string name="care_cache_cleared">%1$s boşaltıldı</string>
+
+    <string name="care_memory">Bellek</string>
+    <string name="care_available_of">%2$s içinde %1$s kullanılabilir</string>
+    <string name="care_memory_note">Android belleği kendisi yönetir. MesOS arka plandaki uygulamaları kapatmaz ve sahte hızlandırma vaat etmez.</string>
+
+    <string name="care_device">Cihaz</string>
+    <string name="care_model">Model</string>
+    <string name="care_android_version">Android sürümü</string>
+    <string name="care_processor">İşlemci</string>
+    <string name="care_processor_value">%1$d çekirdek · %2$s</string>
+    <string name="care_uptime">Yeniden başlatmadan beri</string>
+    <string name="care_days_hours">%1$d g %2$d sa</string>
+    <string name="care_hours_minutes">%1$d sa %2$d dk</string>
+    <string name="care_minutes">%1$d dk</string>
+</resources>

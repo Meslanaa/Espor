@@ -66,6 +66,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.viewinterop.AndroidView
 import coil3.compose.AsyncImage
 import org.mesos.core.R as CoreR
+import org.mesos.core.ui.MesOSGlyphs
 import org.mesos.core.ui.MesOSTopBar
 import org.mesos.core.ui.startActivitySafely
 import org.mesos.core.ui.theme.MesOSTheme
@@ -95,6 +96,7 @@ internal fun MediaViewer(
     var chromeVisible by remember { mutableStateOf(true) }
     var zoomed by remember { mutableStateOf(false) }
     var infoItem by remember { mutableStateOf<MediaItem?>(null) }
+    var editing by remember { mutableStateOf<MediaItem?>(null) }
     // API 29: after the user allows it, the delete has to be retried.
     var retryDelete by remember { mutableStateOf<MediaItem?>(null) }
 
@@ -128,6 +130,13 @@ internal fun MediaViewer(
 
     BackHandler(onBack = onClose)
     LaunchedEffect(pagerState.currentPage) { zoomed = false }
+
+    editing?.let { item ->
+        MesOSTheme(darkTheme = true) {
+            PhotoEditor(item = item, onClose = { editing = null }, onSaved = { editing = null })
+        }
+        return
+    }
 
     MesOSTheme(darkTheme = true) {
         Box(
@@ -174,6 +183,11 @@ internal fun MediaViewer(
                                 .background(Color.Black.copy(alpha = 0.4f)),
                             horizontalArrangement = Arrangement.SpaceEvenly,
                         ) {
+                            if (!current.isVideo) {
+                                IconButton(onClick = { editing = current }) {
+                                    Icon(MesOSGlyphs.Edit, contentDescription = stringResource(R.string.editor_title), tint = Color.White)
+                                }
+                            }
                             IconButton(onClick = { share(context, current) }) {
                                 Icon(Icons.Filled.Share, contentDescription = stringResource(CoreR.string.mesos_share), tint = Color.White)
                             }

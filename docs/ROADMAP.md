@@ -38,20 +38,32 @@ it is not stable yet. Rule: **first make MesOS boot and work, then improve it.**
 - [x] UPDATE documentation exists
 - [x] Git repository is clean and usable
 
-## MesOS 0.2 — MesOS apps (current)
+## MesOS 0.2 — MesOS apps (done)
 
 Plan: [plans/MESOS_0.2.md](plans/MESOS_0.2.md). MesOS Camera, Photos, Files,
 Downloads, Calculator and Notes; MesOS-only home screen (Android apps hidden unless
 enabled); Turkish translation; optional MesOS-only emulator script.
 
-Moved to later releases: full design system, wallpapers, widgets, animation
-foundation.
+The design system, wallpapers, widgets and animations moved to 0.3.
 
-## MesOS 0.3 — Communication and system experience
+## MesOS 0.3 "Aurora" — everything MesOS can be on stock Android (current)
 
-MesOS Phone, Messages and Contacts (dialer and SMS roles), Clock with alarms, Music;
-design system and wallpapers; notification customization and deeper Settings
-integration. Status bar, quick settings and lock screen need the MesOS ROM.
+Plan: [plans/MESOS_0.3.md](plans/MESOS_0.3.md). One update that combines what was
+planned for 0.3 and more: Aurora design system and icons, MesOS Home 2.0 (pages,
+widgets, folders, drag and drop, universal search), control and notification
+center, setup wizard, Settings 2.0, daily update check, Photos editor, and the new
+MesOS apps Phone, Messages, Contacts, Browser, Clock, Calendar, Weather, Music,
+Recorder, Scanner, Device Care and Tips.
+
+What still belongs to Android (status bar, lock screen, boot animation, recents,
+permission dialogs) needs a MesOS system image; that is the next step.
+
+## Next — preparing the move to Linux
+
+Before 0.4 starts: decide the base (AOSP system image or a Linux distribution with
+an Android compatibility layer), keep separating pure logic from Android APIs (as
+0.3 did for layouts, alarms, weather, colour and crop maths, URL and QR parsing),
+and define how MesOS updates move from an app update to a full system update.
 
 ## MesOS 0.4 — System integration
 

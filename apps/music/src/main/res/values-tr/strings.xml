@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="music_app_name">Müzik</string>
+    <string name="music_permission">MesOS Müzik bu cihazdaki şarkıları çalar. Müzik ve ses dosyalarına erişime izin ver.</string>
+    <string name="music_empty">Henüz müzik yok</string>
+    <string name="music_empty_hint">Şarkıları Music klasörüne kopyala (örneğin MesOS Dosyalar ile), burada görünürler.</string>
+    <string name="music_unknown_artist">Bilinmeyen sanatçı</string>
+    <string name="music_search">Şarkı, albüm, sanatçı ara</string>
+    <string name="music_tab_songs">Şarkılar</string>
+    <string name="music_tab_albums">Albümler</string>
+    <string name="music_tab_artists">Sanatçılar</string>
+    <string name="music_song_count">%1$d şarkı</string>
+    <string name="music_play_all">Çal</string>
+    <string name="music_shuffle">Karıştır</string>
+    <string name="music_repeat">Tekrarla</string>
+    <string name="music_play">Oynat</string>
+    <string name="music_pause">Duraklat</string>
+    <string name="music_next">Sonraki</string>
+    <string name="music_previous">Önceki</string>
+    <string name="music_back">Geri</string>
+    <string name="music_close_player">Oynatıcıyı kapat</string>
+</resources>

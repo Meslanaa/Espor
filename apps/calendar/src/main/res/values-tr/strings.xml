@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="calendar_app_name">Takvim</string>
+    <string name="calendar_today">Bugün</string>
+    <string name="calendar_previous_month">Önceki ay</string>
+    <string name="calendar_next_month">Sonraki ay</string>
+    <string name="calendar_no_events">Bu günde etkinlik yok</string>
+    <string name="calendar_new_event">Yeni etkinlik</string>
+    <string name="calendar_edit_event">Etkinliği düzenle</string>
+    <string name="calendar_untitled">Başlıksız etkinlik</string>
+    <string name="calendar_all_day">Tüm gün</string>
+    <string name="calendar_title">Başlık</string>
+    <string name="calendar_starts">Başlangıç</string>
+    <string name="calendar_ends">Bitiş</string>
+    <string name="calendar_repeat">Tekrar</string>
+    <string name="calendar_repeat_none">Hiçbir zaman</string>
+    <string name="calendar_repeat_daily">Her gün</string>
+    <string name="calendar_repeat_weekly">Her hafta</string>
+    <string name="calendar_repeat_monthly">Her ay</string>
+    <string name="calendar_repeat_yearly">Her yıl</string>
+    <string name="calendar_reminder">Hatırlatıcı</string>
+    <string name="calendar_reminder_none">Yok</string>
+    <string name="calendar_reminder_at_start">Başlarken</string>
+    <string name="calendar_reminder_minutes">%1$d dk önce</string>
+    <string name="calendar_reminder_day">1 gün önce</string>
+    <string name="calendar_color">Renk</string>
+    <string name="calendar_location">Konum</string>
+    <string name="calendar_notes">Notlar</string>
+    <string name="calendar_save">Kaydet</string>
+    <string name="calendar_cancel">İptal</string>
+    <string name="calendar_ok">Tamam</string>
+    <string name="calendar_delete">Etkinliği sil</string>
+    <string name="calendar_delete_title">Bu etkinlik silinsin mi?</string>
+    <string name="calendar_channel">Etkinlik hatırlatıcıları</string>
+</resources>
