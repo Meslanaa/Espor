@@ -135,8 +135,8 @@ while read -r name cls args <&3; do
     adb shell input keyevent KEYCODE_BACK
     sleep 1
     home
-    echo "-- home gestures (logcat):"
-    adb logcat -d -s MesOSSmoke:I MesOSLauncher:D | grep -E "MesOSSmoke|Home gesture|Home page|Page swipe" || true
+    echo "-- home pages (logcat):"
+    adb logcat -d -s MesOSSmoke:I MesOSLauncher:D | grep -E "MesOSSmoke|Home page" || true
     continue
   fi
   # shellcheck disable=SC2086

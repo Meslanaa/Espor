@@ -14,7 +14,6 @@ import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.unit.IntSize
-import org.mesos.core.log.MesOSLog
 import org.mesos.launcher.layout.HomeItem
 import kotlin.math.abs
 
@@ -89,8 +88,9 @@ private enum class EarlyEnd { LIFTED, HORIZONTAL, VERTICAL }
  *
  * - vertical swipe → [onSheetDrag] with the finger's movement, then [onSheetEnd]
  *   with its velocity (drawer up, control center down);
- * - sideways swipe → the pager, except when it arrives as just down and up (busy
- *   UI thread): then [onQuickPageSwipe] with the horizontal distance;
+ * - sideways swipe → the pager; when the finger lifts, [onPageSwipeEnd] with the
+ *   horizontal distance, so Home can turn the page if the pager never started
+ *   (a swipe with too few moves, e.g. on a busy UI thread). Returns true if it did;
  * - long press on an item → [onLongPressItem]; moving afterwards → [onDragStart],
  *   [onDragMove] and finally [onDrop] (or [onDragCancel]);
  * - long press on empty space → [onLongPressEmpty].
@@ -101,7 +101,7 @@ internal fun Modifier.homeLongPressDrag(
     hitTest: (Offset) -> Long?,
     onSheetDrag: (dy: Float) -> Unit,
     onSheetEnd: (velocityY: Float) -> Unit,
-    onQuickPageSwipe: (dx: Float) -> Unit,
+    onPageSwipeEnd: (dx: Float) -> Boolean,
     onLongPressItem: (id: Long) -> Unit,
     onLongPressEmpty: (Offset) -> Unit,
     onDragStart: (id: Long, pointer: Offset) -> Boolean,
@@ -111,10 +111,7 @@ internal fun Modifier.homeLongPressDrag(
 ): Modifier = pointerInput(Unit) {
     awaitEachGesture {
         val down = awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Initial)
-        if (!enabled()) {
-            MesOSLog.d(MesOSLog.LAUNCHER, "Home gesture ignored: an overlay is open")
-            return@awaitEachGesture
-        }
+        if (!enabled()) return@awaitEachGesture
         val slop = viewConfiguration.touchSlop
         val velocity = VelocityTracker()
         velocity.addPosition(down.uptimeMillis, down.position)
@@ -140,17 +137,12 @@ internal fun Modifier.homeLongPressDrag(
             @Suppress("UNREACHABLE_CODE")
             EarlyEnd.LIFTED
         }
-        if (early != EarlyEnd.LIFTED) {
-            MesOSLog.d(MesOSLog.LAUNCHER, "Home gesture: ${early ?: "LONG_PRESS"}, ended without moves: ${upAlready != null}")
-        }
         when (early) {
             EarlyEnd.LIFTED -> return@awaitEachGesture
             EarlyEnd.HORIZONTAL -> {
-                // The pager never saw a move in this case, so it cannot turn the page itself.
-                upAlready?.let { up ->
-                    up.consume()
-                    onQuickPageSwipe(up.position.x - down.position.x)
-                }
+                // Watch (without consuming) until the finger lifts; the pager has the swipe.
+                val up = upAlready ?: awaitUp(down.id)
+                if (up != null && onPageSwipeEnd(up.position.x - down.position.x)) up.consume()
                 return@awaitEachGesture
             }
             EarlyEnd.VERTICAL -> {
@@ -213,6 +205,17 @@ internal fun Modifier.homeLongPressDrag(
             }
             if (dragging) onDragMove(change.position)
         }
+    }
+}
+
+/** The up event of [pointerId], seen before the children and not consumed; null if cancelled. */
+private suspend fun androidx.compose.ui.input.pointer.AwaitPointerEventScope.awaitUp(
+    pointerId: androidx.compose.ui.input.pointer.PointerId,
+): PointerInputChange? {
+    while (true) {
+        val event = awaitPointerEvent(PointerEventPass.Initial)
+        val change = event.changes.firstOrNull { it.id == pointerId } ?: return null
+        if (!change.pressed) return change
     }
 }
 

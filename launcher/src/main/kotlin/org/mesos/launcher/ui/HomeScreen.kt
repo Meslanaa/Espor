@@ -97,6 +97,7 @@ import org.mesos.launcher.search.SearchEngine
 import org.mesos.launcher.search.SearchResults
 import org.mesos.launcher.widgets.AndroidWidgets
 import org.mesos.launcher.widgets.MesOSWidget
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -315,11 +316,15 @@ internal fun HomeScreen(
                         hitTest = { position -> registry.hit(position, screen) },
                         onSheetDrag = { dy -> sheetDrag.drag(dy) },
                         onSheetEnd = { velocity -> sheetDrag.end(velocity) },
-                        onQuickPageSwipe = { dx ->
+                        onPageSwipeEnd = { dx ->
+                            // Only when the pager itself never moved: it runs after this (main pass).
+                            val pagerStill = !pager.isScrollInProgress && abs(pager.currentPageOffsetFraction) < 0.01f
                             val target = (pager.currentPage + if (dx < 0) 1 else -1).coerceIn(0, pager.pageCount - 1)
-                            if (target != pager.currentPage && !drag.isDragging) {
-                                MesOSLog.d(MesOSLog.LAUNCHER, "Page swipe without moves: page $target")
+                            if (pagerStill && abs(dx) > widthPx * PAGE_SWIPE_FRACTION && target != pager.currentPage && !drag.isDragging) {
                                 scope.launch { pager.animateScrollToPage(target) }
+                                true
+                            } else {
+                                false
                             }
                         },
                         onLongPressItem = { id ->
@@ -581,6 +586,9 @@ internal fun HomeScreen(
 }
 
 private const val PAGE_FLIP_DELAY_MS = 550L
+
+// A sideways swipe the pager did not take turns the page past this share of the width.
+private const val PAGE_SWIPE_FRACTION = 0.2f
 private const val SEARCH_DEBOUNCE_MS = 120L
 
 private fun appLabel(context: android.content.Context, model: LauncherModel, pkg: String): String =
