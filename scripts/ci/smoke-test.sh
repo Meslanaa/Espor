@@ -111,6 +111,15 @@ while read -r name cls args <&3; do
     adb shell input swipe 880 1500 200 1500 400
     sleep 3
     shot home-page-2
+    # The same swipe as separate touch events (each MOVE is its own command), in
+    # case the emulator delivered the swipe above without moves.
+    adb shell input keyevent KEYCODE_HOME
+    sleep 3
+    adb shell input motionevent DOWN 880 1500
+    for x in 800 700 600 500 400 300 200; do adb shell input motionevent MOVE "$x" 1500; done
+    adb shell input motionevent UP 200 1500
+    sleep 3
+    shot home-page-2-touch
     adb shell input swipe 540 1200 540 1210 1500
     sleep 2
     shot home-long-press

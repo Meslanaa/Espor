@@ -14,6 +14,7 @@ import androidx.compose.ui.input.pointer.PointerInputChange
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.unit.IntSize
+import org.mesos.core.log.MesOSLog
 import org.mesos.launcher.layout.HomeItem
 import kotlin.math.abs
 
@@ -110,7 +111,10 @@ internal fun Modifier.homeLongPressDrag(
 ): Modifier = pointerInput(Unit) {
     awaitEachGesture {
         val down = awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Initial)
-        if (!enabled()) return@awaitEachGesture
+        if (!enabled()) {
+            MesOSLog.d(MesOSLog.LAUNCHER, "Home gesture ignored: an overlay is open")
+            return@awaitEachGesture
+        }
         val slop = viewConfiguration.touchSlop
         val velocity = VelocityTracker()
         velocity.addPosition(down.uptimeMillis, down.position)
@@ -135,6 +139,9 @@ internal fun Modifier.homeLongPressDrag(
             }
             @Suppress("UNREACHABLE_CODE")
             EarlyEnd.LIFTED
+        }
+        if (early != EarlyEnd.LIFTED) {
+            MesOSLog.d(MesOSLog.LAUNCHER, "Home gesture: ${early ?: "LONG_PRESS"}, ended without moves: ${upAlready != null}")
         }
         when (early) {
             EarlyEnd.LIFTED -> return@awaitEachGesture

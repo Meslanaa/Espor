@@ -50,6 +50,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
@@ -173,6 +174,9 @@ internal fun HomeScreen(
     val current = layout ?: HomeLayout()
     val extraPage = if (ui.editMode || drag.isDragging) 1 else 0
     val pager = rememberPagerState { current.pageCount + extraPage }
+    LaunchedEffect(pager) {
+        snapshotFlow { pager.settledPage }.collect { MesOSLog.d(MesOSLog.LAUNCHER, "Home page ${it + 1} of ${pager.pageCount}") }
+    }
 
     BoxWithConstraints(Modifier.fillMaxSize().background(Color(0xFF050914))) {
         val heightPx = constraints.maxHeight.toFloat().coerceAtLeast(1f)
