@@ -14,6 +14,11 @@ mkdir -p "$OUT"
 APK="$(find "$APK_DIR" -name "*.apk" | head -n 1)"
 echo "Installing $APK"
 
+# Marks a step in logcat, so gesture logs can be matched to it.
+mark() {
+  adb shell log -t MesOSSmoke "$1"
+}
+
 shot() {
   adb exec-out screencap -p > "$OUT/$1.png" 2> /dev/null || echo "screenshot $1 failed"
 }
@@ -86,12 +91,14 @@ while read -r name cls args <&3; do
     home
     sleep 8
     shot home
+    mark "swipe down: control center"
     # Slow swipes: the CI emulator is busy and may merge a fast swipe into down/up.
     adb shell input swipe 540 700 540 1900 500
     sleep 3
     shot control-center
     adb shell input keyevent KEYCODE_BACK
     sleep 3
+    mark "swipe up: drawer"
     adb shell input swipe 540 1700 540 500 500
     sleep 3
     shot drawer
@@ -107,6 +114,7 @@ while read -r name cls args <&3; do
     sleep 1
     adb shell input keyevent KEYCODE_BACK
     sleep 2
+    mark "swipe left: page 2"
     # Away from the screen edges, which belong to Android's back gesture.
     adb shell input swipe 880 1500 200 1500 400
     sleep 3
@@ -115,6 +123,7 @@ while read -r name cls args <&3; do
     # case the emulator delivered the swipe above without moves.
     adb shell input keyevent KEYCODE_HOME
     sleep 3
+    mark "touch events left: page 2"
     adb shell input motionevent DOWN 880 1500
     for x in 800 700 600 500 400 300 200; do adb shell input motionevent MOVE "$x" 1500; done
     adb shell input motionevent UP 200 1500
@@ -126,6 +135,8 @@ while read -r name cls args <&3; do
     adb shell input keyevent KEYCODE_BACK
     sleep 1
     home
+    echo "-- home gestures (logcat):"
+    adb logcat -d -s MesOSSmoke:I MesOSLauncher:D | grep -E "MesOSSmoke|Home gesture|Home page|Page swipe" || true
     continue
   fi
   # shellcheck disable=SC2086
